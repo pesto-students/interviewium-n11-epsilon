@@ -1,0 +1,15 @@
+.drag-drop-container {
+  height: 100%;
+  width: 100%;
+  border: 1px solid black;
+  overflow-y: auto;
+  display: flex;
+}
+
+.item {
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid blue;
+  cursor: pointer;
+  width: 70px;
+}
