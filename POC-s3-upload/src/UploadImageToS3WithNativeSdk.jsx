@@ -2,10 +2,10 @@ import React , {useState} from 'react';
 import { uploadFile } from 'react-s3';
 
 
-const S3_BUCKET ='interviewium';
+const S3_BUCKET ='S3_BUCKET';
 const REGION ='ap-south-1';
-const ACCESS_KEY ='AKIATK5OHASDYW3IZXPC';
-const SECRET_ACCESS_KEY ='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';
+const ACCESS_KEY ='ACCESS_KEY';
+const SECRET_ACCESS_KEY ='SECRET_ACCESS_KEY';
 
 const config = {
     bucketName: S3_BUCKET,
