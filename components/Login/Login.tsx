@@ -8,7 +8,6 @@ import PrimaryButton from '../../shared/PrimaryButton/PrimaryButton';
 import Link from 'next/link'
 import { signIn } from './Login_API';
 import { toast, ToastContainer } from 'react-toastify';
-import Image from 'next/image'
 
 const Login: NextPage = () => {
   const loginSchema = Yup.object().shape({
@@ -67,7 +66,7 @@ const Login: NextPage = () => {
     <div className={styles.container}>
       <div id={styles.logo}>
         <div>
-          <Image
+          <img
             className={styles.logo_img}
             src='/images/main_logo.png'
             alt='logo'
@@ -87,7 +86,7 @@ const Login: NextPage = () => {
             <img
               className={styles.content}
               src='/images/google_logo.png'
-              alt='logo'
+              alt='google-logo'
             />
             <p>Login with Google</p>
           </div>
