@@ -1,14 +1,17 @@
-import { initializeApp } from "firebase/app";
-// import { getAnalytics } from "firebase/analytics";
+import { initializeApp } from 'firebase/app';
+
+import { firebaseData } from '../env/env';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDUoL98Aqlmm5DtW0t20cISChVUfpmCWso",
-    authDomain: "interviewium-334906.firebaseapp.com",
-    projectId: "interviewium-334906",
-    storageBucket: "interviewium-334906.appspot.com",
-    messagingSenderId: "1067871085404",
-    appId: "1:1067871085404:web:4e03f9c682808234569799",
-    measurementId: "G-T02TE2NZLX"
-  };
+  apiKey: firebaseData.APIKEY,
+  authDomain: firebaseData.AUTHDOMAIN,
+  projectId: firebaseData.PROJECTID,
+  storageBucket: firebaseData.STORAGEBUCKET,
+  messagingSenderId: firebaseData.MESSAGINGSENDERID,
+  appId: firebaseData.APPID,
+  measurementId: firebaseData.MEASUREMENTID,
+};
 
-export const app : any = initializeApp(firebaseConfig);
+const app: any = initializeApp(firebaseConfig);
+
+export default app;

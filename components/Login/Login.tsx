@@ -6,8 +6,10 @@ import { emailYup, passwordYup } from '../../utilities/yupObjects';
 import * as Yup from 'yup';
 import PrimaryButton from '../../shared/PrimaryButton/PrimaryButton';
 import Link from 'next/link'
-import { signIn } from './Login_API';
-import { toast, ToastContainer } from 'react-toastify';
+import {  signIn } from './Login_API';
+import { toast } from 'react-toastify';
+import { GREAT, SAD, toastMessage } from '../../utilities/variables';
+import { popUp } from '../Signup/Signup_API';
 
 const Login: NextPage = () => {
   const loginSchema = Yup.object().shape({
@@ -27,20 +29,6 @@ const Login: NextPage = () => {
     },
   });
 
-  const some = () => {
-    return <ToastContainer
-    position="top-right"
-    autoClose={5000}
-    hideProgressBar={false}
-    newestOnTop={false}
-    closeOnClick
-    rtl={false}
-    pauseOnFocusLoss
-    draggable
-    pauseOnHover
-    />
-  }
-
   const handleLogin = async (value: any) => {
     try {
       let data: any = await signIn(value["email"], value["password"]);
@@ -50,15 +38,12 @@ const Login: NextPage = () => {
        localStorage.setItem("name", data.user.displayName );
        localStorage.setItem("email", data.user.email );
        localStorage.setItem("role", 'Rushi' );
-       some()
-       toast.success("Success Notification !", {
-        position: toast.POSITION.TOP_CENTER
-      });
+       toast.success(`${GREAT} Login Successful`, { ...toastMessage });
       }  else {
-        console.log('something went wrong')
+      toast.error(`${SAD} Something went wrong`, { ...toastMessage });
       }
-    } catch (err) {
-      console.log(err)
+    } catch (error : any) {
+      toast.error(`${SAD} ${error.message}`, { ...toastMessage });
     }
   };
 
@@ -81,12 +66,12 @@ const Login: NextPage = () => {
           <p>Don’t have an account? </p>
           <p>Sign up</p>
         </div>
-        <div id={styles.google_login}>
+        <div id={styles.google_login} onClick={popUp}>
           <div className={styles.google_login}>
             <img
               className={styles.content}
               src='/images/google_logo.png'
-              alt='google-logo'
+              alt='logo'
             />
             <p>Login with Google</p>
           </div>

@@ -2,8 +2,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family:  sans-serif;
-    box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
 }
 
 a {
@@ -16,9 +16,11 @@ a {
 }
 
 legend {
-  width: auto
-  }
+  width: auto;
+}
 
-  input:focus, textarea:focus, select:focus{
-    outline: none;
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
 }
