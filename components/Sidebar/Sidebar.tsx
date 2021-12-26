@@ -3,6 +3,7 @@ import styles from './Sidebar.module.scss';
 import Home from '../../public/icons/home'
 import { useEffect, useState } from 'react';
 import { sidebarItemsMap } from './sidebarItems';
+import Jobs from '../Jobs/Jobs';
 
 const Sidebar: NextPage = () => {
 
@@ -41,6 +42,10 @@ const Sidebar: NextPage = () => {
           <div className={styles.sidebar_text}>Logout</div>
           </div>
       </div>
+    </div>
+    <div id={styles.main}>
+ 
+    <Jobs />
     </div>
     {/* <main>
         <div id='main-ele'>1</div>

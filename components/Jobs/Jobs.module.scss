@@ -1,0 +1,17 @@
+.header {
+  position: fixed;
+}
+
+.tabs {
+  background-color: #fff;
+  margin: 10px 10px 0px 10px;
+}
+
+.card_parent {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding-left: 30px;
+  list-style: none;
+  flex: 0 0 33.333333%;
+}
