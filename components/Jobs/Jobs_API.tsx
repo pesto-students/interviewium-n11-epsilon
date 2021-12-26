@@ -1,5 +1,5 @@
 import { getAuth , createUserWithEmailAndPassword , GoogleAuthProvider , signInWithPopup} from "firebase/auth";
-import app from "../../utilities/firebase"
+import { app } from "../../utilities/firebase"
 import "firebase/compat/auth"
 import { toast } from "react-toastify";
 import { GREAT, SAD, toastMessage } from "../../utilities/variables";
