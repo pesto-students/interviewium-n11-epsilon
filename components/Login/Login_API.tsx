@@ -1,6 +1,6 @@
 import { getAuth , signInWithEmailAndPassword } from "firebase/auth";
 
-import { app } from "../../utilities/firebase"
+import app from "../../utilities/firebase"
 
 const appData = app
 
