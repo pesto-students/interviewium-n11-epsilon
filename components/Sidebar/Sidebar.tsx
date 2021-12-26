@@ -44,11 +44,7 @@ const Sidebar: NextPage = () => {
       </div>
     </div>
     <div id={styles.main}>
-    {/* { sidebarItemsMap.get(userRole) && sidebarItemsMap.get(userRole).length &&
-  sidebarItemsMap.get(userRole).map((e : any , index : any) => (
-    <e.Component key={index} /> 
-  ))
-} */}
+ 
     <Jobs />
     </div>
     {/* <main>
