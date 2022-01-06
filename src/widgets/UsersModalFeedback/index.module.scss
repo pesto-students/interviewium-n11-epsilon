@@ -1,0 +1,23 @@
+@import "../../utilities/variables.scss";
+@import "../../utilities/classes.scss";
+// .error_icon {
+//     width: 25px;
+//     height: 25px;
+//     fill: $sfn-link-color;
+// }
+// .error_icon g {
+//     fill: $sfn-link-color;
+// }
+.modalCustomcard {
+     :global(.modal-dialog) {
+        max-width: 448px;
+    }
+     :global(.modal-content) {
+        padding: 45px 54px;
+    }
+    .feedbackPrimbtn {
+         :global(.MuiButton-root) {
+            padding: 8px 24px;
+        }
+    }
+}

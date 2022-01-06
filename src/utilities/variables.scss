@@ -1,0 +1,131 @@
+/*-----:-Variables starts-:-----*/
+
+/*--------Color's throughout the app starts---------*/
+/*===>Light variables starts<===*/
+@mixin lightcolors {
+  background-color: $sso-common-white;
+  color: $sso-login-background;
+}
+@mixin greycolors {
+  background-color: #FFF3BA;
+  color: $sso-login-background;
+}
+$sso-interviewium-base : #00d5ff;
+
+$sso-common-white: #ffffff;
+$sso-common-dark: #22252a;
+
+$sso-background: #f4f4f4;
+$sso-login-background: #000000;
+$sso-logintitle-color: #20293f;
+$sso-background-color1: #ed3b5d;
+$sso-background-color2: #9b4ef7;
+$sso-background-color3: #3da8f8;
+$sso-background-color4: #73f45f;
+$sso-background-color5: #fcdf4c;
+$sso-input-bg: #f2f2f2;
+$sso-button: #157af6;
+$sso-custom-checkbox: #616a80;
+$sso-header-icons: #adb4b9;
+$sso-header-profile: #9367b4;
+$sso-bell-notify: #f20b0b;
+$sso-sidebar-active: #000000;
+$sso-sidebar-hover: #234141;
+$sso-header-border: #393b40;
+$sso-header-lightborder: #f0f0f0;
+$sso-navright-border: #141414;
+$sso-nav-light-hover: $sso-interviewium-base;
+$sso-success-message: #a5a8ad;
+$sso-table-head: #ffffff;
+$sso-table-even: #0b0b0c;
+$sso-account-table-color: #e15858;
+$sso-account-border-color: #535f6b;
+$sso-account-invite-color: #f4a13f;
+$sso-tablelight-background: #f7f7f7;
+$sso-userlist-color: #5cb65f;
+$sso-search-border: #e8e8e8;
+$sso-search-background: #fcfcfc;
+$sso-anyprofile-shade3: #b7b7b7;
+$sso-accordian-sub: #393d42;
+$sso-account-link: #919395;
+$sso-resend-invitation: #7a4fd8;
+$sso-profile-background: #2d3035;
+$sso-profile-border: #393d42;
+$sso-createidp-color: #6c757d;
+
+$sfn-input-bgcolor: #f8f8f8;
+$sfn-head: #262626;
+$sfn-btn-orange-light: #e6b19b;
+$sfn-button: #08376b;
+$sfn-border-color: #979292;
+$sfn-link-color: #707070;
+$sfn-common-white: #ffffff;
+$sfn-btn-orange: #ca5a2a;
+$sfn-selectoption-color: #fdf5e8;
+$sfn-error-color: #c40101;
+$sfn-input-border: #d7d6d6;
+$sfn-download-btn: #474747;
+$sfn-common-black: #000000;
+$sfn-profile-bordercolor: #d7d7d7;
+$sfn-common-shade1: #525252;
+$sfn-disabled-shade2: #2e2e2e;
+$sfn-anyprofile-shade3: #b7b7b7;
+$sfn-anyprofile-shade4: #f3f3f3;
+$sfn-modalcolor-shade5: #4cab74;
+$sfn-switch-color: #1ca852;
+$sfn-modalback-shade6: #edfcf4;
+$sfn-table-filter-head: #e0e0e0;
+$sfn-customCardmain-shade7: #dfe3e6;
+$sfn-customTablehead-shade8: #e0e0e0;
+$sfn-customTabletitle-shade9: #171717;
+$sfn-userProfile-shade10: #6d6d6d;
+$sfn-search-shade11: #9a9a9a;
+$sfn-pagination-shade12: #a3a3a3;
+$sfn-shipment-card-title: #4b4b4b;
+$sfn-border-shade1: #aeaeae;
+$sfn-input-fieldsbackground: #f9f9f9;
+$sfn-inputborder-disabled: rgba(195, 195, 195, 0.3);
+$sfn-inputbackround-disabled: #e9e9e9;
+$sfn-pending: #cccc34;
+$sfn-success: #1ca852;
+$sfn-error-background: #ffd8d8;
+$sfn-snackbar-success: #004b7c;
+$sfn-snackbar-error: #dc3545;
+// $sfn-inputcolor-disabled: rgba(16, 16, 16, 54%);
+$sfn-modal-title-bg: #e3f2fc;
+$sfn-modal-title-color: #004b7c;
+$sfn-selected-files-bg: #f1f8ee;
+$sfn-selected-files-color: #dedddd;
+$sfn-footer-background: #f7f7f7;
+
+/*--------Color's throughout the app ends---------*/
+
+$header_height: 30px;
+
+/*--:font-sizes:--*/
+
+$font-14: 14px;
+$font-16: 16px;
+$font-18: 18px;
+
+/*--:font-sizes ends:--*/
+
+/*--:font-weights:--*/
+
+$font-4w: 400;
+$font-5w: 500;
+$font-6w: 600;
+$font-7w: 700;
+
+/*--:font-weights end:--*/
+
+@mixin flex {
+  display: flex;
+}
+
+@mixin flexAlignCenter {
+  @include flex;
+  align-items: center;
+}
+
+/*-----:-Variables End-:-----*/

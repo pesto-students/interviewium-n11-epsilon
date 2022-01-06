@@ -1,0 +1,52 @@
+@import "../../../../../../../utilities/variables.scss";
+@import "../../../../../../../utilities/classes.scss";
+.sfn_button {
+    margin: 40px 0px 15px 0px;
+}
+
+.modalCustomcard {
+    .users_table {
+        border: 1px solid $sfn-customCardmain-shade7;
+    }
+     :global(.modal-content) {
+        padding: 41px 28px;
+        .modal_header {
+            margin-bottom: 25px;          
+            padding: 9px 20px;
+            margin-top: 20px;
+            .modal_title {
+                margin-bottom: 0;
+            }
+        }
+        .normalHeader   {
+            background: $sfn-modal-title-bg;
+            color: $sfn-modal-title-color;
+        }
+        .errorHeader   {
+            background: $sfn-error-background;
+            color: $sfn-error-color;
+        }
+    }
+    // :global(.modal-body) {
+    // }
+    .preview {
+        color: $sfn-common-shade1;
+        margin-bottom: 15px;
+        font-weight: 400;
+    }
+    .close_icon {
+        width: 11px;
+        height: 11px;
+        cursor: pointer;
+        fill: $sfn-link-color;
+    }
+    .cloud_computing {
+        width: 70px;
+        height: 70px;
+    }
+    .modaluploadBtn {
+         :global(.MuiButton-root) {
+            padding: 8px 22px;
+        }
+    }
+}

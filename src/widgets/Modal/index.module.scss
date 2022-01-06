@@ -1,0 +1,254 @@
+@import "../../utilities/variables.scss";
+@import "../../utilities/classes.scss";
+:global(.modal-backdrop.show) {
+  opacity: 0.8;
+}
+
+.descriptionBox {
+  padding: 4px 10px;
+  border-radius: 5px;
+  background: #f2f2f2;
+  box-shadow: none;
+  border: none;
+}
+.descriptionBox:focus-visible {
+  outline: none;
+}
+.modalMain {
+  width: 400px;
+  border-radius: 0px 0px 7px 7px;
+  box-shadow: 0px 16px 26px #00000077;
+  .modalsubMain {
+    position: relative;
+    border: none;
+    .closeBtn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      border: 1px solid $sso-logintitle-color;
+      cursor: pointer;
+      display: flex;
+      border-radius: 3px;
+      .clsoeI {
+        width: 15px;
+      }
+      :global(.MuiSvgIcon-root) {
+        font-size: 1em;
+      }
+    }
+    .colorsCommon {
+      height: 5px;
+      background: $sso-common-white;
+      margin: -2px -1px;
+      .color1 {
+        background-color: $sso-background-color1;
+      }
+      .color2 {
+        background-color: $sso-background-color2;
+      }
+      .color3 {
+        background-color: $sso-background-color3;
+      }
+      .color4 {
+        background-color: $sso-background-color4;
+      }
+      .color5 {
+        background-color: $sso-background-color5;
+      }
+    }
+  }
+  .subBodyItems {
+    padding: 40px;
+    text-align: center;
+    .modalTopIcon {
+      width: 68px;
+      height: 68px;
+      margin-bottom: 15px;
+      fill: $sso-button;
+    }
+    .commonTitle {
+      margin-bottom: 30px;
+      letter-spacing: -1px;
+      text-align: center;
+      color: $sso-logintitle-color;
+      font-size: 20px;
+      strong {
+        font-weight: 500;
+      }
+      span {
+        font-weight: 300;
+      }
+    }
+    .customDiv {
+      margin-bottom: 15px;
+    }
+    .button {
+      margin-top: 40px;
+      .modalBtn {
+        :global(.MuiButtonBase-root) {
+          padding: 8px 40px;
+        }
+      }
+    }
+    .successMain {
+      .commonTitle {
+        margin-bottom: 8px;
+      }
+      .successsubtitle {
+        font-size: 14px;
+        font-weight: 400;
+        color: $sso-success-message;
+      }
+      .modalTopIcon {
+        margin: 50px 0;
+        width: unset;
+        height: unset;
+      }
+    }
+  }
+}
+
+.modalMainL {
+  width: 800px !important;
+  .subBodyItems {
+    text-align: inherit !important;
+    padding: 20px;
+  }
+}
+
+.subBodyItems {
+  .invitemodal {
+    .commonTitle {
+      margin-bottom: 20px;
+    }
+    .subname {
+      color: $sso-success-message;
+      margin-bottom: 24px;
+    }
+  }
+}
+
+
+.modal-content{
+  border-radius: 50px;
+}
+
+.cardPName{
+  margin: 0px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.cardPYear{
+  margin: 0px;
+}
+.jobTitle{
+  margin: 0px;
+  font-weight: 400;
+}
+
+.cardName {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+}
+
+.cardUP{
+  display: flex;
+  margin: 30px 0px 0px 15px;
+}
+
+.Tech{
+  margin: 10px 10px 0px 10px;
+}
+
+.details{
+  margin: 10px 10px 0px 10px;
+}
+
+.ARbuttonParent{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 5px;
+  }
+
+
+.ARbutton{
+  border-radius: 30px;
+  width: 20px;
+  width: 81px;
+  background: rgb(255, 170, 170);
+  align-items: center;
+  justify-content: center;
+}
+
+.redC{
+  background: rgb(255, 170, 170);
+}
+.greenC{
+  background: rgb(68, 202, 31);
+}
+
+.ARButtontext {
+  margin: 0px;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.pNoMargin {
+  margin-bottom: 5px ;
+}
+
+.filters {
+  width: 100%;
+  height: 40px;
+  background-color: #c4c4c4;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+.filters1 {
+  width: 150px;
+  height: 40px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.main--container{
+   width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,300px);
+  place-content: flex-end;
+  gap: 1rem;
+ 
+ 
+}
+
+.noBorder {
+  border: 0px;
+}
+
+.card {
+  border-radius: 43px;
+  background-color: #ffff;
+  box-shadow: 0 5px 10px -3px rgba($color: #000000, $alpha: 0.5);
+  img{
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+  };
+  article{
+      padding: 1em;
+  };
+}
+
+.profile--container{
+  margin-top: 3em;
+  display: grid;
+  grid-template-columns: repeat(3, 250px);
+  grid-auto-rows: 500px;
+  gap: 1rem;
+}
+

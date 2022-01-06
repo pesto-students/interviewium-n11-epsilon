@@ -1,0 +1,66 @@
+@import "../../utilities/variables.scss";
+@import "../../utilities/classes.scss";
+.table_pagination_footer_select_footer {
+  padding: 10px 15px 0;
+  border-top: 1px solid $sso-header-border;
+  .customePagination {
+    color: $sfn-pagination-shade12;
+    cursor: pointer;
+  }
+  .arrow_icon {
+    :global(.MuiSvgIcon-root) {
+      fill: $sfn-border-color;
+      width: 30px;
+      height: 30px;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  }
+  .table_pagination_footer_select_field {
+    .custompageDrop {
+      :global(.MuiInputBase-root) {
+        padding: 5px 4px;
+        border: none;
+        background: unset;
+        margin: 0;
+        color: $sso-common-white;
+        transition: all 0.2s linear;
+      }
+      :global(.MuiSelect-root) {
+        padding: 0 20px !important;
+      }
+      :global(.MuiSvgIcon-root) {
+        color: $sso-common-white;
+        transition: all 0.2s linear;
+      }
+    }
+  }
+  .current_page {
+    font-size: 16px;
+    color: $sfn-common-white;
+    transition: all 0.2s linear;
+  }
+  .next_page {
+    font-size: 16px;
+    color: $sfn-pagination-shade12;
+  }
+}
+/*=========>Below are light-theme css<===========*/
+[data-theme="light"] {
+  .table_pagination_footer_select_footer {
+    border-color: $sso-account-border-color;
+    .table_pagination_footer_select_field {
+      .custompageDrop {
+        :global(.MuiInputBase-root) {
+          color: $sso-common-dark;
+        }
+        :global(.MuiSvgIcon-root) {
+          color: $sso-common-dark;
+        }
+      }
+    }
+    .current_page {
+      color: $sso-common-dark;
+    }
+  }
+}

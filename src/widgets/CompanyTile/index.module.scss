@@ -1,0 +1,32 @@
+@import "../../utilities/variables.scss";
+@import "../../utilities/classes.scss";
+
+.company_tile_background    {    
+    position: relative;
+    width: 250px;
+    height: 80px;
+    border: 1px solid $sfn-anyprofile-shade4;
+}
+.company_logo   {
+    height: 60px;
+    width: 60px;
+}
+.company_title  {
+    font-size: 14px;
+    font-weight: 700;
+}
+.company_place  {
+    font-size: 12px;
+    color: $sfn-link-color;
+}
+.company_end    {    
+    background: red;
+}
+.company_checkbox   {
+    top: 0px;
+    right: 0px;
+    position: absolute;
+}
+
+
+

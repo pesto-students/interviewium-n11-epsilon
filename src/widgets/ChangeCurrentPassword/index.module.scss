@@ -1,0 +1,27 @@
+@import "../../utilities/variables.scss";
+@import "../../utilities/classes.scss";
+.modalCustomcard {
+    :global(.modal-content) {
+        width: 900px;
+        width: 620px;
+        margin: 0 auto;
+        padding: 64px 95px;
+    }
+    .changepassCTA {
+        margin-top: 60px;
+        .resetPassword {
+            :global(.MuiButton-root) {
+                padding: 8px 17px;
+            }
+        }
+    }
+    .details_local {
+        margin-bottom: 30px;
+    }
+    .modalCustomcard {
+        :global(.modal-content) {
+            width: 500px;
+            margin: 0 auto;
+        }
+    }
+}

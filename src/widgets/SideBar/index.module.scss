@@ -1,0 +1,236 @@
+@import "../../utilities/variables.scss";
+@import "../../utilities/classes.scss";
+.openSidebar {
+  width: 240px;
+  transition: all 0.3s;
+}
+
+.closeSidebar {
+  width: 60px;
+  transition: all 0.3s;
+  .sidebarSubtitle h6 {
+    display: none;
+  }
+}
+
+.sfnsidebar {
+  padding-top: 61px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: $sso-interviewium-base;
+  white-space: nowrap;
+  transition: all 0.2s linear;
+  .navrightBorder {
+    position: relative;
+    margin-top: 30px;
+    .rightborder {
+      position: absolute;
+      height: 151px;
+      border: 1px solid $sso-navright-border;
+      right: 0;
+      top: 48px;
+      transition: all 0.2s linear;
+    }
+  }
+
+  .links {
+    &:hover {
+      text-decoration: none;
+    }
+    .sidebarNavSelected {
+      display: flex;
+      align-items: center;
+      color: $sso-sidebar-active;
+      // background-color: $sso-background;
+      box-shadow: inset 5px 0 0 #ff3f3f;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 15px 5px 15px 20px;
+      cursor: pointer;
+      :global(.MuiListItemIcon-root) {
+        min-width: 43px;
+      }
+      .iconSet {
+        display: inline-flex;
+        min-width: 40px;
+        flex-shrink: 0;
+        .sideIcon {
+          fill: $sso-sidebar-active;
+          width: 18px;
+          height: 18px;
+          stroke-width: 10px;
+        }
+      }
+      .accordianIcon {
+        width: 12px;
+        height: 12px;
+        fill: $sfn-button;
+      }
+    }
+  }
+  .sidebarNav {
+    display: flex;
+    align-items: center;
+    color: $sso-common-white;
+    padding: 15px 5px 15px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    &:hover {
+      background-color: $sso-sidebar-hover !important;
+      text-decoration: none;
+    }
+    :global(.MuiListItemIcon-root) {
+      min-width: 43px;
+    }
+    .iconSet {
+      display: inline-flex;
+      min-width: 40px;
+      flex-shrink: 0;
+      .sideIcon {
+        fill: $sso-common-white;
+        width: 18px;
+        height: 18px;
+        // &:hover {
+        //     fill: $sfn-button;
+        // }
+      }
+    }
+    .accordianIcon {
+      width: 12px;
+      height: 12px;
+      fill: $sfn-link-color;
+    }
+  }
+  .subItemAccordion {
+    :global(.card-header) {
+      border-radius: 0;
+      padding: 0;
+      background-color: unset;
+      border: unset;
+      .accordianIcon {
+        width: 12px;
+        height: 12px;
+        fill: $sfn-link-color;
+      }
+      .sidebarNavSelected {
+        display: flex;
+        align-items: center;
+        // color: $sfn-button;
+        // background-color: $sso-background;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 15px 5px 15px 20px;
+        cursor: pointer;
+        :global(.MuiListItemIcon-root) {
+          min-width: 43px;
+        }
+        .iconSet {
+          display: inline-flex;
+          min-width: 40px;
+          flex-shrink: 0;
+          .sideIcon {
+            fill: $sfn-button;
+            width: 20px;
+            height: 20px;
+            stroke-width: 10px;
+          }
+        }
+        .accordianIcon {
+          width: 12px;
+          height: 12px;
+          fill: $sfn-button;
+        }
+      }
+    }
+    .accordianBody {
+      .links {
+        color: $sfn-link-color;
+        font-size: 14px;
+        text-decoration: none;
+      }
+    }
+    .accordianBodySelected {
+      background-color: $sso-background;
+      box-shadow: inset 5px 0 0 $sfn-button;
+      font-weight: 500;
+      .links {
+        color: $sfn-button;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        :global(.card-body) {
+          box-shadow: inset 5px 0 0 $sfn-button;
+        }
+      }
+    }
+    :global(.card-body) {
+      padding: 12px 15px 12px 70px;
+      &:hover {
+        background-color: $sso-background;
+      }
+    }
+  }
+}
+
+.sidebarSubtitle {
+  margin-top: 17px;
+  padding: 0 0 25px 20px;
+  height: 40px;
+  h6 {
+    margin: 0;
+    color: $sso-header-icons;
+  }
+}
+
+.UserManagement {
+  display: none;
+  align-items: center;
+  padding: 30px 13px 15px;
+  .userPhoto {
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+  }
+  .profileN {
+    margin-left: 12px;
+    .userName {
+      font-size: 18px;
+      font-weight: 600;
+      color: #474747;
+    }
+    .userAccno {
+      font-size: 12px;
+      color: #717275;
+      font-weight: 500;
+    }
+  }
+}
+
+/*-------Only active state end-------*/
+
+/*=========>Below are light-theme css<===========*/
+[data-theme="light"] {
+  .sfnsidebar {
+    @include greycolors;
+    .navrightBorder {
+      .rightborder {
+        border-color: $sso-header-lightborder;
+      }
+    }
+    .sidebarNav {
+      color: $sso-common-dark;
+      &:hover {
+        background-color: $sso-nav-light-hover !important;
+      }
+      .iconSet {
+        .sideIcon {
+          fill: $sso-common-dark;
+        }
+      }
+    }
+  }
+}

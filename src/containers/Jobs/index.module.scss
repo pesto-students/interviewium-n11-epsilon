@@ -1,0 +1,63 @@
+@import "../../utilities/variables.scss";
+@import "../../utilities/classes.scss";
+
+.title{
+    color:white;
+}
+
+[data-theme="light"] {
+  .title{
+    color: $sso-common-dark;
+  }
+
+}
+
+.header {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  background-color: white;
+}
+
+.tabs {
+  background-color: #fff;
+  margin: 10px 10px 0px 10px;
+}
+
+.card_parent {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding-left: 30px;
+  list-style: none;
+  flex: 0 0 33.333333%;
+}
+
+.cardParent {
+  margin-top: 4%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding-left: 30px;
+  list-style: none;
+  width: 100%;
+}
+
+.cardParent1 {
+  margin-top: 4%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding-left: 30px;
+  list-style: none;
+  width: 60%;
+}
+.descriptionBox {
+  padding: 4px 10px;
+  border-radius: 5px;
+  background: #f2f2f2;
+  box-shadow: none;
+  border: none;
+}

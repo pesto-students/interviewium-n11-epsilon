@@ -1,0 +1,11 @@
+@import "../../../../../../../utilities/variables.scss";
+@import "../../../../../../../utilities/classes.scss";
+.modalCustomcard {
+     :global(.modal-content) {
+        width: 1000px;
+        margin: 0 auto;
+    }
+}
+:global(.MuiPopover-root)   {
+    z-index: 99999 !important;
+}

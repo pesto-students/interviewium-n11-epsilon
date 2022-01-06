@@ -1,0 +1,57 @@
+@import '../../utilities/variables.scss';
+@import '../../utilities/classes.scss';
+.fileIntcommon {
+    .text_field {
+        margin: 0;
+        background-color: $sfn-common-white;
+        padding: 6px;
+        font-size: 12px;
+        color: $sfn-common-black;
+        height: 50px;
+        .MuiInputBase-input {
+            font-size: 12px;
+        }
+    }
+    .error_text_field {
+        margin: 0;
+    }
+    .label_text {
+        font-weight: 700;
+        color: $sfn-common-black;
+    }
+    .chooseFilebtn {
+        background: $sfn-common-white 0% 0% no-repeat padding-box;
+        text-transform: capitalize;
+        color: $sfn-common-shade1;
+        padding: 4px 12px;
+        font-size: 12px;
+        height: 34px;
+        &:hover,
+        &:active {
+            background-color: unset;
+        }
+    }
+    :global(.MuiInputBase-root.Mui-disabled) {
+        color: $sfn-common-black;
+        font-weight: 700;
+        font-size: 14px;
+    }
+}
+.chooseFile {
+    background: $sfn-common-white 0% 0% no-repeat padding-box;
+    opacity: 1;
+    cursor: pointer;
+    .innerChooseFile {
+        background: #f8f8f8;
+        width: 100%;
+        padding: 7px 15px;
+        font-size: 12px;
+        .innerChooseFileColor {
+            color: $sfn-download-btn;
+            height: 25px;
+            .innerDisplayNone {
+                display: none;
+            }
+        }
+    }
+}

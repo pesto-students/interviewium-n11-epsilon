@@ -1,0 +1,37 @@
+@import "../../../../../utilities/variables.scss";
+@import "../../../../../utilities/classes.scss";
+
+.users_table_background  {
+    .users_table_container  {
+        height: calc(100vh - 248px);
+        :global(.MuiTableCell-stickyHeader) {
+            background:  $sfn-table-filter-head;
+        }
+        .users_table {
+            
+            .user_avatar {
+                width: 30px;
+                height: 30px;
+                cursor: pointer;
+            }
+            .trash_icon {
+                width: 15px;
+                height: 15px;
+                cursor: pointer;
+            }
+            .firstHead {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+             :global(.MuiTableSortLabel-root:hover) {
+                color: #CA5A2A;
+            }
+            .users_table_body {
+                 :global(.MuiTableBody-root) {
+                    overflow-y: hidden;
+                }
+            }
+        }
+    }
+}

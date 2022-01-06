@@ -1,0 +1,54 @@
+@import "../../../../../../../utilities/variables.scss";
+@import "../../../../../../../utilities/classes.scss";
+.sfn_button {
+    margin: 40px 0px 15px 0px !important;
+}
+
+.modalCustomcard {
+     :global(.modal-content) {
+        width: 900px;
+        margin: 0 auto;
+        padding: 30px 45px;
+        .modal_header {
+            margin-bottom: 25px;
+            .commonTitle {
+                margin-left: 0;
+            }
+        }
+         :global(.modal-body) {
+            border: 3px dashed #D6D6D6;
+            padding: 20px;
+            .cloud_computing {
+                width: 65px;
+                margin-bottom: 15px;
+            }
+            .import_file_text {
+                color: $sfn-link-color;
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+            .import_file_border {
+                font-size: 18px;
+                color: $sfn-link-color;
+                margin-bottom: 10px;
+            }
+            .select_file_text {
+                color: $sfn-link-color;
+                font-size: 14px;
+                margin: 0;
+                font-weight: 500;
+            }
+            .select_file {
+                border: 2px solid $sfn-link-color;
+                padding: 22px 45px 15px;
+                cursor: pointer;
+                width: 590px;
+            }
+            .select_file_icon {
+                width: 20px;
+                height: 20px;
+                margin: 0 auto;
+            }
+        }
+    }
+}

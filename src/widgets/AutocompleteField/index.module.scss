@@ -1,0 +1,17 @@
+@import "../../utilities/variables.scss";
+@import "../../utilities/classes.scss";
+.customAutocomp {
+    .search_text_field {
+        padding: 3px 10px;
+        border: 2px solid $sfn-customTablehead-shade8;
+        background: $sfn-common-white;
+        box-shadow: none;
+        -webkit-box-decoration-break: none;
+        -o-box-decoration-break: none;
+        box-decoration-break: none;
+         :global(.MuiAutocomplete-inputRoot) {
+            padding: 0;
+        }
+      
+    }
+}

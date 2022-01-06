@@ -1,0 +1,31 @@
+@import "../../../../../../../utilities/variables.scss";
+@import "../../../../../../../utilities/classes.scss";
+.modalCustomcard {
+     :global(.modal-content) {
+        width: 650px;
+        margin: 0 auto;
+        padding: 40px 40px 30px;
+        .modal_header {
+            margin-bottom: 25px;
+            border-bottom: 0 none;
+            .commonTitle {
+                margin-left: 0;
+            }
+        }
+        .modal_body {
+            background: $sfn-modalback-shade6;
+            border: 2px solid $sfn-modalcolor-shade5;
+            .icon {
+                width: 80px;
+                height: 80px;
+            }
+            h5 {
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+.sfn_button {
+    margin: 40px 0px 15px 0px !important;
+}

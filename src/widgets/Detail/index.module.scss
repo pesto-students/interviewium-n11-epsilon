@@ -1,0 +1,14 @@
+@import "../../utilities/variables.scss";
+@import "../../utilities/classes.scss";
+.detail_background {
+    .detail_title {
+        font-size: 14px;
+        font-weight: 500;
+    }
+    .detail_value {
+        font-size: 14px;
+        font-weight: 400;
+        color: $sfn-userProfile-shade10;
+        margin-top: 3px;
+    }
+}

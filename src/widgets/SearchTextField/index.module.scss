@@ -1,0 +1,45 @@
+@import "../../utilities/variables.scss";
+@import "../../utilities/classes.scss";
+.commonInputfields {
+  .text_field {
+    :global(.MuiInputBase-root) {
+      color: $sso-header-icons;
+      opacity: 1;
+      flex-direction: row-reverse;
+      &:global(.Mui-focused) {
+        color: $sso-common-white;
+      }
+    }
+  }
+  :global(.MuiTextField-root) {
+    padding: 3px 10px;
+    height: 40px;
+    background-color: $sso-table-head;
+    border: 2px solid $sso-table-head;
+    margin: 0;
+    transition: all 0.2s linear;
+  }
+  .basicInt {
+    margin-left: 0;
+    margin-right: 11px;
+    .search_icon {
+      color: $sso-header-icons;
+    }
+  }
+}
+/*=========>Below are light-theme css<===========*/
+[data-theme="light"] {
+  .commonInputfields {
+    .text_field {
+      :global(.MuiInputBase-root) {
+        &:global(.Mui-focused) {
+          color: $sso-common-dark;
+        }
+      }
+    }
+    :global(.MuiTextField-root) {
+      background-color: $sso-search-background;
+      border: 2px solid $sso-search-border;
+    }
+  }
+}

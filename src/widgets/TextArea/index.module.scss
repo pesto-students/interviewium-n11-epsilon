@@ -1,0 +1,25 @@
+@import "../../utilities/variables.scss";
+@import "../../utilities/classes.scss";
+
+.textareaAutosizeParent {
+  width: 100%;
+  font-size: 15px;
+}
+.textareaAutosize {
+  overflow-y: auto;
+  resize: none;
+  height: auto;
+  width: 100%;
+  font-weight: 500;
+}
+.labelText {
+  font-size: 15px;
+  font-weight: 600;
+}
+::placeholder {
+  color: #bebaba;
+}
+.error_found {
+  border: 1px solid #c40101;
+  background-color: #ffffff;
+}
