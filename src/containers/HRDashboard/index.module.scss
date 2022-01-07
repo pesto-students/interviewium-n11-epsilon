@@ -11,3 +11,81 @@
   }
 
 }
+
+.container {
+  display: grid;
+  grid-template-columns: 3.5fr 1fr;
+  height: 89vh;
+  margin: 0px;
+}
+
+.subContainer1 {
+  display: grid;
+  grid-template-rows: 0.3fr 1fr 2fr 1fr;
+  background-color: red;
+  .greetings{
+    display: flex;
+    justify-content: space-between;
+    
+  }
+  .onGoingPosition{
+    height: 95%;
+    border-radius: 30px;
+    background-color: seashell;
+    width: 80%;
+  }
+}
+.subContainer2 {
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  background-color: rgb(255, 154, 154);
+}
+
+.statsCardHolder{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.statsCard{
+  border-radius: 20px;
+  background-color: seashell;
+  height: 90%;
+  width: 25%;
+  margin: 5px;
+}
+
+.rightBarUp {
+   border-radius: 30px;
+   background-color: seashell;
+   overflow: scroll;
+   display: flex;
+   flex-direction: column;
+    justify-content: center;
+   .SLACard {
+    height: 130px;
+    width: 90%;
+    background-color: $sso-interviewium-base;
+    border-radius: 20px;
+   }
+}
+.rightBarDown {
+   background-color: seashell;
+}
+
+.panel{
+  display: flex;
+    justify-content: space-around;
+}
+
+.onGoingInterviews{
+   height: 95%;
+   width: 40%;
+    border-radius: 20px;
+    background-color: seashell;
+}
+.disputes{
+   height: 95%;
+   width: 40%;
+    border-radius: 20px;
+    background-color: seashell;
+}
