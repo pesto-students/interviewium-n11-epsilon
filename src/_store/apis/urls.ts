@@ -20,12 +20,16 @@ const interviewsTodayEndpoint = 'api/interviewer/today/sundar@google.com'
 const calendlyLinkEndpoint = 'api/interviewer/calendlyLink/sundar@google.com'
 const statsEndpoint = 'api/humanResource/graph/cynthia@google.com'
 const statsInterviewerEndpoint = 'api/interviewer/graph/sundar@google.com'
+const statsIntervieweeEndpoint = 'api/interviewer/graph/sundar@google.com'
 const jobApplicants = 'api/humanResource/applicants/cynthia@google.com'
+const allJobsEndpoint = 'api/job'
 const getInterviewsWithVerditEndpoint = 'api/interviewer/interviews/sundar@google.com'
+const applicationDashboardEndpoint = 'api/interviewee/jobsApplied/pulkit@gmail.com'
 
 
 
 const getDashboardCardsInterviewer = 'api/interviewer/dashboardMetrics/sundar@google.com'
+const getDashboardCardsIntervieweeEndpoint = 'api/interviewee/dashboardHeader/pulkit@gmail.com'
 
 const authenticate = '/account/adminSignIn'
 const users = '/users'
@@ -190,5 +194,9 @@ export {
     statsEndpoint,
     jobApplicants,
     statsInterviewerEndpoint,
-    getInterviewsWithVerditEndpoint
+    getInterviewsWithVerditEndpoint,
+    getDashboardCardsIntervieweeEndpoint,
+    statsIntervieweeEndpoint,
+    allJobsEndpoint,
+    applicationDashboardEndpoint
 }

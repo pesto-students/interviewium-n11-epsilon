@@ -1,4 +1,4 @@
-import { useraddsingle, useraddmultiple, userlist, userlistactionsstatussingle , getDashboardCardsInterviewer,getAllInterviewers, userlistactionsstatusmultiple, userdeletesingle, userdeletemultiple, userlistfilter, userlistsearch, userinvitemultiple, users, reports, deleteCommentAPI, leaderBoard, getDashboardCards, recentApplication, recentJob, getOngoingInterviews, interviewToday, interviewerProfile, interviewsTodayEndpoint, calendlyLinkEndpoint, statsEndpoint, jobApplicants, statsInterviewerEndpoint, getInterviewsWithVerditEndpoint } from './urls'
+import { useraddsingle, useraddmultiple, userlist, userlistactionsstatussingle , getDashboardCardsInterviewer,getAllInterviewers, userlistactionsstatusmultiple, userdeletesingle, userdeletemultiple, userlistfilter, userlistsearch, userinvitemultiple, users, reports, deleteCommentAPI, leaderBoard, getDashboardCards, recentApplication, recentJob, getOngoingInterviews, interviewToday, interviewerProfile, interviewsTodayEndpoint, calendlyLinkEndpoint, statsEndpoint, jobApplicants, statsInterviewerEndpoint, getInterviewsWithVerditEndpoint, getDashboardCardsIntervieweeEndpoint, statsIntervieweeEndpoint, allJobsEndpoint, applicationDashboardEndpoint } from './urls'
 import api from './api'
 
 export const useraddsingleAPI = async (user: Object) => {
@@ -218,6 +218,20 @@ export const getDashBoardCardInterviewer = async () => {
             return { status: 500, body: 'Failed to connect'}
         }
 }
+export const getDashBoardCardInterviewee = async () => {
+    try {
+    return await api
+        .get(`${getDashboardCardsIntervieweeEndpoint}`)
+        .then((response) => {
+            return { status: response.status, body: response.data }
+        })
+        .catch((err) => {
+            return { status: err.response.status, body: err.response.data }
+        }) }
+        catch(err)  {
+            return { status: 500, body: 'Failed to connect'}
+        }
+}
 export const getOngoingInterview = async () => {
     try {
     return await api
@@ -246,6 +260,20 @@ export const getInterviewsWithVerditAPI = async () => {
             return { status: 500, body: 'Failed to connect'}
         }
 }
+export const getApplicationDashboardData = async () => {
+    try {
+    return await api
+        .get(`${applicationDashboardEndpoint}`)
+        .then((response) => {
+            return { status: response.status, body: response.data }
+        })
+        .catch((err) => {
+            return { status: err.response.status, body: err.response.data }
+        }) }
+        catch(err)  {
+            return { status: 500, body: 'Failed to connect'}
+        }
+}
 export const statsAPI = async () => {
     try {
     return await api
@@ -264,6 +292,20 @@ export const statsAPIInterviewer = async () => {
     try {
     return await api
         .get(`${statsInterviewerEndpoint}`)
+        .then((response) => {
+            return { status: response.status, body: response.data }
+        })
+        .catch((err) => {
+            return { status: err.response.status, body: err.response.data }
+        }) }
+        catch(err)  {
+            return { status: 500, body: 'Failed to connect'}
+        }
+}
+export const statsAPIInterviewee = async () => {
+    try {
+    return await api
+        .get(`${statsIntervieweeEndpoint}`)
         .then((response) => {
             return { status: response.status, body: response.data }
         })
@@ -376,6 +418,20 @@ export const getJobApplicants = async () => {
     try {
     return await api
         .get(`${jobApplicants}`)
+        .then((response) => {
+            return { status: response.status, body: response.data }
+        })
+        .catch((err) => {
+            return { status: err.response.status, body: err.response.data }
+        }) }
+        catch(err)  {
+            return { status: 500, body: 'Failed to connect'}
+        }
+}
+export const allJobs = async () => {
+    try {
+    return await api
+        .get(`${allJobsEndpoint}`)
         .then((response) => {
             return { status: response.status, body: response.data }
         })

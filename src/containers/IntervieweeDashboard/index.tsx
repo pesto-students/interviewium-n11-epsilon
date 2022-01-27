@@ -2,12 +2,12 @@ import { JobAppication } from 'utilities/images/icons';
 import styles from './index.module.scss';
 import BarChart from 'react-bar-chart';
 import {
-    getDashBoardCardInterviewer,
+    getDashBoardCardInterviewee,
   getOngoingInterview,
   interviewsTodayList,
   calendlyLinkHandler,
   resentJobPosting,
-  statsAPIInterviewer,
+  statsAPIInterviewee,
 } from '_store/apis/userManagementAPI';
 import { ERROR_MESSAGE } from '_store/constants';
 import { useDispatch } from 'react-redux';
@@ -51,14 +51,14 @@ const CustomerHome = () => {
   const getUsers = async () => {
     try {
       let data;
-      data = await getDashBoardCardInterviewer();
+      data = await getDashBoardCardInterviewee();
 
       let { body, status }: any = data;
       
       if (status === 200) {
-        setToday(body.interviewsToday);
-        setSheduled(body.scheduledInterviews);
-        setReviewAwaiting(body.waitingForReview);
+        setToday(body.numberOfJobsApplied);
+        setSheduled(body.numberOfShortlistsReceived);
+        setReviewAwaiting(body.numberOfOngoingInterviews);
         // setPaginationData(body)
       } else {
         dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
@@ -139,9 +139,8 @@ const CustomerHome = () => {
   const statsHandler = async () => {
     try {
       let data;
-      data = await statsAPIInterviewer();
+      data = await statsAPIInterviewee();
       let { body, status }: any = data;
-      
       if (status === 200) {
         let stats = [
           {text: 'Interviews', value: body?.interviewsTaken ? body?.interviewsTaken : 1  }, 
@@ -182,21 +181,21 @@ const postJobSchema = Yup.object().shape({
               <JobAppication />
               <div>
                 <div className={styles.statsNumbers}>{today}</div>
-                <div>Interviews For Today</div>
+                <div>Jobs Applied</div>
               </div>
             </div>
             <div className={styles.statsCard}>
               <JobAppication />
               <div>
                 <div className={styles.statsNumbers}>{sheduled}</div>
-                <div>Scheduled Interviews</div>
+                <div>Job Shortlists</div>
               </div>
             </div>
             <div className={styles.statsCard}>
               <JobAppication />
               <div>
                 <div className={styles.statsNumbers}>{reviewAwaiting}</div>
-                <div >Awaiting Review</div>
+                <div >Ongoing Interviews</div>
               </div>
             </div>
           </div>
