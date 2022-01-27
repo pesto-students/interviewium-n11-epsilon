@@ -11,12 +11,12 @@ import {
 import { Table } from "react-bootstrap";
 import { ERROR_MESSAGE } from "_store/constants/index";
 import { useDispatch } from "react-redux";
-import {  getApplicationDashboardData } from "_store/apis/userManagementAPI";
+import {  getFeedbacksData } from "_store/apis/userManagementAPI";
 
 const AllUserManagement = () => {
   const dispatch = useDispatch();
   const tableBodyRef = createRef<any>();
-  const [columnsNames] = useState(["Job Title and Company" , "Shortlisting Status" , "Time Till Shortlisting" , "Calendly" ]);
+  const [columnsNames] = useState(["Company Name" , "Interviewer" , "Date and Time" , "Interviewer Verdict" ,  "Interviewer Review" ]);
   const [sportsData, setSportsData] = useState([]);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const AllUserManagement = () => {
   const getUsers = async () => {
     try {
       let data
-        data = await getApplicationDashboardData();
+        data = await getFeedbacksData();
       let { body , status }: any = data;
       status = 200
       if (status === 200) {
@@ -43,7 +43,7 @@ const AllUserManagement = () => {
   return (
     <>
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h5 className={styles.mainTitle}>Verdit and Feedback</h5>
+        <h5 className={styles.mainTitle}>Feedbacks</h5>
       </div>
       <div className={styles.users_table_background}>
         <TableContainer >
@@ -58,12 +58,13 @@ const AllUserManagement = () => {
               </TableRow>
             </TableHead>
             <TableBody ref={tableBodyRef} >
-              {sportsData && sportsData.map(({ currentInterviewRound ,  createdAt ,shortlistedAt , job, id , currentInterviewer } : any) => (
+              {sportsData && sportsData.map(({ interviewerVerdict ,  interviewerReview ,interviewDateTime , id  } : any) => (
                 <TableRow className={`${styles.users_table_row}`} key={id}>
-                  <TableCell>{job?.title} ({job?.company?.companyName})</TableCell>
-                  <TableCell>{shortlistedAt} </TableCell>
-                  <TableCell>{createdAt}</TableCell>
-                  <TableCell>{currentInterviewer?.calendlyLink ? currentInterviewer?.calendlyLink : "Yet to be Assinged"} (ongoing Round {currentInterviewRound})</TableCell>
+                  <TableCell>Google</TableCell>
+                  <TableCell>Rushikesh Ladke</TableCell>
+                  <TableCell>{interviewDateTime}</TableCell>
+                  <TableCell>{interviewerVerdict}</TableCell>
+                  <TableCell>{interviewerReview}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

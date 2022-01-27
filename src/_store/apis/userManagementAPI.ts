@@ -1,4 +1,4 @@
-import { useraddsingle, useraddmultiple, userlist, userlistactionsstatussingle , getDashboardCardsInterviewer,getAllInterviewers, userlistactionsstatusmultiple, userdeletesingle, userdeletemultiple, userlistfilter, userlistsearch, userinvitemultiple, users, reports, deleteCommentAPI, leaderBoard, getDashboardCards, recentApplication, recentJob, getOngoingInterviews, interviewToday, interviewerProfile, interviewsTodayEndpoint, calendlyLinkEndpoint, statsEndpoint, jobApplicants, statsInterviewerEndpoint, getInterviewsWithVerditEndpoint, getDashboardCardsIntervieweeEndpoint, statsIntervieweeEndpoint, allJobsEndpoint, applicationDashboardEndpoint } from './urls'
+import { useraddsingle, useraddmultiple, userlist, userlistactionsstatussingle , hotJobEndpoint , getDashboardCardsInterviewer,getAllInterviewers, userlistactionsstatusmultiple, userdeletesingle, userdeletemultiple, userlistfilter, userlistsearch, userinvitemultiple, users, reports, deleteCommentAPI, leaderBoard, getDashboardCards, recentApplication, recentJob, getOngoingInterviews, interviewToday, interviewerProfile, interviewsTodayEndpoint, calendlyLinkEndpoint, statsEndpoint, jobApplicants, statsInterviewerEndpoint, getInterviewsWithVerditEndpoint, getDashboardCardsIntervieweeEndpoint, statsIntervieweeEndpoint, allJobsEndpoint, applicationDashboardEndpoint, feedbackEndpoint } from './urls'
 import api from './api'
 
 export const useraddsingleAPI = async (user: Object) => {
@@ -274,6 +274,20 @@ export const getApplicationDashboardData = async () => {
             return { status: 500, body: 'Failed to connect'}
         }
 }
+export const getFeedbacksData = async () => {
+    try {
+    return await api
+        .get(`${feedbackEndpoint}`)
+        .then((response) => {
+            return { status: response.status, body: response.data }
+        })
+        .catch((err) => {
+            return { status: err.response.status, body: err.response.data }
+        }) }
+        catch(err)  {
+            return { status: 500, body: 'Failed to connect'}
+        }
+}
 export const statsAPI = async () => {
     try {
     return await api
@@ -390,6 +404,20 @@ export const calendlyLinkHandler = async () => {
     try {
     return await api
         .get(`${calendlyLinkEndpoint}`)
+        .then((response) => {
+            return { status: response.status, body: response.data }
+        })
+        .catch((err) => {
+            return { status: err.response.status, body: err.response.data }
+        }) }
+        catch(err)  {
+            return { status: 500, body: 'Failed to connect'}
+        }
+}
+export const hotJobAPI = async () => {
+    try {
+    return await api
+        .get(`${hotJobEndpoint}`)
         .then((response) => {
             return { status: response.status, body: response.data }
         })

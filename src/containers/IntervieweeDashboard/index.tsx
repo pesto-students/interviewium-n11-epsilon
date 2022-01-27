@@ -2,10 +2,10 @@ import { JobAppication } from 'utilities/images/icons';
 import styles from './index.module.scss';
 import BarChart from 'react-bar-chart';
 import {
-    getDashBoardCardInterviewee,
+  getDashBoardCardInterviewee,
   getOngoingInterview,
   interviewsTodayList,
-  calendlyLinkHandler,
+  hotJobAPI,
   resentJobPosting,
   statsAPIInterviewee,
 } from '_store/apis/userManagementAPI';
@@ -20,32 +20,30 @@ import {
   TableHead,
   TableRow,
 } from '@material-ui/core';
-import { Bar } from 'react-chartjs-2';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { link } from '../../utilities/yupObjects';
-import NormalTextField from 'widgets/NormalTextField';
-import PrimaryButton from 'widgets/PrimaryButton';
+import HotJob from '../../utilities/images/hotJob.jpg';
+import Hiring from '../../utilities/images/hiring.jpg';
 
 const CustomerHome = () => {
   const dispatch = useDispatch();
-    const [today, setToday] = useState<any>(0);
-    const [sheduled, setSheduled] = useState<any>(0);
-    const [reviewAwaiting, setReviewAwaiting] = useState<any>(0);
+  const [today, setToday] = useState<any>(0);
+  const [sheduled, setSheduled] = useState<any>(0);
+  const [reviewAwaiting, setReviewAwaiting] = useState<any>(0);
   const [ongoingInterview, setOngoingInterview] = useState<any>();
   const [rows, setRows] = useState<any>();
   const [onGoing, setOnGoing] = useState<any>();
-  const [calendly, setCalendly] = useState();
+  const [hotJob, setHotJob] = useState<any>();
   const [statsData, setStatsData] = useState<any>();
-
 
   useEffect(() => {
     getUsers();
     recentJobHandler();
-    calendlyLink()
+    hotJobHandler();
     recentJobPosting();
     ongoingInterviewHandler();
-    statsHandler()
+    statsHandler();
   }, []);
 
   const getUsers = async () => {
@@ -54,7 +52,7 @@ const CustomerHome = () => {
       data = await getDashBoardCardInterviewee();
 
       let { body, status }: any = data;
-      
+
       if (status === 200) {
         setToday(body.numberOfJobsApplied);
         setSheduled(body.numberOfShortlistsReceived);
@@ -74,7 +72,7 @@ const CustomerHome = () => {
       let data;
       data = await interviewsTodayList();
       let { body, status }: any = data;
-      
+
       if (status === 200) {
         setRows(body);
       } else {
@@ -85,15 +83,14 @@ const CustomerHome = () => {
       dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
     }
   };
-  const calendlyLink = async () => {
+  const hotJobHandler = async () => {
     try {
       let data;
-      data = await calendlyLinkHandler();
+      data = await hotJobAPI();
       let { body, status }: any = data;
-      
+
       if (status === 200) {
-        setCalendly(body);
-        formik.values.name = body
+        setHotJob(body);
       } else {
         dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
       }
@@ -107,7 +104,7 @@ const CustomerHome = () => {
       let data;
       data = await resentJobPosting();
       let { body, status }: any = data;
-      
+
       if (status === 200) {
         // setOngoingInterview(body);
       } else {
@@ -124,7 +121,7 @@ const CustomerHome = () => {
       let data;
       data = await getOngoingInterview();
       let { body, status }: any = data;
-      
+
       if (status === 200) {
         setOnGoing(body);
       } else {
@@ -135,7 +132,7 @@ const CustomerHome = () => {
       dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
     }
   };
- 
+
   const statsHandler = async () => {
     try {
       let data;
@@ -143,9 +140,17 @@ const CustomerHome = () => {
       let { body, status }: any = data;
       if (status === 200) {
         let stats = [
-          {text: 'Interviews', value: body?.interviewsTaken ? body?.interviewsTaken : 1  }, 
-          {text: 'Hires', value: body?.passedCandidatesCount ? body?.passedCandidatesCount : 0 } 
-        ]
+          {
+            text: 'Interviews',
+            value: body?.interviewsTaken ? body?.interviewsTaken : 1,
+          },
+          {
+            text: 'Hires',
+            value: body?.passedCandidatesCount
+              ? body?.passedCandidatesCount
+              : 0,
+          },
+        ];
         setStatsData(stats);
       } else {
         dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
@@ -155,18 +160,7 @@ const CustomerHome = () => {
       dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
     }
   };
-  const margin = {top: 20, right: 20, bottom: 30, left: 40};
-const postJobSchema = Yup.object().shape({
-    name: link,
-  })
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-    },
-    validationSchema: postJobSchema,
-    onSubmit: async (values) => {
-    console.log(values)
-  }});
+  const margin = { top: 20, right: 20, bottom: 30, left: 40 };
 
   return (
     <>
@@ -174,7 +168,7 @@ const postJobSchema = Yup.object().shape({
         <div className={styles.subContainer1}>
           <div className={styles.greetings}>
             <div>Hello, Rushikesh 👋</div>
-            <div>You have {today    } interviews Today</div>
+            <div>You have {today} interviews Today</div>
           </div>
           <div className={styles.statsCardHolder}>
             <div className={styles.statsCard}>
@@ -195,13 +189,13 @@ const postJobSchema = Yup.object().shape({
               <JobAppication />
               <div>
                 <div className={styles.statsNumbers}>{reviewAwaiting}</div>
-                <div >Ongoing Interviews</div>
+                <div>Ongoing Interviews</div>
               </div>
             </div>
           </div>
           <div className='d-flex justify-content-center'>
             <div className={styles.onGoingPosition}>
-                <div className={styles.interviewToday}>3 Interviews Today</div>
+              <div className={styles.interviewToday}>3 Interviews Today</div>
               <TableContainer>
                 <Table aria-label='simple table'>
                   <TableHead>
@@ -215,12 +209,14 @@ const postJobSchema = Yup.object().shape({
                   </TableHead>
                   <TableBody>
                     {rows &&
-                      rows.map((row, index ) => (
+                      rows.map((row, index) => (
                         <TableRow key={index}>
                           <TableCell component='th' scope='row' align='center'>
                             <JobAppication /> {row.job?.title}
                           </TableCell>
-                          <TableCell align='center'>{row.interviewDateTime}</TableCell>
+                          <TableCell align='center'>
+                            {row.interviewDateTime}
+                          </TableCell>
                           <TableCell align='center'>
                             {row.joiningLink}
                           </TableCell>
@@ -231,34 +227,38 @@ const postJobSchema = Yup.object().shape({
               </TableContainer>
             </div>
           </div>
-          <div className={styles.panel}>
-            <div className='d-flex align-items-center justify-content-center' style={{width : '100%'}}>
-            <NormalTextField
-                      error={formik.errors.name}
-                      touched={formik.touched.name}
-                      placeholder='Link'
-                      name='name'
-                      type='text'
-                      handleChange={formik.handleChange}
-                      handleBlur={formik.handleBlur}
-                      value={formik.values.name}
-                    />
-                    <PrimaryButton text='Edit' />
+          {hotJob && (
+            <div className={styles.panel}>
+              <div className={styles.hotJob}>
+                <img src={HotJob} alt='HotJob' height={150} />
+              </div>
+              <div className={styles.hotJob1}>
+                <div>
+                  <img src={Hiring} alt='HotJob' height={80} />
+                </div>
+                <div>
+                  <p>{hotJob[0].title}</p>
+                  <p>{hotJob[0].company}</p>
+                  <p>
+                    Exp. {hotJob[0].minExperience} to {hotJob[0].maxExperience}{' '}
+                    years
+                  </p>
+                </div>
+              </div>
             </div>
-            <div></div>
-          </div>
+          )}
         </div>
         <div className={styles.subContainer2}>
-        <div className={styles.rightBarUp}>
-          
-          </div>
+          <div className={styles.rightBarUp}></div>
           <div className={styles.rightBarDown}>
-          {statsData && <BarChart 
-                  width={300}
-                  height={200}
-                  margin={margin}
-                  data={statsData}
-                 />}
+            {statsData && (
+              <BarChart
+                width={300}
+                height={200}
+                margin={margin}
+                data={statsData}
+              />
+            )}
           </div>
         </div>
       </div>

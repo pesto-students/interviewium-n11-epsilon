@@ -43,7 +43,7 @@ const AllUserManagement = () => {
   return (
     <>
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h5 className={styles.mainTitle}>Verdit and Feedback</h5>
+        <h5 className={styles.mainTitle}>Application Dashboard</h5>
       </div>
       <div className={styles.users_table_background}>
         <TableContainer >

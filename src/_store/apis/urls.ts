@@ -25,6 +25,8 @@ const jobApplicants = 'api/humanResource/applicants/cynthia@google.com'
 const allJobsEndpoint = 'api/job'
 const getInterviewsWithVerditEndpoint = 'api/interviewer/interviews/sundar@google.com'
 const applicationDashboardEndpoint = 'api/interviewee/jobsApplied/pulkit@gmail.com'
+const feedbackEndpoint = 'api/interviewee/interviews/pulkit@gmail.com'
+const hotJobEndpoint = 'api/interviewee/hotJobOfTheDay'
 
 
 
@@ -198,5 +200,7 @@ export {
     getDashboardCardsIntervieweeEndpoint,
     statsIntervieweeEndpoint,
     allJobsEndpoint,
-    applicationDashboardEndpoint
+    applicationDashboardEndpoint,
+    feedbackEndpoint,
+    hotJobEndpoint
 }
