@@ -1,14 +1,14 @@
-import styles from "./index.module.scss";
-import { useFormik, FormikProvider } from "formik";
-import { decriptionYup, emailYup, fullNameYup } from "utilities/yupObjects";
-import NormalTextField from "widgets/NormalTextField";
-import PrimaryButton from "widgets/PrimaryButton";
-import * as Yup from "yup";
-import { AddUser, Createuser } from "../../utilities/images/icons/index";
-import { useEffect } from "react";
-import Icon from "widgets/IconComponent";
+import styles from './index.module.scss';
+import { useFormik, FormikProvider } from 'formik';
+import { decriptionYup, emailYup, fullNameYup } from 'utilities/yupObjects';
+import NormalTextField from 'widgets/NormalTextField';
+import PrimaryButton from 'widgets/PrimaryButton';
+import * as Yup from 'yup';
+import { AddUser, Createuser } from '../../utilities/images/icons/index';
+import { useEffect } from 'react';
+import Icon from 'widgets/IconComponent';
 
-const CreateOrEditIDPComponent = (props) => {
+const CreateOrEditIDPComponent = props => {
   useEffect(() => {
     if (props.resetForm) {
       formik.resetForm();
@@ -21,10 +21,10 @@ const CreateOrEditIDPComponent = (props) => {
 
   const formik = useFormik({
     initialValues: {
-      email: "",
+      email: '',
     },
     validationSchema: loginSchema,
-    onSubmit: (values) => {
+    onSubmit: values => {
       props.accountChange(values);
     },
   });
@@ -37,8 +37,8 @@ const CreateOrEditIDPComponent = (props) => {
       </h5>
       <FormikProvider value={formik}>
         <form
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
+          onKeyDown={e => {
+            if (e.key === 'Enter') {
               formik.handleSubmit();
             }
           }}
@@ -46,9 +46,9 @@ const CreateOrEditIDPComponent = (props) => {
           <NormalTextField
             error={formik.errors.email}
             touched={formik.touched.email}
-            placeholder="Interviewer name"
-            name="email"
-            type="text"
+            placeholder='Interviewer Email'
+            name='email'
+            type='text'
             handleChange={formik.handleChange}
             handleBlur={formik.handleBlur}
             value={formik.values.email}
@@ -56,7 +56,7 @@ const CreateOrEditIDPComponent = (props) => {
           />
           <div className={styles.button}>
             <PrimaryButton
-              text="Send Mail"
+              text='Send Mail'
               method={formik.handleSubmit}
               className={styles.modalBtn}
             />
