@@ -25,7 +25,7 @@ import NormalTextField from "widgets/NormalTextField";
 import CheckboxField from "widgets/CheckboxField";
 import { RootState } from "_store/reducer/rootReducer";
 import SelectField from "widgets/SelectField";
-import { activateDeactivateUser, getOngoingInterview, getSearchUsers } from "_store/apis/userManagementAPI";
+import { activateDeactivateUser, getInterviewsWithVerditAPI, getOngoingInterview, getSearchUsers } from "_store/apis/userManagementAPI";
 import { LockIcon, Checkmark } from "../../utilities/images/icons/index";
 import { setTimeout } from "timers";
 import ModalComponent from "widgets/Modal";
@@ -81,7 +81,7 @@ const AllUserManagement = () => {
   const onChangeSearchValue = (data) => {
     setSearchData(data)
     if (data === "") {
-      getUsers('');
+      getUsers();
     } else {
       searchUser(data);
     }
@@ -89,18 +89,14 @@ const AllUserManagement = () => {
   };
 
   useEffect(() => {
-    getUsers('')
+    getUsers()
   }, [])
 
 
-  const getUsers = async (params) => {
+  const getUsers = async () => {
     try {
       let data
-      if (params === '') {
-        data = await getOngoingInterview();
-      } else {
-        data = await getSearchUsers(params);
-      }
+        data = await getInterviewsWithVerditAPI();
       let { body , status }: any = data;
       status = 200
       if (status === 200) {
@@ -142,7 +138,7 @@ const AllUserManagement = () => {
       const data = await activateDeactivateUser(payload);
       const { body }: any = data;
       if (body.statusCode === 200) {
-        getUsers('')
+        getUsers()
         setModalShow(false);
       } else {
         dispatch({ type: ERROR_MESSAGE, payload: "Something went wrong" });
@@ -163,7 +159,7 @@ const AllUserManagement = () => {
 
   const handleChangePage = (change: Change) => {
     let payload = change.split('?')[1]
-    getUsers(payload)
+    getUsers()
   };
 
   const handleChangeRowsPerPage = (value) => {
@@ -227,9 +223,9 @@ const AllUserManagement = () => {
         <h5 className={styles.mainTitle}>Verdit and Feedback</h5>
       </div>
       <div className={styles.users_table_background}>
-        <TableContainer className={styles.users_table_container}>
-          <Table className={`${styles.users_table}`} aria-label="users table">
-            <TableHead className={styles.users_table_head}>
+        <TableContainer >
+          <Table aria-label="users table">
+            <TableHead>
               <TableRow>
                 {/* Check all disable foe now */}
                 {/* <TableCell><CheckboxField value={checkedAll} handleChange={checkboxAllCheck} /></TableCell> */}
@@ -241,13 +237,13 @@ const AllUserManagement = () => {
                 ))}
               </TableRow>
             </TableHead>
-            <TableBody ref={tableBodyRef} className={styles.users_table_body}>
-              {sportsData && sportsData.map(({ interviewRoundNumber ,  interviewerVerdict ,interviewee , interviewer, id  } : any) => (
+            <TableBody ref={tableBodyRef} >
+              {sportsData && sportsData.map(({ interviewRoundNumber ,  interviewerVerdict ,interviewee , job, id  } : any) => (
                 <TableRow className={`${styles.users_table_row}`} key={id}>
                   {/* <TableCell><CheckboxField name={sportId}value={checked} handleChange={handleCheckbox} /></TableCell> */}
                   {/* <TableCell>{sportId}</TableCell> */}
                   <TableCell>{interviewee?.name}</TableCell>
-                  <TableCell>{interviewer?.name} </TableCell>
+                  <TableCell>{job?.title} </TableCell>
                   <TableCell>{interviewRoundNumber}</TableCell>
                   <TableCell>{interviewerVerdict}</TableCell>
                   {/* <TableCell>

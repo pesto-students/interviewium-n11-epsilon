@@ -19,7 +19,9 @@ const interviewerProfile = 'api/interviewer/profile/sundar@google.com'
 const interviewsTodayEndpoint = 'api/interviewer/today/sundar@google.com'
 const calendlyLinkEndpoint = 'api/interviewer/calendlyLink/sundar@google.com'
 const statsEndpoint = 'api/humanResource/graph/cynthia@google.com'
+const statsInterviewerEndpoint = 'api/interviewer/graph/sundar@google.com'
 const jobApplicants = 'api/humanResource/applicants/cynthia@google.com'
+const getInterviewsWithVerditEndpoint = 'api/interviewer/interviews/sundar@google.com'
 
 
 
@@ -186,5 +188,7 @@ export {
     interviewsTodayEndpoint,
     calendlyLinkEndpoint,
     statsEndpoint,
-    jobApplicants
+    jobApplicants,
+    statsInterviewerEndpoint,
+    getInterviewsWithVerditEndpoint
 }

@@ -1,4 +1,4 @@
-import { useraddsingle, useraddmultiple, userlist, userlistactionsstatussingle , getDashboardCardsInterviewer,getAllInterviewers, userlistactionsstatusmultiple, userdeletesingle, userdeletemultiple, userlistfilter, userlistsearch, userinvitemultiple, users, reports, deleteCommentAPI, leaderBoard, getDashboardCards, recentApplication, recentJob, getOngoingInterviews, interviewToday, interviewerProfile, interviewsTodayEndpoint, calendlyLinkEndpoint, statsEndpoint, jobApplicants } from './urls'
+import { useraddsingle, useraddmultiple, userlist, userlistactionsstatussingle , getDashboardCardsInterviewer,getAllInterviewers, userlistactionsstatusmultiple, userdeletesingle, userdeletemultiple, userlistfilter, userlistsearch, userinvitemultiple, users, reports, deleteCommentAPI, leaderBoard, getDashboardCards, recentApplication, recentJob, getOngoingInterviews, interviewToday, interviewerProfile, interviewsTodayEndpoint, calendlyLinkEndpoint, statsEndpoint, jobApplicants, statsInterviewerEndpoint, getInterviewsWithVerditEndpoint } from './urls'
 import api from './api'
 
 export const useraddsingleAPI = async (user: Object) => {
@@ -232,10 +232,38 @@ export const getOngoingInterview = async () => {
             return { status: 500, body: 'Failed to connect'}
         }
 }
+export const getInterviewsWithVerditAPI = async () => {
+    try {
+    return await api
+        .get(`${getInterviewsWithVerditEndpoint}`)
+        .then((response) => {
+            return { status: response.status, body: response.data }
+        })
+        .catch((err) => {
+            return { status: err.response.status, body: err.response.data }
+        }) }
+        catch(err)  {
+            return { status: 500, body: 'Failed to connect'}
+        }
+}
 export const statsAPI = async () => {
     try {
     return await api
         .get(`${statsEndpoint}`)
+        .then((response) => {
+            return { status: response.status, body: response.data }
+        })
+        .catch((err) => {
+            return { status: err.response.status, body: err.response.data }
+        }) }
+        catch(err)  {
+            return { status: 500, body: 'Failed to connect'}
+        }
+}
+export const statsAPIInterviewer = async () => {
+    try {
+    return await api
+        .get(`${statsInterviewerEndpoint}`)
         .then((response) => {
             return { status: response.status, body: response.data }
         })

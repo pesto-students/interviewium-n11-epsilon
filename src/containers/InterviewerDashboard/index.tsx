@@ -7,6 +7,7 @@ import {
   interviewsTodayList,
   calendlyLinkHandler,
   resentJobPosting,
+  statsAPIInterviewer,
 } from '_store/apis/userManagementAPI';
 import { ERROR_MESSAGE } from '_store/constants';
 import { useDispatch } from 'react-redux';
@@ -35,10 +36,8 @@ const CustomerHome = () => {
   const [rows, setRows] = useState<any>();
   const [onGoing, setOnGoing] = useState<any>();
   const [calendly, setCalendly] = useState();
-  const data = [
-    { text: 'Man', value: 5 },
-    { text: 'Woman', value: 1 },
-  ];
+  const [statsData, setStatsData] = useState<any>();
+
 
   useEffect(() => {
     getUsers();
@@ -46,6 +45,7 @@ const CustomerHome = () => {
     calendlyLink()
     recentJobPosting();
     ongoingInterviewHandler();
+    statsHandler()
   }, []);
 
   const getUsers = async () => {
@@ -135,24 +135,28 @@ const CustomerHome = () => {
       dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
     }
   };
-  const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-  const data1 = {
-    labels,
-    datasets: [
-      {
-        label: 'Dataset 1',
-        data: [1,2,4],
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      },
-      {
-        label: 'Dataset 2',
-        data: [1,2,4],
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      },
-    ],
+ 
+  const statsHandler = async () => {
+    try {
+      let data;
+      data = await statsAPIInterviewer();
+      let { body, status }: any = data;
+      
+      if (status === 200) {
+        let stats = [
+          {text: 'Interviews', value: body?.interviewsTaken ? body?.interviewsTaken : 1  }, 
+          {text: 'Hires', value: body?.passedCandidatesCount ? body?.passedCandidatesCount : 0 } 
+        ]
+        setStatsData(stats);
+      } else {
+        dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
+      }
+    } catch (err) {
+      console.log(err);
+      dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
+    }
   };
-
+  const margin = {top: 20, right: 20, bottom: 30, left: 40};
 const postJobSchema = Yup.object().shape({
     name: link,
   })
@@ -246,29 +250,16 @@ const postJobSchema = Yup.object().shape({
           </div>
         </div>
         <div className={styles.subContainer2}>
-        
+        <div className={styles.rightBarUp}>
+          
+          </div>
           <div className={styles.rightBarDown}>
-          {/* <Bar
-          data={{
-            // Name of the variables on x-axies for each bar
-            labels: ["1st bar", "2nd bar", "3rd bar", "4th bar"],
-            datasets: [
-              {
-                // Label for bars
-                label: "total count/value",
-                // Data or value of your each variable
-                data: [1552, 1319, 613, 1400],
-                // Color of each bar
-                backgroundColor: ["aqua", "green", "red", "yellow"],
-                // Border color of each bar
-                borderColor: ["aqua", "green", "red", "yellow"],
-                borderWidth: 0.5,
-              },
-            ],
-          }}
-          // Height of graph
-          height={400}
-        /> */}
+          {statsData && <BarChart 
+                  width={300}
+                  height={200}
+                  margin={margin}
+                  data={statsData}
+                 />}
           </div>
         </div>
       </div>

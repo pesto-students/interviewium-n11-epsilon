@@ -42,7 +42,7 @@ const AllUserManagement = () => {
   const [modalInfo, setModalInfo] = React.useState({});
   const [successModal, setSuccessModal] = useState(false);
   const [resetForm, setResetForm] = useState(false);
-  const [columnsNames] = useState(["Interviewee" , "Interviewer" , "Date" , "Hiring Status" , "Actions"]);
+  const [columnsNames] = useState(["Interviewee" , "Interviewer" , "Date" , "Hiring Status" ]);
   let [rowsPerPage, setRowsPerPage] = useState(10);
   let [totalCount, setTotalCount] = useState(0);
   let [page, setPage] = useState(0);
