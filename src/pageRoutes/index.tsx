@@ -56,11 +56,7 @@ const PageRoutes = () => {
 
   const topheadericons = () => (
     <ul className={styles.headIcons}>
-      <li>
-          <span className={styles.profileSec}>
-            Admin
-          </span>
-      </li>
+     
       <li>
       <img
             className={styles.logo_img}
@@ -75,20 +71,6 @@ const PageRoutes = () => {
 
   return (
     <>
-      {user ? (
-        <Navbar variant="dark" className={`${styles.appBar}`} expand={false}>
-         
-            <>
-              <Navbar.Brand className={styles.sfnlogo}>
-                <Link className="navbar-brand d-flex align-items-center" to="/hr-dashboard">
-                  <strong>Interviewium</strong>
-                </Link>
-              </Navbar.Brand>
-            </>
-
-          {user && topheadericons()}
-        </Navbar>
-      ) : null}
 
       <div className={`d-flex align-items-stretch ${styles.sfnPageRoutes}`}>
         <div className={`${styles.sfnSideBar}`}>

@@ -53,7 +53,13 @@ const Login = () => {
         };
         localStorage.setItem("user", JSON.stringify(userDetails));
         dispatch(save(userDetails));
-        history.push(path.HRDashboard);
+        if(persona.persona === 'HR') {
+          history.push(path.HRDashboard);
+        } else if(persona.persona === 'Interviewee') {
+          history.push(path.IntervieweeDashboard);
+        } else {
+          history.push(path.InterviewerDashboard);
+        }
       }  else {
         dispatch({
           type: ERROR_MESSAGE,

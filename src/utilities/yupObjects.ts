@@ -97,6 +97,10 @@ const subDomain =  Yup.string()
 .min(2, 'Atleast 2 characters')
 .max(15, 'Only 15 characters are allowed'); 
 
+const link =  Yup.string()
+.required('link is Required')
+.min(2, 'Atleast 2 characters')
+
 
 const decriptionYup =  Yup.string()
 .required('Description is Required')
@@ -138,5 +142,6 @@ subDomain,
 decriptionYup,
 textYup,
 versionYup,
-selectIdpSpYup
+selectIdpSpYup,
+link
 }

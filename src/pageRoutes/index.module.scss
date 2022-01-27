@@ -2,7 +2,6 @@
 @import "../utilities/classes.scss";
 
 .appBar {
-  background-color: $sso-common-dark;
   padding: 6px 16px;
   color: $sfn-common-white;
   font-size: 20px;
@@ -13,7 +12,6 @@
   z-index: 99;
   justify-content: start;
   flex-wrap: nowrap;
-  border-bottom: 2px solid $sso-header-border;
   transition: all 0.2s linear;
   .sfnlogo {
     margin: 0;
@@ -183,12 +181,14 @@
     flex-grow: 1;
   }
   .sfnLoggedInMain {
-    padding: 60px 15px 15px;
+    background-color: #F4F4F4;
+    padding: 20px;
   }
   .sfnLoggedOutMain {
     background-color: #fff;
     .layouPadd {
       padding: 0;
+      background-color: #0000001f
     }
   }
 }
@@ -196,8 +196,6 @@
 /*=========>Below are light-theme css<===========*/
 [data-theme="light"] {
   .appBar {
-    @include greycolors;
-    border-color: $sso-header-lightborder;
     .sfnlogo {
       :global(.navbar-brand) {
         color: $sso-common-dark;

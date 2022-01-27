@@ -12,9 +12,14 @@
     display: none;
   }
 }
-
+.compName {
+  font-size: larger;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
 .sfnsidebar {
-  padding-top: 61px;
   height: 100vh;
   position: sticky;
   top: 0;

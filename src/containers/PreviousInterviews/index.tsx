@@ -25,7 +25,7 @@ import NormalTextField from "widgets/NormalTextField";
 import CheckboxField from "widgets/CheckboxField";
 import { RootState } from "_store/reducer/rootReducer";
 import SelectField from "widgets/SelectField";
-import { activateDeactivateUser, getAllUsers, getSearchUsers } from "_store/apis/userManagementAPI";
+import { activateDeactivateUser, previousInterview, getSearchUsers } from "_store/apis/userManagementAPI";
 import { LockIcon, Checkmark } from "../../utilities/images/icons/index";
 import { setTimeout } from "timers";
 import ModalComponent from "widgets/Modal";
@@ -81,7 +81,7 @@ const AllUserManagement = () => {
   const onChangeSearchValue = (data) => {
     setSearchData(data)
     if (data === "") {
-      getUsers('');
+      getUsers();
     } else {
       searchUser(data);
     }
@@ -89,22 +89,18 @@ const AllUserManagement = () => {
   };
 
   useEffect(() => {
-    getUsers('')
+    getUsers()
   }, [])
 
 
-  const getUsers = async (params) => {
+  const getUsers = async () => {
     try {
       let data
-      if (params === '') {
-        data = await getAllUsers();
-      } else {
-        data = await getSearchUsers(params);
-      }
+        data = await previousInterview();
       let { body , status }: any = data;
       status = 200
       if (status === 200) {
-        // setSportsData(body.items)
+        setSportsData(body)
         // setPaginationData(body)
         // csvDataDownload(body.meta.totalItems)
       } else {
@@ -142,7 +138,7 @@ const AllUserManagement = () => {
       const data = await activateDeactivateUser(payload);
       const { body }: any = data;
       if (body.statusCode === 200) {
-        getUsers('')
+        getUsers()
         setModalShow(false);
       } else {
         dispatch({ type: ERROR_MESSAGE, payload: "Something went wrong" });
@@ -163,7 +159,7 @@ const AllUserManagement = () => {
 
   const handleChangePage = (change: Change) => {
     let payload = change.split('?')[1]
-    getUsers(payload)
+    getUsers( )
   };
 
   const handleChangeRowsPerPage = (value) => {
@@ -242,15 +238,15 @@ const AllUserManagement = () => {
               </TableRow>
             </TableHead>
             <TableBody ref={tableBodyRef} className={styles.users_table_body}>
-              {sportsData && sportsData.map(({ email ,  username ,firstname , lastname, isActive , userId }, index) => (
-                <TableRow className={`${styles.users_table_row}`} key={index}>
+              {sportsData && sportsData.map(({ interviewRoundNumber ,  interviewerVerdict ,interviewee , interviewer, id   } : any) => (
+                <TableRow className={`${styles.users_table_row}`} key={id}>
                   {/* <TableCell><CheckboxField name={sportId}value={checked} handleChange={handleCheckbox} /></TableCell> */}
                   {/* <TableCell>{sportId}</TableCell> */}
-                  <TableCell>'{firstname}'</TableCell>
-                  <TableCell>'{lastname}' </TableCell>
-                  <TableCell>'{email}'</TableCell>
-                  <TableCell>'{username}'</TableCell>
-                  <TableCell>
+                  <TableCell>{interviewee?.name}</TableCell>
+                  <TableCell>{interviewer?.name} </TableCell>
+                  <TableCell>{interviewRoundNumber}</TableCell>
+                  <TableCell>{interviewerVerdict}</TableCell>
+                  {/* <TableCell>
                       <div className="d-flex">
                       { true ? <div
                           className={`${styles.trash_icon_logo} ${styles.deletetip}`}
@@ -281,7 +277,7 @@ const AllUserManagement = () => {
                           </span>
                         </div>}
                       </div>
-                    </TableCell>
+                    </TableCell> */}
                 </TableRow>
               ))}
             </TableBody>

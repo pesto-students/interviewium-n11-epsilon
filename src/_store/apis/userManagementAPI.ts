@@ -1,4 +1,4 @@
-import { useraddsingle, useraddmultiple, userlist, userlistactionsstatussingle, userlistactionsstatusmultiple, userdeletesingle, userdeletemultiple, userlistfilter, userlistsearch, userinvitemultiple, users, reports, deleteCommentAPI, leaderBoard } from './urls'
+import { useraddsingle, useraddmultiple, userlist, userlistactionsstatussingle , getDashboardCardsInterviewer,getAllInterviewers, userlistactionsstatusmultiple, userdeletesingle, userdeletemultiple, userlistfilter, userlistsearch, userinvitemultiple, users, reports, deleteCommentAPI, leaderBoard, getDashboardCards, recentApplication, recentJob, getOngoingInterviews, interviewToday, interviewerProfile, interviewsTodayEndpoint, calendlyLinkEndpoint, statsEndpoint, jobApplicants } from './urls'
 import api from './api'
 
 export const useraddsingleAPI = async (user: Object) => {
@@ -179,7 +179,7 @@ export const deleteComment = async (payload: any) => {
 export const getAllUsers = async () => {
     try {
     return await api
-        .get(`${users}`)
+        .get(`${getAllInterviewers}`)
         .then((response) => {
             return { status: response.status, body: response.data }
         })
@@ -190,6 +190,201 @@ export const getAllUsers = async () => {
             return { status: 500, body: 'Failed to connect'}
         }
 }
+export const getDashBoardCard = async () => {
+    try {
+    return await api
+        .get(`${getDashboardCards}`)
+        .then((response) => {
+            return { status: response.status, body: response.data }
+        })
+        .catch((err) => {
+            return { status: err.response.status, body: err.response.data }
+        }) }
+        catch(err)  {
+            return { status: 500, body: 'Failed to connect'}
+        }
+}
+export const getDashBoardCardInterviewer = async () => {
+    try {
+    return await api
+        .get(`${getDashboardCardsInterviewer}`)
+        .then((response) => {
+            return { status: response.status, body: response.data }
+        })
+        .catch((err) => {
+            return { status: err.response.status, body: err.response.data }
+        }) }
+        catch(err)  {
+            return { status: 500, body: 'Failed to connect'}
+        }
+}
+export const getOngoingInterview = async () => {
+    try {
+    return await api
+        .get(`${getOngoingInterviews}`)
+        .then((response) => {
+            return { status: response.status, body: response.data }
+        })
+        .catch((err) => {
+            return { status: err.response.status, body: err.response.data }
+        }) }
+        catch(err)  {
+            return { status: 500, body: 'Failed to connect'}
+        }
+}
+export const statsAPI = async () => {
+    try {
+    return await api
+        .get(`${statsEndpoint}`)
+        .then((response) => {
+            return { status: response.status, body: response.data }
+        })
+        .catch((err) => {
+            return { status: err.response.status, body: err.response.data }
+        }) }
+        catch(err)  {
+            return { status: 500, body: 'Failed to connect'}
+        }
+}
+export const interviewersProfile = async () => {
+    try {
+    return await api
+        .get(`${interviewerProfile}`)
+        .then((response) => {
+            return { status: response.status, body: response.data }
+        })
+        .catch((err) => {
+            return { status: err.response.status, body: err.response.data }
+        }) }
+        catch(err)  {
+            return { status: 500, body: 'Failed to connect'}
+        }
+}
+export const previousInterview = async () => {
+    try {
+    return await api
+        .get(`${getOngoingInterviews}`)
+        .then((response) => {
+            return { status: response.status, body: response.data }
+        })
+        .catch((err) => {
+            return { status: err.response.status, body: err.response.data }
+        }) }
+        catch(err)  {
+            return { status: 500, body: 'Failed to connect'}
+        }
+}
+export const interviewsToday = async () => {
+    try {
+    return await api
+        .get(`${interviewToday}`)
+        .then((response) => {
+            return { status: response.status, body: response.data }
+        })
+        .catch((err) => {
+            return { status: err.response.status, body: err.response.data }
+        }) }
+        catch(err)  {
+            return { status: 500, body: 'Failed to connect'}
+        }
+}
+export const resentJobApplication = async () => {
+    try {
+    return await api
+        .get(`${recentApplication}`)
+        .then((response) => {
+            return { status: response.status, body: response.data }
+        })
+        .catch((err) => {
+            return { status: err.response.status, body: err.response.data }
+        }) }
+        catch(err)  {
+            return { status: 500, body: 'Failed to connect'}
+        }
+}
+export const interviewsTodayList = async () => {
+    try {
+    return await api
+        .get(`${interviewsTodayEndpoint}`)
+        .then((response) => {
+            return { status: response.status, body: response.data }
+        })
+        .catch((err) => {
+            return { status: err.response.status, body: err.response.data }
+        }) }
+        catch(err)  {
+            return { status: 500, body: 'Failed to connect'}
+        }
+}
+export const calendlyLinkHandler = async () => {
+    try {
+    return await api
+        .get(`${calendlyLinkEndpoint}`)
+        .then((response) => {
+            return { status: response.status, body: response.data }
+        })
+        .catch((err) => {
+            return { status: err.response.status, body: err.response.data }
+        }) }
+        catch(err)  {
+            return { status: 500, body: 'Failed to connect'}
+        }
+}
+export const resentJobPosting = async () => {
+    try {
+    return await api
+        .get(`${recentJob}`)
+        .then((response) => {
+            return { status: response.status, body: response.data }
+        })
+        .catch((err) => {
+            return { status: err.response.status, body: err.response.data }
+        }) }
+        catch(err)  {
+            return { status: 500, body: 'Failed to connect'}
+        }
+}
+export const getJobApplicants = async () => {
+    try {
+    return await api
+        .get(`${jobApplicants}`)
+        .then((response) => {
+            return { status: response.status, body: response.data }
+        })
+        .catch((err) => {
+            return { status: err.response.status, body: err.response.data }
+        }) }
+        catch(err)  {
+            return { status: 500, body: 'Failed to connect'}
+        }
+}
+export const postJobForHR = async (payload: any) => {
+    try {
+        return await api.post(`/api/humanResource/job`, payload)
+            .then(response => {
+                return { status: response.status, body: response.data }
+            }).catch(err => {
+                return { status: err.response.status, body: err.response.data }
+            })
+    }
+    catch (err) {
+        return { status: 500, body: 'Failed to connect' }
+    }
+}
+export const inviteInterviewee = async (payload: any) => {
+    try {
+        return await api.post(`/api/humanResource/inviteInterviewer`, payload)
+            .then(response => {
+                return { status: response.status, body: response.data }
+            }).catch(err => {
+                return { status: err.response.status, body: err.response.data }
+            })
+    }
+    catch (err) {
+        return { status: 500, body: 'Failed to connect' }
+    }
+}
+
 export const getSearchUsers = async (payload) => {
     try {
     return await api

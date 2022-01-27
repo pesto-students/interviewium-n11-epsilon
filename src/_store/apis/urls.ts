@@ -1,6 +1,6 @@
 
 // let baseURL = 'http://localhost:5000/' 
-let baseURL = 'https://us-central1-interviewium-334906.cloudfunctions.net/users'
+let baseURL = 'https://interviewium-backend.herokuapp.com/'
 if (process.env.NODE_ENV === 'production') {
     baseURL = 'https://api-dev.sharpz.app/'
 }
@@ -8,7 +8,22 @@ const HRPersona = '/SetHR'
 const HRInterviewer = '/SetInterviewer'
 const HRInterviewee = '/SetInterviewee'
 
+const getAllInterviewers = 'api/humanResource/interviewers/cynthia@google.com'
+const getOngoingInterviews = 'api/humanResource/ongoingInterviews/cynthia@google.com'
+const getPreviousInterviews = 'api/humanResource/previousInterviews/cynthia@google.com'
+const getDashboardCards = 'api/humanResource/dashboardHeader/cynthia@google.com'
+const recentApplication = 'api/humanResource/recentJobApplicants/cynthia@google.com'
+const recentJob = 'api/humanResource/recentJobPostings/cynthia@google.com'
+const interviewToday = 'api/interviewer/today/sundar@google.com'
+const interviewerProfile = 'api/interviewer/profile/sundar@google.com'
+const interviewsTodayEndpoint = 'api/interviewer/today/sundar@google.com'
+const calendlyLinkEndpoint = 'api/interviewer/calendlyLink/sundar@google.com'
+const statsEndpoint = 'api/humanResource/graph/cynthia@google.com'
+const jobApplicants = 'api/humanResource/applicants/cynthia@google.com'
 
+
+
+const getDashboardCardsInterviewer = 'api/interviewer/dashboardMetrics/sundar@google.com'
 
 const authenticate = '/account/adminSignIn'
 const users = '/users'
@@ -149,7 +164,7 @@ export {
     deleteIdp,
     setDataIdp,
     providerVersion,
-    //sharpz
+
     users,
     reports,
     searchUsers,
@@ -159,4 +174,17 @@ export {
     HRPersona,
     HRInterviewer,
     HRInterviewee,
+    getAllInterviewers,
+    getOngoingInterviews,
+    getDashboardCards,
+    recentApplication,
+    recentJob,
+    getPreviousInterviews,
+    interviewToday,
+    interviewerProfile,
+    getDashboardCardsInterviewer,
+    interviewsTodayEndpoint,
+    calendlyLinkEndpoint,
+    statsEndpoint,
+    jobApplicants
 }

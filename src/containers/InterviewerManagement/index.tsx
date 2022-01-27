@@ -104,7 +104,7 @@ const AllUserManagement = () => {
       let { body , status }: any = data;
       status = 200
       if (status === 200) {
-        // setSportsData(body.items)
+        setSportsData(body)
         // setPaginationData(body)
         // csvDataDownload(body.meta.totalItems)
       } else {
@@ -249,15 +249,15 @@ const AllUserManagement = () => {
               </TableRow>
             </TableHead>
             <TableBody ref={tableBodyRef} className={styles.users_table_body}>
-              {sportsData && sportsData.map(({ email ,  username ,firstname , lastname, isActive , userId }, index) => (
+              {sportsData && sportsData.map((data : any, index) => (
                 <TableRow className={`${styles.users_table_row}`} key={index}>
                   {/* <TableCell><CheckboxField name={sportId}value={checked} handleChange={handleCheckbox} /></TableCell> */}
                   {/* <TableCell>{sportId}</TableCell> */}
-                  <TableCell>{firstname}</TableCell>
-                  <TableCell>{lastname} </TableCell>
-                  <TableCell>{email}</TableCell>
-                  <TableCell>{username}</TableCell>
-                  <TableCell>
+                  <TableCell>{data.interviewer?.name}</TableCell>
+                  <TableCell>{data.interviewer?.email} </TableCell>
+                  <TableCell>{data.interviewer?.email}</TableCell>
+                  <TableCell>{data.interviewer?.numberOfInterviewReviewsPending}</TableCell>
+                  {/* <TableCell>
                       <div className="d-flex">
                       { isActive ? <div
                           className={`${styles.trash_icon_logo} ${styles.deletetip}`}
@@ -288,7 +288,7 @@ const AllUserManagement = () => {
                           </span>
                         </div>}
                       </div>
-                    </TableCell>
+                    </TableCell> */}
                 </TableRow>
               ))}
             </TableBody>

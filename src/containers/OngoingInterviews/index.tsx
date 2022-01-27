@@ -25,7 +25,7 @@ import NormalTextField from "widgets/NormalTextField";
 import CheckboxField from "widgets/CheckboxField";
 import { RootState } from "_store/reducer/rootReducer";
 import SelectField from "widgets/SelectField";
-import { activateDeactivateUser, getAllUsers, getSearchUsers } from "_store/apis/userManagementAPI";
+import { activateDeactivateUser, getOngoingInterview, getSearchUsers } from "_store/apis/userManagementAPI";
 import { LockIcon, Checkmark } from "../../utilities/images/icons/index";
 import { setTimeout } from "timers";
 import ModalComponent from "widgets/Modal";
@@ -97,14 +97,14 @@ const AllUserManagement = () => {
     try {
       let data
       if (params === '') {
-        data = await getAllUsers();
+        data = await getOngoingInterview();
       } else {
         data = await getSearchUsers(params);
       }
       let { body , status }: any = data;
       status = 200
       if (status === 200) {
-        // setSportsData(body.items)
+        setSportsData(body)
         // setPaginationData(body)
         // csvDataDownload(body.meta.totalItems)
       } else {
@@ -242,15 +242,15 @@ const AllUserManagement = () => {
               </TableRow>
             </TableHead>
             <TableBody ref={tableBodyRef} className={styles.users_table_body}>
-              {sportsData && sportsData.map(({ email ,  username ,firstname , lastname, isActive , userId }, index) => (
-                <TableRow className={`${styles.users_table_row}`} key={index}>
+              {sportsData && sportsData.map(({ interviewRoundNumber ,  interviewerVerdict ,interviewee , interviewer, id  } : any) => (
+                <TableRow className={`${styles.users_table_row}`} key={id}>
                   {/* <TableCell><CheckboxField name={sportId}value={checked} handleChange={handleCheckbox} /></TableCell> */}
                   {/* <TableCell>{sportId}</TableCell> */}
-                  <TableCell>{firstname}</TableCell>
-                  <TableCell>{lastname} </TableCell>
-                  <TableCell>{email}</TableCell>
-                  <TableCell>{username}</TableCell>
-                  <TableCell>
+                  <TableCell>{interviewee?.name}</TableCell>
+                  <TableCell>{interviewer?.name} </TableCell>
+                  <TableCell>{interviewRoundNumber}</TableCell>
+                  <TableCell>{interviewerVerdict}</TableCell>
+                  {/* <TableCell>
                       <div className="d-flex">
                       { isActive ? <div
                           className={`${styles.trash_icon_logo} ${styles.deletetip}`}
@@ -281,7 +281,7 @@ const AllUserManagement = () => {
                           </span>
                         </div>}
                       </div>
-                    </TableCell>
+                    </TableCell> */}
                 </TableRow>
               ))}
             </TableBody>
