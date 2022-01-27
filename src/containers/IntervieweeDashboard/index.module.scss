@@ -1,5 +1,6 @@
 @import "../../utilities/variables.scss";
 @import "../../utilities/classes.scss";
+
 .title{
     color:white;
 }
@@ -9,4 +10,114 @@
     color: $sso-common-dark;
   }
 
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 3.5fr 1fr;
+  height: 89vh;
+  margin: 0px;
+}
+
+.subContainer1 {
+  display: grid;
+  grid-template-rows: 0.1fr 0.4fr 1fr 0.5fr;
+  background-color: #F4F4F4;
+  .greetings{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .onGoingPosition{
+    height: 285px;
+    overflow-y: scroll;
+    border-radius: 30px;
+    background-color: white;
+    width: 80%;
+}
+}
+.subContainer2 {
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  background-color: rgb(255, 255, 255);
+}
+
+.statsCardHolder{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.statsCard{
+  border-radius: 20px;
+  background-color: white;
+  height: 90%;
+  width: 25%;
+  margin: 5px;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+    .statsNumbers{
+      font-size: 30px;
+      padding: 4px;
+    }
+}
+
+.rightBarUp {
+  background-color: #F4F4F4;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  height: 450px;
+   .SLACard {
+    height: 130px;
+    width: 90%;
+    background-color: #ffffff;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    margin: 10px;
+   }
+}
+.rightBarDown {
+   background-color: #F4F4F4;
+   fill: rgb(175, 175, 175);
+}
+
+.panel{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.onGoingInterviews{
+   height: 95%;
+   width: 40%;
+    border-radius: 20px;
+    background-color: white;
+}
+.disputes{
+   height: 95%;
+   width: 40%;
+    border-radius: 20px;
+    background-color: seashell;
+}
+.onName {
+  font-size: 12px;
+}
+.onYears {
+  font-size: 10px;
+  color: grey;
+}
+.onPSskills {
+  font-size: 12px;
+  word-break: break-all;
+}
+
+.interviewToday{
+  padding: 10px;
+  border-radius: 30px 30px 0px 0px;
+  font-size: larger;
+  background-color: rgb(206, 206, 206);
 }
