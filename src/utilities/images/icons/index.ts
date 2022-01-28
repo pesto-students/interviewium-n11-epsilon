@@ -27,6 +27,10 @@ import { ReactComponent as InvitationList } from './invitation-list.svg'
 import { ReactComponent as Filecopy } from './file.svg'
 import { ReactComponent as LockIcon } from './lock-icon.svg'
 import { ReactComponent as JobAppication } from './job-app.svg'
+import OngoingDash  from './ongingdash.jsx'
+import HiredDash from './hiredDash.jsx'
+import ResentPosting  from './resentPosting.jsx'
+// import { ReactComponent as CandidateReq } from './candidateReq.svg'
 
 
 // Sidbar icons below
@@ -117,5 +121,9 @@ export {
     Profile,
     FeedbackIcon,
     Interview,
-    JobAppication
+    JobAppication,
+    OngoingDash,
+    HiredDash,
+    ResentPosting
+    // CandidateReq,
 }
