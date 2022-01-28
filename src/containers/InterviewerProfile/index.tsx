@@ -12,7 +12,7 @@ import ExploreIcon from '@material-ui/icons/Explore';
 
 
 import styles from './index.module.scss'
-import { ERROR_MESSAGE } from '_store/constants';
+import { ERROR_MESSAGE } from '_store/constants/message';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { interviewersProfile } from '_store/apis/userManagementAPI';

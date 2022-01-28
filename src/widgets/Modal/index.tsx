@@ -56,7 +56,12 @@ const ModalComponent = props => {
             <LogoutComponent
               hide={props.onHideModal}
             />
-          )  :null
+          )  : props.modalInfo.modalIdentity === 'verdit' ? (
+            <CreateAccountComponent
+              hide={props.onHideModal}
+              postVerditHandler={props.modalInfo.apiCall}
+            />
+          ) : null
         }
       />
     );
