@@ -33,6 +33,7 @@ import { setTimeout } from 'timers';
 import ModalComponent from 'widgets/Modal';
 import CsvDownload from 'react-json-to-csv';
 import _ from 'lodash';
+import { Skeleton } from '@material-ui/lab';
 
 const AllUserManagement = () => {
   const dispatch = useDispatch();
@@ -252,7 +253,7 @@ const AllUserManagement = () => {
               </TableRow>
             </TableHead>
             <TableBody ref={tableBodyRef}>
-              {sportsData &&
+              {sportsData.length > 0 ?
                 sportsData.map(
                   (
                     {
@@ -275,41 +276,27 @@ const AllUserManagement = () => {
                       <TableCell>{interviewDateTime}</TableCell>
                       <TableCell>{interviewRoundNumber}</TableCell>
                       <TableCell>{joiningLink}</TableCell>
-                      {/* <TableCell>
-                      <div className="d-flex">
-                      { isActive ? <div
-                          className={`${styles.trash_icon_logo} ${styles.deletetip}`}
-                          onClick={() => {conformationActivateDeactivate(userId , isActive, username)}}
-                        >
-                            <Checkmark className={`${styles.trash_icon}`} />
-                          <span
-                            className={
-                              styles.tooltiptext + " " + styles.tooltiptop
-                            }
-                          >
-                            Deactivate
-                          </span>
-                        </div> :
-                        <div
-                          className={`${styles.trash_icon_logo} ${styles.deletetip}`}
-                        >
-                          <LockIcon
-                            className={`${styles.trash_icon}`}
-                            onClick={() => {conformationActivateDeactivate(userId , isActive, username)}}
-                          ></LockIcon>
-                          <span
-                            className={
-                              styles.tooltiptext + " " + styles.tooltiptop
-                            }
-                          >
-                            Activate
-                          </span>
-                        </div>}
-                      </div>
-                    </TableCell> */}
                     </TableRow>
                   )
-                )}
+                ): [1, 2, 3, 4].map(() => (
+                  <TableRow className={`${styles.users_table_row}`}>
+                    <TableCell>
+                      <Skeleton variant='text' />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton variant='text' />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton variant='text' />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton variant='text' />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton variant='text' />
+                    </TableCell>
+                  </TableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>
