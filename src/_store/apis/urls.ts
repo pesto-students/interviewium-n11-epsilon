@@ -1,7 +1,7 @@
 // let baseURL = 'http://localhost:5000/'
 let baseURL = 'https://interviewium-backend.herokuapp.com/';
 if (process.env.NODE_ENV === 'production') {
-  baseURL = 'https://api-dev.sharpz.app/';
+  baseURL = 'https://interviewium-backend.herokuapp.com/';
 }
 const HRPersona = '/SetHR';
 const HRInterviewer = '/SetInterviewer';
