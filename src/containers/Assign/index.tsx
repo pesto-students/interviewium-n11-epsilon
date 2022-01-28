@@ -4,7 +4,7 @@ import {
   resentJobPosting,
   waitingForAssignment,
 } from '_store/apis/userManagementAPI';
-import { ERROR_MESSAGE } from '_store/constants';
+import { ERROR_MESSAGE } from '_store/constants/message';
 import styles from './index.module.scss';
 
 const CustomerHome = () => {

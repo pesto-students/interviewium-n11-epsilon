@@ -3,7 +3,7 @@ import ModalComponent from 'widgets/Modal/indexL';
 import { useEffect, useState } from 'react';
 import { allJobs } from '_store/apis/userManagementAPI';
 import { useDispatch } from 'react-redux';
-import { ERROR_MESSAGE } from '_store/constants';
+import { ERROR_MESSAGE } from '_store/constants/message';
 import { Skeleton } from '@material-ui/lab';
 
 const Jobs = () => {

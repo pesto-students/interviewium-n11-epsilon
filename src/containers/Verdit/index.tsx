@@ -12,7 +12,7 @@ import {
   TableRow,
   TableSortLabel,
 } from '@material-ui/core';
-import { Modal, Table } from 'react-bootstrap';
+import { Modal, OverlayTrigger, Table, Tooltip } from 'react-bootstrap';
 import { searchUserDetails } from '_store/apis/accountDetailsAPI';
 import { ERROR_MESSAGE, SUCCESS_MESSAGE } from '_store/constants/index';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,6 +28,7 @@ import {
   getInterviewsWithVerditAPI,
   getOngoingInterview,
   getSearchUsers,
+  postVerdit,
 } from '_store/apis/userManagementAPI';
 import { LockIcon, Checkmark } from '../../utilities/images/icons/index';
 import { setTimeout } from 'timers';
@@ -35,6 +36,7 @@ import ModalComponent from 'widgets/Modal';
 import CsvDownload from 'react-json-to-csv';
 import _ from 'lodash';
 import { Skeleton } from '@material-ui/lab';
+import AssistantPhotoIcon from '@material-ui/icons/AssistantPhoto';
 
 const AllUserManagement = () => {
   const dispatch = useDispatch();
@@ -66,6 +68,11 @@ const AllUserManagement = () => {
   const [sportsData, setSportsData] = useState([]);
   const [csvDownload, setCsvDownload] = useState(false);
   const [downloadData, setDownloadData] = useState();
+  const [verditAPi, setVerditAPi] = useState({
+    intervieweeId: 'ckyja42ia0454ioi5ipry1p7i',
+    jobId: 'ckyjjbe8100068bi5ezoe2d0i',
+    interviewRoundNumber: 4,
+  });
 
   const searchUser = async data => {
     if (data) {
@@ -114,6 +121,27 @@ const AllUserManagement = () => {
         setSportsData(body);
         // setPaginationData(body)
         // csvDataDownload(body.meta.totalItems)
+      } else {
+        dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
+      }
+    } catch (err) {
+      console.log(err);
+      dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
+    }
+  };
+  const postVerditHandler = async (params: any) => {
+    try {
+      let payload = {
+        intervieweeId: verditAPi.intervieweeId,
+        jobId: verditAPi.jobId,
+        interviewerVerdict: params?.accountName ? 'PASSED' : 'FAILED',
+        interviewerReview: params?.subDomain,
+        interviewRoundNumber: verditAPi.interviewRoundNumber,
+      };
+      let data = await postVerdit(payload);
+      let { body, status }: any = data;
+      if (status === 200) {
+        dispatch({ type: SUCCESS_MESSAGE, payload: 'Verdict Posted' });
       } else {
         dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
       }
@@ -205,11 +233,16 @@ const AllUserManagement = () => {
     },
   });
 
-  const addInterviewer = () => {
+  const addInterviewer = (interviewee: any, job, interviewRoundNumber: any) => {
+    setVerditAPi({
+      intervieweeId: interviewee,
+      jobId: job,
+      interviewRoundNumber: interviewRoundNumber,
+    });
     setModalShow(!modalShow);
     setModalInfo({
-      modalIdentity: 'addInterviewer',
-      apiCall: activateDeactivateUserHandler,
+      modalIdentity: 'verdit',
+      apiCall: postVerditHandler,
     });
   };
 
@@ -263,7 +296,71 @@ const AllUserManagement = () => {
                         <TableCell>{interviewee?.name}</TableCell>
                         <TableCell>{job?.title} </TableCell>
                         <TableCell>{interviewRoundNumber}</TableCell>
-                        <TableCell>{interviewerVerdict}</TableCell>
+                        <TableCell>
+                          {interviewerVerdict == 'PASSED' ? (
+                            <OverlayTrigger
+                              overlay={
+                                <Tooltip id='tooltip-disabled'>
+                                  {interviewerVerdict}!
+                                </Tooltip>
+                              }
+                            >
+                              <span className={styles.greenDot}></span>
+                            </OverlayTrigger>
+                          ) : interviewerVerdict == 'UNDECIDED' ? (
+                            <OverlayTrigger
+                              overlay={
+                                <Tooltip id='tooltip-disabled'>
+                                  {interviewerVerdict}!
+                                </Tooltip>
+                              }
+                            >
+                              <span className={styles.greyDot}></span>
+                            </OverlayTrigger>
+                          ) : (
+                            <OverlayTrigger
+                              overlay={
+                                <Tooltip id='tooltip-disabled'>
+                                  {interviewerVerdict}!
+                                </Tooltip>
+                              }
+                            >
+                              <span className={styles.redDot}></span>
+                            </OverlayTrigger>
+                          )}
+                        </TableCell>
+                        <TableCell className={styles.lastColumn}>
+                          <div className='d-flex'>
+                                <div
+                                  className={`${styles.trash_icon_logo} ${styles.deletetip}`}
+                                >
+                                  <AssistantPhotoIcon
+                                    className={`${styles.trash_icon} `}
+                                    onClick={() =>
+                                      addInterviewer(
+                                        interviewee?.id,
+                                        job?.id,
+                                        interviewRoundNumber
+                                      )
+                                    }
+                                  />
+                                  {
+                                    <span
+                                      className={
+                                        styles.tooltiptext +
+                                        ' ' +
+                                        styles.tooltiptop
+                                      }
+                                    >
+                                      view
+                                    </span>
+                                  }
+                                </div>
+                                <div
+                                  className={`${styles.trash_icon_logo} ${styles.deletetip}`}
+                                ></div>
+                          </div>
+                        </TableCell>
                       </TableRow>
                     )
                   )

@@ -11,3 +11,63 @@
   }
 
 }
+.trash_icon_logo {
+  margin-right: 30px;
+  position: relative;
+  &:last-child {
+    margin: 0;
+  }
+  .trash_icon {
+    width: 40px;
+    height: 40px;
+    border: 2px solid $sso-account-border-color;
+    border-radius: 2px;
+    padding: 9px;
+    cursor: pointer;
+    fill: $sso-header-icons;
+  }
+  .tooltiptext {
+    visibility: hidden;
+    position: absolute;
+    width: 65px;
+    font-size: 12px;
+    font-weight: 600;
+    background-color: $sso-table-even;
+    color: $sso-userlist-color;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 3px;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.6s;
+    border: 1px solid $sso-userlist-color;
+    &.tooltiptop {
+      top: -35px;
+      left: 50%;
+      margin-left: -32px;
+      &:after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: $sso-userlist-color transparent transparent
+          transparent;
+      }
+    }
+  }
+ .tooltiptext::hover {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.deletetip {
+  //tooltip 1
+  .trash_icon:hover {
+    border-color: $sso-account-table-color;
+    fill: $sso-account-table-color !important;
+  }
+}

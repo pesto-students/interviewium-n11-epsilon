@@ -21,6 +21,7 @@ import {
   activateDeactivateUser,
   getAllUsers,
   getSearchUsers,
+  inviteInterviewer,
 } from '_store/apis/userManagementAPI';
 import ModalComponent from 'widgets/Modal';
 import { Skeleton } from '@material-ui/lab';
@@ -39,6 +40,7 @@ const AllUserManagement = () => {
     'Name',
     'Email',
     'Availability',
+    'On Boarding',
     'Reviews Pending',
     // 'Actions',
   ]);
@@ -135,17 +137,16 @@ const AllUserManagement = () => {
       dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
     }
   };
-  const activateDeactivateUserHandler = async (userId, isActive) => {
+  const activateDeactivateUserHandler = async (email) => {
     try {
       let payload = {
-        userId: userId,
-        isActive: !isActive,
-      };
-      const data = await activateDeactivateUser(payload);
+        "email": "cynthia@google.com",
+        "interviewerEmail": email
+    }
+      const data = await inviteInterviewer(payload);
       const { body }: any = data;
       if (body.statusCode === 200) {
-        getUsers('');
-        setModalShow(false);
+        dispatch({ type: ERROR_MESSAGE, payload: 'Interviewer Added' });
       } else {
         dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
       }
@@ -261,7 +262,8 @@ const AllUserManagement = () => {
                     >
                       <TableCell>{data.interviewer?.name}</TableCell>
                       <TableCell>{data.interviewer?.email} </TableCell>
-                      <TableCell>{data.interviewer?.email}</TableCell>
+                      <TableCell >{data.interviewer?.active ? <span className={styles.greenDot}></span> : <span className={styles.redDot}></span>}</TableCell>
+                      <TableCell >{data.interviewer?.onboarded ? <span className={styles.greenDot}></span> : <span className={styles.redDot}></span>}</TableCell>
                       <TableCell>
                         {data.interviewer?.numberOfInterviewReviewsPending}
                       </TableCell>
@@ -269,6 +271,9 @@ const AllUserManagement = () => {
                   ))
                 : [1, 2, 3, 4].map(() => (
                     <TableRow className={`${styles.users_table_row}`}>
+                      <TableCell>
+                        <Skeleton variant='text' />
+                      </TableCell>
                       <TableCell>
                         <Skeleton variant='text' />
                       </TableCell>

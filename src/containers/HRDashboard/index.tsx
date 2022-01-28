@@ -1,4 +1,7 @@
-import { JobAppication } from 'utilities/images/icons';
+import { JobAppication ,
+  ResentPosting,
+  OngoingDash, HiredDash
+ } from 'utilities/images/icons';
 import styles from './index.module.scss';
 import BarChart from 'react-bar-chart';
 import {
@@ -8,7 +11,7 @@ import {
   resentJobPosting,
   statsAPI,
 } from '_store/apis/userManagementAPI';
-import { ERROR_MESSAGE } from '_store/constants';
+import { ERROR_MESSAGE } from '_store/constants/message';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import {
@@ -159,14 +162,14 @@ const CustomerHome = () => {
               </div>
             </div>
             <div className={styles.statsCard}>
-              <JobAppication />
+              <OngoingDash />
               <div>
                 <div className={styles.statsNumbers}>{onging}</div>
                 <div>Ongoing Interviews</div>
               </div>
             </div>
             <div className={styles.statsCard}>
-              <JobAppication />
+              <HiredDash />
               <div>
                 <div className={styles.statsNumbers}>{hired}</div>
                 <div>Candidates Hired</div>
@@ -195,7 +198,7 @@ const CustomerHome = () => {
                               scope='row'
                               align='center'
                             >
-                              <JobAppication /> {row.title}
+                              <ResentPosting /> {row.title}
                             </TableCell>
                             <TableCell align='center'>{row.postedAt}</TableCell>
                             <TableCell align='center'>
@@ -210,7 +213,7 @@ const CustomerHome = () => {
                               scope='row'
                               align='center'
                             >
-                              <Skeleton variant='text' />
+                             <ResentPosting /> <Skeleton variant='text' />
                             </TableCell>
                             <TableCell align='center'>
                               <Skeleton variant='text' />

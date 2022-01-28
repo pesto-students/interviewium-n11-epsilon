@@ -519,7 +519,49 @@ export const allJobs = async () => {
 export const postJobForHR = async (payload: any) => {
   try {
     return await api
-      .post(`/api/humanResource/job`, payload)
+      .put(`/api/humanResource/job`, payload)
+      .then(response => {
+        return { status: response.status, body: response.data };
+      })
+      .catch(err => {
+        return { status: err.response.status, body: err.response.data };
+      });
+  } catch (err) {
+    return { status: 500, body: 'Failed to connect' };
+  }
+};
+export const postVerdit = async (payload: any) => {
+  try {
+    return await api
+      .put(`/api/interviewer/updateVerdictAndReview`, payload)
+      .then(response => {
+        return { status: response.status, body: response.data };
+      })
+      .catch(err => {
+        return { status: err.response.status, body: err.response.data };
+      });
+  } catch (err) {
+    return { status: 500, body: 'Failed to connect' };
+  }
+};
+export const postLink = async (payload: any) => {
+  try {
+    return await api
+      .put(`api/interviewer/calendlyLink/sundar@google.com`, payload)
+      .then(response => {
+        return { status: response.status, body: response.data };
+      })
+      .catch(err => {
+        return { status: err.response.status, body: err.response.data };
+      });
+  } catch (err) {
+    return { status: 500, body: 'Failed to connect' };
+  }
+};
+export const inviteInterviewer = async (payload: any) => {
+  try {
+    return await api
+      .post(`api/humanResource/inviteInterviewer`, payload)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -533,7 +575,7 @@ export const postJobForHR = async (payload: any) => {
 export const inviteInterviewee = async (payload: any) => {
   try {
     return await api
-      .post(`/api/humanResource/inviteInterviewer`, payload)
+      .post(`/api/humanResource/inviteInterviewee`, payload)
       .then(response => {
         return { status: response.status, body: response.data };
       })

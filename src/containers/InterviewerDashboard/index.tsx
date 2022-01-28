@@ -8,8 +8,9 @@ import {
   calendlyLinkHandler,
   resentJobPosting,
   statsAPIInterviewer,
+  postLink,
 } from '_store/apis/userManagementAPI';
-import { ERROR_MESSAGE } from '_store/constants';
+import { ERROR_MESSAGE , SUCCESS_MESSAGE} from '_store/constants/message';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import {
@@ -37,6 +38,7 @@ const CustomerHome = () => {
   const [onGoing, setOnGoing] = useState<any>();
   const [calendly, setCalendly] = useState();
   const [statsData, setStatsData] = useState<any>();
+  const [editLink, setEditLink] = useState(true);
 
   useEffect(() => {
     getUsers();
@@ -177,6 +179,32 @@ const CustomerHome = () => {
     },
   });
 
+  const editLinkHandler = async () => {
+    try {
+       let payload = {
+        "calendlyLink": formik.values.name
+    };
+      let data = await postLink(payload);
+      let { status }: any = data;
+      if (status === 200) {
+        dispatch({ type: SUCCESS_MESSAGE, payload: 'Link Updated' });
+      } else {
+        dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
+      }
+    } catch (err) {
+      console.log(err);
+      dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
+    } 
+  }
+
+  const editHandler : any = () => {
+    if(editLink) {
+      setEditLink(false)
+    } else {
+      editLinkHandler()
+    }
+  }
+
   return (
     <>
       <div className={styles.container}>
@@ -277,8 +305,9 @@ const CustomerHome = () => {
                 handleChange={formik.handleChange}
                 handleBlur={formik.handleBlur}
                 value={formik.values.name}
+                disabled={editLink}
               />
-              <PrimaryButton text='Edit' />
+              <PrimaryButton text={editLink ? 'Edit' : "Update"} method={editHandler} />
             </div>
             <div></div>
           </div>

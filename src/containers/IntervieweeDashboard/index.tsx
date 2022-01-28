@@ -9,7 +9,7 @@ import {
   resentJobPosting,
   statsAPIInterviewee,
 } from '_store/apis/userManagementAPI';
-import { ERROR_MESSAGE } from '_store/constants';
+import { ERROR_MESSAGE } from '_store/constants/message';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import {
