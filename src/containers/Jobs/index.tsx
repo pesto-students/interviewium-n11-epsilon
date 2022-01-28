@@ -10,26 +10,31 @@ import NormalTextField from '../../widgets/NormalTextField';
 import Icon from 'widgets/IconComponent';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import { MultiSelect } from 'react-multi-select-component';
-import ModalComponent from "widgets/Modal/indexL";
-import { useEffect, useState } from "react";
+import ModalComponent from 'widgets/Modal/indexL';
+import React, { useEffect, useState } from 'react';
+import { Skeleton } from '@material-ui/lab';
 
 import TextArea from 'widgets/TextArea';
-import { getJobApplicants, inviteInterviewee, postJobForHR } from '_store/apis/userManagementAPI';
+import {
+  getJobApplicants,
+  inviteInterviewee,
+  postJobForHR,
+} from '_store/apis/userManagementAPI';
 import { useDispatch } from 'react-redux';
-import { ERROR_MESSAGE , SUCCESS_MESSAGE } from '_store/constants';
+import { ERROR_MESSAGE, SUCCESS_MESSAGE } from '_store/constants';
 
 const Jobs = () => {
-
   const [modalShow, setModalShow] = useState(false);
-  const [modalInfo, setModalInfo] = useState({  modalIdentity : 'ActiveUser',
-  apiCall : () => {}});
-  const [jobApp, setJobApp] = useState<any>();
-  const dispatch = useDispatch()
+  const [modalInfo, setModalInfo] = useState({
+    modalIdentity: 'ActiveUser',
+    apiCall: () => {},
+  });
+  const [jobApp, setJobApp] = useState<any>([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     jobApplicationHandler();
   }, []);
-  
 
   const hideModal = () => {
     setModalShow(!modalShow);
@@ -55,10 +60,14 @@ const Jobs = () => {
     },
     validationSchema: postJobSchema,
     onSubmit: values => {
-       formik.values.primarySkills = selectedP.map((e: any) => e.value).join(',')
-      formik.values.secondarySkills = selectedS.map((e: any) => e.value).join(',')
+      formik.values.primarySkills = selectedP
+        .map((e: any) => e.value)
+        .join(',');
+      formik.values.secondarySkills = selectedS
+        .map((e: any) => e.value)
+        .join(',');
       console.log(values);
-      postJobs()
+      postJobs();
     },
   });
 
@@ -79,19 +88,19 @@ const Jobs = () => {
   const postJobs = async () => {
     try {
       let payload = {
-        "jobTitle": formik.values.title,
-        "companyName": formik.values.company,
-        "cityName": formik.values.location,
-        "employmentType": formik.values.emplymentType,
-        "jobDescription": formik.values.jobDescription,
-        "primarySkills": formik.values.primarySkills,
-        "secondarySkills": formik.values.secondarySkills,
-        "humanResourceEmail": "cynthia@google.com"
-    }
+        jobTitle: formik.values.title,
+        companyName: formik.values.company,
+        cityName: formik.values.location,
+        employmentType: formik.values.emplymentType,
+        jobDescription: formik.values.jobDescription,
+        primarySkills: formik.values.primarySkills,
+        secondarySkills: formik.values.secondarySkills,
+        humanResourceEmail: 'cynthia@google.com',
+      };
       let data;
       data = await postJobForHR(payload);
       let { body, status }: any = data;
-      
+
       if (status === 200) {
         dispatch({ type: SUCCESS_MESSAGE, payload: 'Job Posted Successfully' });
       } else {
@@ -108,7 +117,7 @@ const Jobs = () => {
       data = await getJobApplicants();
       let { body, status }: any = data;
       if (status === 200) {
-        setJobApp(body)
+        setJobApp(body);
       } else {
         dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
       }
@@ -118,12 +127,12 @@ const Jobs = () => {
     }
   };
 
-  const inviteIntervieweeHandler = async (email : any) => {
+  const inviteIntervieweeHandler = async (email: any) => {
     try {
       let payload = {
-        "email": "cynthia@google.com",
-        "interviewerEmail": email
-    }
+        email: 'cynthia@google.com',
+        interviewerEmail: email,
+      };
       let data;
       data = await inviteInterviewee(payload);
       let { body, status }: any = data;
@@ -139,13 +148,13 @@ const Jobs = () => {
   };
   return (
     <>
-    <ModalComponent 
-        show = {modalShow}
-        onHideModal = {hideModal}
-        onHide = {hideModal}
-        modalInfo = {modalInfo}
+      <ModalComponent
+        show={modalShow}
+        onHideModal={hideModal}
+        onHide={hideModal}
+        modalInfo={modalInfo}
         data={'data'}
-        />
+      />
       <Tabs
         defaultActiveKey='profile'
         id='uncontrolled-tab-example'
@@ -264,7 +273,7 @@ const Jobs = () => {
                       />
                     </div>
                   </div>
-                  <div className="mt-4"></div>
+                  <div className='mt-4'></div>
                   <TextArea
                     error={formik.errors.jobDescription}
                     touched={formik.touched.jobDescription}
@@ -277,8 +286,7 @@ const Jobs = () => {
                     value={formik.values.jobDescription}
                   />
 
-                  
-                  <div className="mt-4"></div>
+                  <div className='mt-4'></div>
                   <PrimaryButton text='Post Job' method={formik.handleSubmit} />
                 </form>
               </FormikProvider>
@@ -288,18 +296,47 @@ const Jobs = () => {
         <Tab eventKey='profile' title='Search Candidates'>
           <div className={styles.card_parent}>
             <div className={styles.cardParent}>
-            {jobApp && jobApp.map((e:any) => {
-              return <CandidateCard exp search data={e} inviteIntervieweeHandler={inviteIntervieweeHandler} />
-              })}
+              {jobApp.length > 0
+                ? jobApp.map((e: any) => {
+                    return (
+                      <CandidateCard
+                        exp
+                        search
+                        data={e}
+                        inviteIntervieweeHandler={inviteIntervieweeHandler}
+                      />
+                    );
+                  })
+                : [1, 3, 4, 5, 6, 7].map(() => (
+                    <div className='d-flex flex-column'>
+                      <Skeleton variant='text' />
+                      <Skeleton variant='circle' width={70} height={70} />
+                      <Skeleton variant='rect' width={300} height={250} />
+                    </div>
+                  ))}
             </div>
           </div>
         </Tab>
         <Tab eventKey='contact' title='Short-list'>
           <div className={styles.card_parent}>
             <div className={styles.cardParent}>
-              {jobApp && jobApp.map((e:any) => {
-              return <CandidateCard exp data={e} inviteIntervieweeHandler={inviteIntervieweeHandler} />
-              })}
+              {jobApp.length > 0
+                ? jobApp.map((e: any) => {
+                    return (
+                      <CandidateCard
+                        exp
+                        data={e}
+                        inviteIntervieweeHandler={inviteIntervieweeHandler}
+                      />
+                    );
+                  })
+                : [1, 3, 4, 5, 6, 7].map(() => (
+                    <div className='d-flex flex-column'>
+                      <Skeleton variant='text' />
+                      <Skeleton variant='circle' width={70} height={70} />
+                      <Skeleton variant='rect' width={300} height={250} />
+                    </div>
+                  ))}
             </div>
           </div>
         </Tab>

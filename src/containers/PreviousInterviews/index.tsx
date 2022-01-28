@@ -1,6 +1,4 @@
 import styles from './index.module.scss';
-import PrimaryButton from '../../widgets/PrimaryButton';
-import SearchField from 'widgets/SearchTextField';
 import React, { createRef, useEffect, useState } from 'react';
 import * as Yup from 'yup';
 import { sportApi } from '_store/apis/_allApi';
@@ -16,23 +14,15 @@ import { Modal, Table } from 'react-bootstrap';
 import { searchUserDetails } from '_store/apis/accountDetailsAPI';
 import { ERROR_MESSAGE, SUCCESS_MESSAGE } from '_store/constants/index';
 import { useDispatch, useSelector } from 'react-redux';
-import DynamicTablePagination from '../../widgets/DynamicTablePagination';
 import { Change } from 'types';
 import { FormikProvider, useFormik } from 'formik';
-import NormalTextField from 'widgets/NormalTextField';
-import CheckboxField from 'widgets/CheckboxField';
-import { RootState } from '_store/reducer/rootReducer';
-import SelectField from 'widgets/SelectField';
 import {
   activateDeactivateUser,
   previousInterview,
   getSearchUsers,
 } from '_store/apis/userManagementAPI';
-import { LockIcon, Checkmark } from '../../utilities/images/icons/index';
-import { setTimeout } from 'timers';
 import ModalComponent from 'widgets/Modal';
-import CsvDownload from 'react-json-to-csv';
-import _ from 'lodash';
+import { Skeleton } from '@material-ui/lab';
 
 const AllUserManagement = () => {
   const dispatch = useDispatch();
@@ -247,57 +237,42 @@ const AllUserManagement = () => {
               </TableRow>
             </TableHead>
             <TableBody ref={tableBodyRef}>
-              {sportsData &&
-                sportsData.map(
-                  ({
-                    interviewRoundNumber,
-                    interviewerVerdict,
-                    interviewee,
-                    interviewer,
-                    id,
-                  }: any) => (
-                    <TableRow className={`${styles.users_table_row}`} key={id}>
-                      {/* <TableCell><CheckboxField name={sportId}value={checked} handleChange={handleCheckbox} /></TableCell> */}
-                      {/* <TableCell>{sportId}</TableCell> */}
-                      <TableCell>{interviewee?.name}</TableCell>
-                      <TableCell>{interviewer?.name} </TableCell>
-                      <TableCell>{interviewRoundNumber}</TableCell>
-                      <TableCell>{interviewerVerdict}</TableCell>
-                      {/* <TableCell>
-                      <div className="d-flex">
-                      { true ? <div
-                          className={`${styles.trash_icon_logo} ${styles.deletetip}`}
-                          onClick={() => {conformationActivateDeactivate(userId , isActive, username)}}
-                        >
-                            <Checkmark className={`${styles.trash_icon}`} />
-                          <span
-                            className={
-                              styles.tooltiptext + " " + styles.tooltiptop
-                            }
-                          >
-                            Deactivate
-                          </span>
-                        </div> :
-                        <div
-                          className={`${styles.trash_icon_logo} ${styles.deletetip}`}
-                        >
-                          <LockIcon
-                            className={`${styles.trash_icon}`}
-                            onClick={() => {conformationActivateDeactivate(userId , isActive, username)}}
-                          ></LockIcon>
-                          <span
-                            className={
-                              styles.tooltiptext + " " + styles.tooltiptop
-                            }
-                          >
-                            Activate
-                          </span>
-                        </div>}
-                      </div>
-                    </TableCell> */}
-                    </TableRow>
+              {sportsData.length > 0
+                ? sportsData.map(
+                    ({
+                      interviewRoundNumber,
+                      interviewerVerdict,
+                      interviewee,
+                      interviewer,
+                      id,
+                    }: any) => (
+                      <TableRow
+                        className={`${styles.users_table_row}`}
+                        key={id}
+                      >
+                        <TableCell>{interviewee?.name}</TableCell>
+                        <TableCell>{interviewer?.name} </TableCell>
+                        <TableCell>{interviewRoundNumber}</TableCell>
+                        <TableCell>{interviewerVerdict}</TableCell>
+                      </TableRow>
+                    )
                   )
-                )}
+                : [1, 2, 3, 4].map(() => (
+                    <TableRow className={`${styles.users_table_row}`}>
+                      <TableCell>
+                        <Skeleton variant='text' />
+                      </TableCell>
+                      <TableCell>
+                        <Skeleton variant='text' />
+                      </TableCell>
+                      <TableCell>
+                        <Skeleton variant='text' />
+                      </TableCell>
+                      <TableCell>
+                        <Skeleton variant='text' />
+                      </TableCell>
+                    </TableRow>
+                  ))}
             </TableBody>
           </Table>
         </TableContainer>

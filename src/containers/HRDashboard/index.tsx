@@ -19,15 +19,16 @@ import {
   TableHead,
   TableRow,
 } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
 
 const CustomerHome = () => {
   const dispatch = useDispatch();
   const [job, setJob] = useState<any>(0);
   const [onging, setOnging] = useState<any>(0);
   const [hired, setHired] = useState<any>(0);
-  const [ongoingInterview, setOngoingInterview] = useState<any>();
-  const [rows, setRows] = useState<any>();
-  const [onGoing, setOnGoing] = useState<any>();
+  const [ongoingInterview, setOngoingInterview] = useState<any>([]);
+  const [rows, setRows] = useState<any>([]);
+  const [onGoing, setOnGoing] = useState<any>([]);
   const [statsData, setStatsData] = useState<any>();
 
   useEffect(() => {
@@ -44,7 +45,7 @@ const CustomerHome = () => {
       data = await getDashBoardCard();
 
       let { body, status }: any = data;
-      
+
       if (status === 200) {
         setJob(body.numberOfJobApplications);
         setOnging(body.numberOfOngoingInterviews);
@@ -64,7 +65,7 @@ const CustomerHome = () => {
       let data;
       data = await resentJobApplication();
       let { body, status }: any = data;
-      
+
       if (status === 200) {
         setOngoingInterview(body);
       } else {
@@ -80,7 +81,7 @@ const CustomerHome = () => {
       let data;
       data = await resentJobPosting();
       let { body, status }: any = data;
-      
+
       if (status === 200) {
         setRows(body);
       } else {
@@ -97,7 +98,7 @@ const CustomerHome = () => {
       let data;
       data = await getOngoingInterview();
       let { body, status }: any = data;
-      
+
       if (status === 200) {
         setOnGoing(body);
       } else {
@@ -113,12 +114,22 @@ const CustomerHome = () => {
       let data;
       data = await statsAPI();
       let { body, status }: any = data;
-      
+
       if (status === 200) {
         let stats = [
-          {text: 'Offers', value: body?.numberOfCandidatesOffered ? body?.numberOfCandidatesOffered : 1  }, 
-          {text: 'Hires', value: body?.numberOfCandidatesHired ? body?.numberOfCandidatesHired : 0 } 
-        ]
+          {
+            text: 'Offers',
+            value: body?.numberOfCandidatesOffered
+              ? body?.numberOfCandidatesOffered
+              : 1,
+          },
+          {
+            text: 'Hires',
+            value: body?.numberOfCandidatesHired
+              ? body?.numberOfCandidatesHired
+              : 0,
+          },
+        ];
         setStatsData(stats);
       } else {
         dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
@@ -128,8 +139,8 @@ const CustomerHome = () => {
       dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
     }
   };
- 
-  const margin = {top: 20, right: 20, bottom: 30, left: 40};
+
+  const margin = { top: 20, right: 20, bottom: 30, left: 40 };
 
   return (
     <>
@@ -176,18 +187,39 @@ const CustomerHome = () => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {rows &&
-                      rows.map(row => (
-                        <TableRow key={row.name}>
-                          <TableCell component='th' scope='row' align='center'>
-                            <JobAppication /> {row.title}
-                          </TableCell>
-                          <TableCell align='center'>{row.postedAt}</TableCell>
-                          <TableCell align='center'>
-                            {row.numberOfJobApplicationsReceived}
-                          </TableCell>
-                        </TableRow>
-                      ))}
+                    {rows.length > 0
+                      ? rows.map(row => (
+                          <TableRow key={row.name}>
+                            <TableCell
+                              component='th'
+                              scope='row'
+                              align='center'
+                            >
+                              <JobAppication /> {row.title}
+                            </TableCell>
+                            <TableCell align='center'>{row.postedAt}</TableCell>
+                            <TableCell align='center'>
+                              {row.numberOfJobApplicationsReceived}
+                            </TableCell>
+                          </TableRow>
+                        ))
+                      : [1, 2, 3].map(() => (
+                          <TableRow>
+                            <TableCell
+                              component='th'
+                              scope='row'
+                              align='center'
+                            >
+                              <Skeleton variant='text' />
+                            </TableCell>
+                            <TableCell align='center'>
+                              <Skeleton variant='text' />
+                            </TableCell>
+                            <TableCell align='center'>
+                              <Skeleton variant='text' />
+                            </TableCell>
+                          </TableRow>
+                        ))}
                   </TableBody>
                 </Table>
               </TableContainer>
@@ -198,18 +230,42 @@ const CustomerHome = () => {
               <TableContainer>
                 <Table aria-label='simple table'>
                   <TableBody>
-                    {onGoing &&
-                      onGoing.map(row => (
-                        <TableRow key={row.id}>
-                          <TableCell component='th' scope='row' align='center'>
-                            <JobAppication /> {row.interviewer?.name} and {row.interviewee?.name}
-                          </TableCell>
-                          <TableCell align='center'>{row.interviewerVerdict}</TableCell>
-                          <TableCell align='center'>
-                            {row.interviewRoundNumber}
-                          </TableCell>
-                        </TableRow>
-                      ))}
+                    {onGoing.length > 0
+                      ? onGoing.map(row => (
+                          <TableRow key={row.id}>
+                            <TableCell
+                              component='th'
+                              scope='row'
+                              align='center'
+                            >
+                              <JobAppication /> {row.interviewer?.name} and{' '}
+                              {row.interviewee?.name}
+                            </TableCell>
+                            <TableCell align='center'>
+                              {row.interviewerVerdict}
+                            </TableCell>
+                            <TableCell align='center'>
+                              {row.interviewRoundNumber}
+                            </TableCell>
+                          </TableRow>
+                        ))
+                      : [1, 2, 3].map(() => (
+                          <TableRow>
+                            <TableCell
+                              component='th'
+                              scope='row'
+                              align='center'
+                            >
+                              <Skeleton variant='text' />
+                            </TableCell>
+                            <TableCell align='center'>
+                              <Skeleton variant='text' />
+                            </TableCell>
+                            <TableCell align='center'>
+                              <Skeleton variant='text' />
+                            </TableCell>
+                          </TableRow>
+                        ))}
                   </TableBody>
                 </Table>
               </TableContainer>
@@ -219,31 +275,52 @@ const CustomerHome = () => {
         </div>
         <div className={styles.subContainer2}>
           <div className={styles.rightBarUp}>
-            {ongoingInterview &&
-              ongoingInterview.map((e: any) => (
-                <div className={styles.SLACard}>
-                  <div className='d-flex'>
-                    <JobAppication />
-                    <div className='p-2'>
-                      <div className={styles.onName}>{e.name}</div>
-                      <div className={styles.onYears}>
-                        {e.yearsOfExperience} years of experience
+            {ongoingInterview.length > 0
+              ? ongoingInterview.map((e: any) => (
+                  <div className={styles.SLACard}>
+                    <div className='d-flex'>
+                      <JobAppication />
+                      <div className='p-2'>
+                        <div className={styles.onName}>{e.name}</div>
+                        <div className={styles.onYears}>
+                          {e.yearsOfExperience} years of experience
+                        </div>
                       </div>
                     </div>
+                    <div className={styles.onPSskills}>
+                      {e.primaryAndSecondarySkills}
+                    </div>
                   </div>
-                  <div className={styles.onPSskills}>
-                    {e.primaryAndSecondarySkills}
+                ))
+              : [1, 2, 6, 65].map(() => (
+                  <div className={styles.SLACard}>
+                    <div className='d-flex'>
+                      <JobAppication />
+                      <div className='p-2'>
+                        <div className={styles.onName}>
+                          {' '}
+                          <Skeleton variant='text' />
+                        </div>
+                        <div className={styles.onYears}>
+                          <Skeleton variant='text' />
+                        </div>
+                      </div>
+                    </div>
+                    <div className={styles.onPSskills}>
+                      <Skeleton variant='text' />
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
           </div>
           <div className={styles.rightBarDown}>
-         {statsData && <BarChart 
-                  width={300}
-                  height={200}
-                  margin={margin}
-                  data={statsData}
-                 />}
+            {statsData && (
+              <BarChart
+                width={300}
+                height={200}
+                margin={margin}
+                data={statsData}
+              />
+            )}
           </div>
         </div>
       </div>

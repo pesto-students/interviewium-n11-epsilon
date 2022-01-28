@@ -1,15 +1,14 @@
-@import "../../utilities/variables.scss";
-@import "../../utilities/classes.scss";
+@import '../../utilities/variables.scss';
+@import '../../utilities/classes.scss';
 
-.title{
-    color:white;
+.title {
+  color: white;
 }
 
-[data-theme="light"] {
-  .title{
+[data-theme='light'] {
+  .title {
     color: $sso-common-dark;
   }
-
 }
 
 .container {
@@ -21,14 +20,14 @@
 
 .subContainer1 {
   display: grid;
-  grid-template-rows: 0.3fr 0.4fr 1.2fr 1fr;
-  background-color: #F4F4F4;
-  .greetings{
+  grid-template-rows: 0.1fr 0.2fr 0.5fr 0.3fr;
+  background-color: #f4f4f4;
+  .greetings {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  .onGoingPosition{
+  .onGoingPosition {
     height: 95%;
     border-radius: 30px;
     background-color: white;
@@ -41,33 +40,33 @@
   background-color: rgb(255, 255, 255);
 }
 
-.statsCardHolder{
+.statsCardHolder {
   display: flex;
   justify-content: space-evenly;
 }
 
-.statsCard{
+.statsCard {
   border-radius: 20px;
   background-color: white;
   height: 90%;
   width: 25%;
   margin: 5px;
   display: flex;
-    justify-content: center;
-    align-items: center;
-    .statsNumbers{
-      font-size: 30px;
-      padding: 4px;
-    }
+  justify-content: center;
+  align-items: center;
+  .statsNumbers {
+    font-size: 30px;
+    padding: 4px;
+  }
 }
 
 .rightBarUp {
-  background-color: #F4F4F4;
+  background-color: #f4f4f4;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
   height: 450px;
-   .SLACard {
+  .SLACard {
     height: 130px;
     width: 90%;
     background-color: #ffffff;
@@ -76,29 +75,29 @@
     flex-direction: column;
     padding: 15px;
     margin: 10px;
-   }
+  }
 }
 .rightBarDown {
-   background-color: seashell;
-   fill: grey;
+  background-color: seashell;
+  fill: grey;
 }
 
-.panel{
+.panel {
   display: flex;
-    justify-content: space-around;
+  justify-content: space-around;
 }
 
-.onGoingInterviews{
-   height: 95%;
-   width: 40%;
-    border-radius: 20px;
-    background-color: white;
+.onGoingInterviews {
+  height: 95%;
+  width: 40%;
+  border-radius: 20px;
+  background-color: white;
 }
-.disputes{
-   height: 95%;
-   width: 40%;
-    border-radius: 20px;
-    background-color: seashell;
+.disputes {
+  height: 95%;
+  width: 40%;
+  border-radius: 20px;
+  background-color: seashell;
 }
 .onName {
   font-size: 12px;

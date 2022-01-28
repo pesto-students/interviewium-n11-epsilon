@@ -25,6 +25,7 @@ import * as Yup from 'yup';
 import { link } from '../../utilities/yupObjects';
 import HotJob from '../../utilities/images/hotJob.jpg';
 import Hiring from '../../utilities/images/hiring.jpg';
+import { Skeleton } from '@material-ui/lab';
 
 const CustomerHome = () => {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const CustomerHome = () => {
   const [sheduled, setSheduled] = useState<any>(0);
   const [reviewAwaiting, setReviewAwaiting] = useState<any>(0);
   const [ongoingInterview, setOngoingInterview] = useState<any>();
-  const [rows, setRows] = useState<any>();
+  const [rows, setRows] = useState<any>([]);
   const [onGoing, setOnGoing] = useState<any>();
   const [hotJob, setHotJob] = useState<any>();
   const [statsData, setStatsData] = useState<any>();
@@ -208,20 +209,41 @@ const CustomerHome = () => {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {rows &&
-                      rows.map((row, index) => (
-                        <TableRow key={index}>
-                          <TableCell component='th' scope='row' align='center'>
-                            <JobAppication /> {row.job?.title}
-                          </TableCell>
-                          <TableCell align='center'>
-                            {row.interviewDateTime}
-                          </TableCell>
-                          <TableCell align='center'>
-                            {row.joiningLink}
-                          </TableCell>
-                        </TableRow>
-                      ))}
+                    {rows.length > 0
+                      ? rows.map((row, index) => (
+                          <TableRow key={index}>
+                            <TableCell
+                              component='th'
+                              scope='row'
+                              align='center'
+                            >
+                              <JobAppication /> {row.job?.title}
+                            </TableCell>
+                            <TableCell align='center'>
+                              {row.interviewDateTime}
+                            </TableCell>
+                            <TableCell align='center'>
+                              {row.joiningLink}
+                            </TableCell>
+                          </TableRow>
+                        ))
+                      : [1, 2, 3].map(() => (
+                          <TableRow>
+                            <TableCell
+                              component='th'
+                              scope='row'
+                              align='center'
+                            >
+                              <Skeleton variant='text' />
+                            </TableCell>
+                            <TableCell align='center'>
+                              <Skeleton variant='text' />
+                            </TableCell>
+                            <TableCell align='center'>
+                              <Skeleton variant='text' />
+                            </TableCell>
+                          </TableRow>
+                        ))}
                   </TableBody>
                 </Table>
               </TableContainer>
