@@ -10,7 +10,7 @@ import {
   TableRow,
   TableSortLabel,
 } from '@material-ui/core';
-import { Modal, Table } from 'react-bootstrap';
+import { Modal, OverlayTrigger, Table, Tooltip } from 'react-bootstrap';
 import { searchUserDetails } from '_store/apis/accountDetailsAPI';
 import { ERROR_MESSAGE, SUCCESS_MESSAGE } from '_store/constants/index';
 import { useDispatch, useSelector } from 'react-redux';
@@ -258,7 +258,39 @@ const AllUserManagement = () => {
                         <TableCell>{interviewee?.name}</TableCell>
                         <TableCell>{interviewer?.name} </TableCell>
                         <TableCell>{interviewRoundNumber}</TableCell>
-                        <TableCell>{interviewerVerdict}</TableCell>
+                        <TableCell>
+                          {interviewerVerdict == 'PASSED' ? (
+                            <OverlayTrigger
+                              overlay={
+                                <Tooltip id='tooltip-disabled'>
+                                  {interviewerVerdict}!
+                                </Tooltip>
+                              }
+                            >
+                              <span className={styles.greenDot}></span>
+                            </OverlayTrigger>
+                          ) : interviewerVerdict == 'UNDECIDED' ? (
+                            <OverlayTrigger
+                              overlay={
+                                <Tooltip id='tooltip-disabled'>
+                                  {interviewerVerdict}!
+                                </Tooltip>
+                              }
+                            >
+                              <span className={styles.greyDot}></span>
+                            </OverlayTrigger>
+                          ) : (
+                             <OverlayTrigger
+                              overlay={
+                                <Tooltip id='tooltip-disabled'>
+                                  {interviewerVerdict}!
+                                </Tooltip>
+                              }
+                            >
+                            <span className={styles.redDot}></span>
+                                                        </OverlayTrigger>
+                          )}
+                        </TableCell>
                       </TableRow>
                     )
                   )

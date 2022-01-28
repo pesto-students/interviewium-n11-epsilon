@@ -558,10 +558,24 @@ export const postLink = async (payload: any) => {
     return { status: 500, body: 'Failed to connect' };
   }
 };
+export const inviteInterviewer = async (payload: any) => {
+  try {
+    return await api
+      .post(`api/humanResource/inviteInterviewer`, payload)
+      .then(response => {
+        return { status: response.status, body: response.data };
+      })
+      .catch(err => {
+        return { status: err.response.status, body: err.response.data };
+      });
+  } catch (err) {
+    return { status: 500, body: 'Failed to connect' };
+  }
+};
 export const inviteInterviewee = async (payload: any) => {
   try {
     return await api
-      .post(`/api/humanResource/inviteInterviewer`, payload)
+      .post(`/api/humanResource/inviteInterviewee`, payload)
       .then(response => {
         return { status: response.status, body: response.data };
       })

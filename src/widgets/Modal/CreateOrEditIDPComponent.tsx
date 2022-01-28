@@ -25,7 +25,8 @@ const CreateOrEditIDPComponent = props => {
     },
     validationSchema: loginSchema,
     onSubmit: values => {
-      props.accountChange(values);
+      props.accountChange(values.email);
+      props.hide()
     },
   });
 

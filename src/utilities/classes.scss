@@ -774,3 +774,24 @@ input[type="number"] {
     margin-bottom: 15px;
   }
 }
+.greenDot {
+  height: 15px;
+ width: 15px;
+ background-color: rgb(16, 209, 61);
+ border-radius: 50%;
+ display: inline-block;
+}
+.redDot {
+  height: 15px;
+ width: 15px;
+ background-color: rgb(231, 63, 63);
+ border-radius: 50%;
+ display: inline-block;
+}
+.greyDot {
+  height: 15px;
+ width: 15px;
+ background-color: rgb(123, 123, 123);
+ border-radius: 50%;
+ display: inline-block;
+}

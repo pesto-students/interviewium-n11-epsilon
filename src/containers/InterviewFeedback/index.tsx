@@ -8,11 +8,11 @@ import {
   TableRow,
   TableSortLabel,
 } from '@material-ui/core';
-import { Table } from 'react-bootstrap';
 import { ERROR_MESSAGE } from '_store/constants/index';
 import { useDispatch } from 'react-redux';
 import { getFeedbacksData } from '_store/apis/userManagementAPI';
 import { Skeleton } from '@material-ui/lab';
+import { Modal, OverlayTrigger, Table, Tooltip } from 'react-bootstrap';
 
 const AllUserManagement = () => {
   const dispatch = useDispatch();
@@ -80,7 +80,39 @@ const AllUserManagement = () => {
                         <TableCell>Google</TableCell>
                         <TableCell>Rushikesh Ladke</TableCell>
                         <TableCell>{interviewDateTime}</TableCell>
-                        <TableCell>{interviewerVerdict}</TableCell>
+                        <TableCell>
+                          {interviewerVerdict == 'PASSED' ? (
+                            <OverlayTrigger
+                              overlay={
+                                <Tooltip id='tooltip-disabled'>
+                                  {interviewerVerdict}!
+                                </Tooltip>
+                              }
+                            >
+                              <span className={styles.greenDot}></span>
+                            </OverlayTrigger>
+                          ) : interviewerVerdict == 'UNDECIDED' ? (
+                            <OverlayTrigger
+                              overlay={
+                                <Tooltip id='tooltip-disabled'>
+                                  {interviewerVerdict}!
+                                </Tooltip>
+                              }
+                            >
+                              <span className={styles.greyDot}></span>
+                            </OverlayTrigger>
+                          ) : (
+                             <OverlayTrigger
+                              overlay={
+                                <Tooltip id='tooltip-disabled'>
+                                  {interviewerVerdict}!
+                                </Tooltip>
+                              }
+                            >
+                            <span className={styles.redDot}></span>
+                                                        </OverlayTrigger>
+                          )}
+                        </TableCell>
                         <TableCell>{interviewerReview}</TableCell>
                       </TableRow>
                     )
