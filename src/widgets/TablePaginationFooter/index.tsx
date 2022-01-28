@@ -24,7 +24,7 @@ const TablePaginationFooter = ({ rowsPerPageOptions, rowsPerPage, count, page, o
     }, [count, page, rowsPerPage])
 
     useEffect(() => {
-        totalCount = totalCountRows
+        totalCount = 0
         setTotalCount(totalCountRows)
     }, [totalCountRows])
     
