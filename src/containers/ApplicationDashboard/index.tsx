@@ -13,6 +13,7 @@ import { ERROR_MESSAGE } from '_store/constants/index';
 import { useDispatch } from 'react-redux';
 import { getApplicationDashboardData } from '_store/apis/userManagementAPI';
 import { Skeleton } from '@material-ui/lab';
+import ImageLinkCreator from 'utilities/util';
 
 const AllUserManagement = () => {
   const dispatch = useDispatch();
@@ -84,9 +85,14 @@ const AllUserManagement = () => {
                         <TableCell>{shortlistedAt} </TableCell>
                         <TableCell>{createdAt}</TableCell>
                         <TableCell>
-                          {currentInterviewer?.calendlyLink
-                            ? currentInterviewer?.calendlyLink
-                            : 'Yet to be Assinged'}{' '}
+                          {currentInterviewer?.calendlyLink ? (
+                            <ImageLinkCreator
+                              link={currentInterviewer?.calendlyLink}
+                            />
+                          ) : (
+                            'Yet to be Assinged'
+                          )}
+                          <br />
                           (ongoing Round {currentInterviewRound})
                         </TableCell>
                       </TableRow>

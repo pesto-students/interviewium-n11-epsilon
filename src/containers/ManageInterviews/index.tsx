@@ -34,6 +34,7 @@ import ModalComponent from 'widgets/Modal';
 import CsvDownload from 'react-json-to-csv';
 import _ from 'lodash';
 import { Skeleton } from '@material-ui/lab';
+import ImageLinkCreator from 'utilities/util';
 
 const AllUserManagement = () => {
   const dispatch = useDispatch();
@@ -253,50 +254,53 @@ const AllUserManagement = () => {
               </TableRow>
             </TableHead>
             <TableBody ref={tableBodyRef}>
-              {sportsData.length > 0 ?
-                sportsData.map(
-                  (
-                    {
-                      job,
-                      interviewee,
-                      interviewDateTime,
-                      joiningLink,
-                      interviewRoundNumber,
-                    }: any,
-                    index
-                  ) => (
-                    <TableRow
-                      className={`${styles.users_table_row}`}
-                      key={index}
-                    >
-                      {/* <TableCell><CheckboxField name={sportId}value={checked} handleChange={handleCheckbox} /></TableCell> */}
-                      {/* <TableCell>{sportId}</TableCell> */}
-                      <TableCell>{job?.title}</TableCell>
-                      <TableCell>{interviewee?.name} </TableCell>
-                      <TableCell>{interviewDateTime}</TableCell>
-                      <TableCell>{interviewRoundNumber}</TableCell>
-                      <TableCell>{joiningLink}</TableCell>
-                    </TableRow>
+              {sportsData.length > 0
+                ? sportsData.map(
+                    (
+                      {
+                        job,
+                        interviewee,
+                        interviewDateTime,
+                        joiningLink,
+                        interviewRoundNumber,
+                      }: any,
+                      index
+                    ) => (
+                      <TableRow
+                        className={`${styles.users_table_row}`}
+                        key={index}
+                      >
+                        {/* <TableCell><CheckboxField name={sportId}value={checked} handleChange={handleCheckbox} /></TableCell> */}
+                        {/* <TableCell>{sportId}</TableCell> */}
+                        <TableCell>{job?.title}</TableCell>
+                        <TableCell>{interviewee?.name} </TableCell>
+                        <TableCell>{interviewDateTime}</TableCell>
+                        <TableCell>{interviewRoundNumber}</TableCell>
+                        <TableCell>
+                          <ImageLinkCreator link={joiningLink} />
+                        </TableCell>
+                      </TableRow>
+                    )
                   )
-                ): [1, 2, 3, 4].map(() => (
-                  <TableRow className={`${styles.users_table_row}`}>
-                    <TableCell>
-                      <Skeleton variant='text' />
-                    </TableCell>
-                    <TableCell>
-                      <Skeleton variant='text' />
-                    </TableCell>
-                    <TableCell>
-                      <Skeleton variant='text' />
-                    </TableCell>
-                    <TableCell>
-                      <Skeleton variant='text' />
-                    </TableCell>
-                    <TableCell>
-                      <Skeleton variant='text' />
-                    </TableCell>
-                  </TableRow>
-                ))}
+                : [1, 2, 3, 4].map(() => (
+                    <TableRow className={`${styles.users_table_row}`}>
+                      <TableCell>
+                        <Skeleton variant='text' />
+                      </TableCell>
+                      <TableCell>
+                        <Skeleton variant='text' />
+                      </TableCell>
+                      <TableCell>
+                        <Skeleton variant='text' />
+                      </TableCell>
+                      <TableCell>
+                        <Skeleton variant='text' />
+                      </TableCell>
+                      <TableCell>
+                        <Skeleton variant='text' />
+                      </TableCell>
+                    </TableRow>
+                  ))}
             </TableBody>
           </Table>
         </TableContainer>
