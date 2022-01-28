@@ -93,6 +93,7 @@ const SideBar = ({ toggleParentOpen, parentOpen, user }: Props) => {
               </div>
             </div>
           </div>
+          <div className={styles.compName}>Intervierwium</div>
           <Accordion
             onClick={() => {
               if (!open) {

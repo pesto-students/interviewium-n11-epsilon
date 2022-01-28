@@ -21,8 +21,6 @@ const Jobs = () => {
     location: accountName,
     emplymentType: accountName,
     jobDescription: decriptionYup,
-    primarySkills: accountName,
-    secondarySkills: accountName,
   });
 
   const formik = useFormik({
@@ -37,6 +35,8 @@ const Jobs = () => {
     },
     validationSchema: postJobSchema,
     onSubmit: values => {
+      formik.values.primarySkills = selectedP.map((e: any) => e.value).join(',')
+      formik.values.secondarySkills = selectedS.map((e: any) => e.value).join(',')
       console.log(values);
     },
   });

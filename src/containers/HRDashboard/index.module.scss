@@ -1,15 +1,14 @@
-@import "../../utilities/variables.scss";
-@import "../../utilities/classes.scss";
+@import '../../utilities/variables.scss';
+@import '../../utilities/classes.scss';
 
-.title{
-    color:white;
+.title {
+  color: white;
 }
 
-[data-theme="light"] {
-  .title{
+[data-theme='light'] {
+  .title {
     color: $sso-common-dark;
   }
-
 }
 
 .container {
@@ -21,71 +20,93 @@
 
 .subContainer1 {
   display: grid;
-  grid-template-rows: 0.3fr 1fr 2fr 1fr;
-  background-color: red;
-  .greetings{
+  grid-template-rows: 0.1fr 0.2fr 0.5fr 0.3fr;
+  background-color: #f4f4f4;
+  .greetings {
     display: flex;
     justify-content: space-between;
-    
+    align-items: center;
   }
-  .onGoingPosition{
+  .onGoingPosition {
     height: 95%;
     border-radius: 30px;
-    background-color: seashell;
+    background-color: white;
     width: 80%;
   }
 }
 .subContainer2 {
   display: grid;
   grid-template-rows: 2fr 1fr;
-  background-color: rgb(255, 154, 154);
+  background-color: rgb(255, 255, 255);
 }
 
-.statsCardHolder{
+.statsCardHolder {
   display: flex;
   justify-content: space-evenly;
 }
 
-.statsCard{
+.statsCard {
   border-radius: 20px;
-  background-color: seashell;
+  background-color: white;
   height: 90%;
   width: 25%;
   margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .statsNumbers {
+    font-size: 30px;
+    padding: 4px;
+  }
 }
 
 .rightBarUp {
-   border-radius: 30px;
-   background-color: seashell;
-   overflow: scroll;
-   display: flex;
-   flex-direction: column;
-    justify-content: center;
-   .SLACard {
+  background-color: #f4f4f4;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  height: 450px;
+  .SLACard {
     height: 130px;
     width: 90%;
-    background-color: $sso-interviewium-base;
+    background-color: #ffffff;
     border-radius: 20px;
-   }
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    margin: 10px;
+  }
 }
 .rightBarDown {
-   background-color: seashell;
+  background-color: seashell;
+  fill: grey;
 }
 
-.panel{
+.panel {
   display: flex;
-    justify-content: space-around;
+  justify-content: space-around;
 }
 
-.onGoingInterviews{
-   height: 95%;
-   width: 40%;
-    border-radius: 20px;
-    background-color: seashell;
+.onGoingInterviews {
+  height: 95%;
+  width: 40%;
+  border-radius: 20px;
+  background-color: white;
 }
-.disputes{
-   height: 95%;
-   width: 40%;
-    border-radius: 20px;
-    background-color: seashell;
+.disputes {
+  height: 95%;
+  width: 40%;
+  border-radius: 20px;
+  background-color: seashell;
+}
+.onName {
+  font-size: 12px;
+}
+.onYears {
+  font-size: 10px;
+  color: grey;
+}
+.onPSskills {
+  font-size: 12px;
+  word-break: break-all;
 }

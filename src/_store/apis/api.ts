@@ -23,7 +23,7 @@ api.interceptors.request.use(
             const decodedToken = jwt.decode(token, { complete: true })
             if (decodedToken?.payload?.exp < (new Date().getTime())) {
                 isExpired = false
-                config.headers.Authorization = `Bearer ${token}`
+                // config.headers.Authorization = `Bearer ${token}`
             }
         }
         if (isExpired) {

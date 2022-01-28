@@ -26,6 +26,7 @@ import { ReactComponent as ResendInvitation } from './invitation-resend.svg'
 import { ReactComponent as InvitationList } from './invitation-list.svg'
 import { ReactComponent as Filecopy } from './file.svg'
 import { ReactComponent as LockIcon } from './lock-icon.svg'
+import { ReactComponent as JobAppication } from './job-app.svg'
 
 
 // Sidbar icons below
@@ -115,5 +116,6 @@ export {
     JobPost,
     Profile,
     FeedbackIcon,
-    Interview
+    Interview,
+    JobAppication
 }

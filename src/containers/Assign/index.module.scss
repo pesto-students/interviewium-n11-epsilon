@@ -1,13 +1,203 @@
-@import "../../utilities/variables.scss";
-@import "../../utilities/classes.scss";
+@import '../../utilities/variables.scss';
+@import '../../utilities/classes.scss';
 
-.title{
-    color:white;
+.title {
+  color: white;
 }
 
-[data-theme="light"] {
-  .title{
+[data-theme='light'] {
+  .title {
     color: $sso-common-dark;
   }
+}
 
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: rgb(177, 177, 177);
+  height: 100vh;
+  .interviewee {
+    display: flex;
+    flex-grow: 1;
+  }
+  .interviewer {
+    display: flex;
+    flex-grow: 3;
+  }
+}
+
+@import '../../utilities/variables.scss';
+@import '../../utilities/classes.scss';
+
+.card {
+  border-radius: 43px;
+  background-color: #ffff;
+  width: 26%;
+  box-shadow: 0 5px 10px -3px rgba($color: #000000, $alpha: 0.5);
+  margin: 10px;
+  height: 200px;
+  img {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+  article {
+    padding: 1em;
+  }
+}
+.cardInterviewer {
+  border-radius: 43px;
+  background-color: #ffff;
+  width: 26%;
+  box-shadow: 0 5px 10px -3px rgba($color: #000000, $alpha: 0.5);
+  margin: 10px;
+  height: 150px;
+  img {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+  article {
+    padding: 1em;
+  }
+}
+.card_item {
+  padding: 10px;
+}
+
+.card_item {
+  padding: 10px;
+}
+
+.profile--container {
+  margin-top: 3em;
+  display: grid;
+  grid-template-columns: repeat(3, 250px);
+  grid-auto-rows: 500px;
+  gap: 1rem;
+}
+
+.modal-content {
+  border-radius: 50px;
+}
+
+.cardPName {
+  margin: 0px;
+  font-size: 18px;
+  font-weight: 600;
+}
+.cardPYear {
+  margin: 0px;
+  align-items: flex-end;
+  display: flex;
+}
+
+.cardName {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  justify-content: center;
+}
+
+.cardUP {
+  display: flex;
+  margin: 30px 0px 0px 15px;
+}
+.profile_img {
+  max-width: 100%;
+  display: block;
+  overflow: hidden;
+  border-radius: 100px;
+  height: 50px;
+  width: 50px;
+}
+
+.Tech {
+  margin: 10px 10px 0px 10px;
+}
+
+.details {
+  margin: 10px 15px 0px 11px;
+  text-align: justify;
+}
+
+.ARbuttonParent {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.ARbutton {
+  border-radius: 30px;
+  width: 20px;
+  width: 81px;
+  background: rgb(255, 170, 170);
+  align-items: center;
+  justify-content: center;
+}
+
+.redC {
+  background: rgb(255, 170, 170);
+}
+.greenC {
+  background: rgb(68, 202, 31);
+}
+
+.ARButtontext {
+  margin: 0px;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pNoMargin {
+  margin-bottom: 5px;
+}
+
+.filters {
+  width: 100%;
+  height: 40px;
+  background-color: #c4c4c4;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+.filters1 {
+  width: 150px;
+  height: 40px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.main--container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  place-content: flex-end;
+  gap: 1rem;
+}
+
+.noBorder {
+  border: 0px;
+}
+
+.card_parent {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding-left: 30px;
+  list-style: none;
+  flex: 0 0 33.333333%;
+}
+
+.cardParent {
+  margin-top: 4%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  padding-left: 30px;
+  list-style: none;
+  width: 100%;
 }
