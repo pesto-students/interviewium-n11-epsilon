@@ -9,7 +9,6 @@ import { save } from './_store/actions/user'
 import Cookies from 'js-cookie'
 import { setPathPage } from './_store/actions/pathPage'
 import { sidebarItemsMap } from './widgets/SideBar/sidebarItems'
-// import { ToastContainer } from 'react-toastify'; 
 
 const App = () => {
   const location = useLocation()
