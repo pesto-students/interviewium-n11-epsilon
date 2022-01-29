@@ -27,6 +27,7 @@ const statsEndpoint = 'api/humanResource/graph/cynthia@google.com';
 const statsInterviewerEndpoint = 'api/interviewer/graph/sundar@google.com';
 const statsIntervieweeEndpoint = 'api/interviewee/graph/pulkit@gmail.com';
 const jobApplicants = 'api/humanResource/applicants/cynthia@google.com';
+const getIntervieweeProfileEndpoint = 'api/interviewee/profile/user@gmail.com';
 const allJobsEndpoint = 'api/job';
 const getInterviewsWithVerditEndpoint =
   'api/interviewer/interviews/sundar@google.com';
@@ -213,4 +214,5 @@ export {
   feedbackEndpoint,
   hotJobEndpoint,
   waitingForAssignmentEndpoint,
+  getIntervieweeProfileEndpoint
 };

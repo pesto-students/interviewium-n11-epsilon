@@ -34,6 +34,7 @@ import {
   allJobsEndpoint,
   applicationDashboardEndpoint,
   feedbackEndpoint,
+  getIntervieweeProfileEndpoint,
 } from './urls';
 import api from './api';
 
@@ -520,6 +521,34 @@ export const postJobForHR = async (payload: any) => {
   try {
     return await api
       .put(`/api/humanResource/job`, payload)
+      .then(response => {
+        return { status: response.status, body: response.data };
+      })
+      .catch(err => {
+        return { status: err.response.status, body: err.response.data };
+      });
+  } catch (err) {
+    return { status: 500, body: 'Failed to connect' };
+  }
+};
+export const intervieweeDetails = async (payload: any) => {
+  try {
+    return await api
+      .put(`/api/interviewee`, payload)
+      .then(response => {
+        return { status: response.status, body: response.data };
+      })
+      .catch(err => {
+        return { status: err.response.status, body: err.response.data };
+      });
+  } catch (err) {
+    return { status: 500, body: 'Failed to connect' };
+  }
+};
+export const getIntervieweeProfile = async () => {
+  try {
+    return await api
+      .get(`${getIntervieweeProfileEndpoint}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })
