@@ -141,6 +141,7 @@ const AllUserManagement = () => {
       let data = await postVerdit(payload);
       let { body, status }: any = data;
       if (status === 200) {
+        getUsers();
         dispatch({ type: SUCCESS_MESSAGE, payload: 'Verdict Posted' });
       } else {
         dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });

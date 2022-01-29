@@ -45,7 +45,7 @@ const CreateAccountComponent = (props) => {
 
   const onSwitchChange = (e) => {
     setCheck(e.target.checked)
-    formik.values.accountName = check
+    formik.values.accountName = e.target.checked
   }
 
   const IOSSwitch : any = withStyles((theme) => ({
@@ -124,7 +124,7 @@ const CreateAccountComponent = (props) => {
           <TextArea
             error={formik.errors.subDomain}
             touched={formik.touched.subDomain}
-            placeholder="Sub Domain"
+            placeholder="Description"
             name="subDomain"
             handleChange={formik.handleChange}
             handleBlur={formik.handleBlur}
