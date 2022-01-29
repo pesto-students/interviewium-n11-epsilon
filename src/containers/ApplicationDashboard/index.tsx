@@ -90,9 +90,8 @@ const AllUserManagement = () => {
                               link={currentInterviewer?.calendlyLink}
                             />
                           ) : (
-                            'Yet to be Assinged'
+                           <div className={styles.notAssinedColor}>Yet to be Assinged</div>
                           )}
-                          <br />
                           (ongoing Round {currentInterviewRound})
                         </TableCell>
                       </TableRow>
