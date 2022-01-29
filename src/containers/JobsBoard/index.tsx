@@ -1,10 +1,11 @@
 import styles from './index.module.scss';
 import ModalComponent from 'widgets/Modal/indexL';
 import { useEffect, useState } from 'react';
-import { allJobs } from '_store/apis/userManagementAPI';
+import { allJobs, applyForJob } from '_store/apis/userManagementAPI';
 import { useDispatch } from 'react-redux';
-import { ERROR_MESSAGE } from '_store/constants/message';
+import { ERROR_MESSAGE, SUCCESS_MESSAGE } from '_store/constants';
 import { Skeleton } from '@material-ui/lab';
+import PrimaryButton from 'widgets/PrimaryButton';
 
 const Jobs = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -30,6 +31,28 @@ const Jobs = () => {
       let { body, status }: any = data;
       if (status === 200) {
         setJobApp(body);
+      } else {
+        dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
+      }
+    } catch (err) {
+      console.log(err);
+      dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
+    }
+  };
+
+  const applyForJobHandler = async (hrId, jobId) => {
+    try {
+      let payload ={
+        intervieweeEmail: "pulkit@gmail.com",
+        humanResourceId: hrId,
+        jobId: jobId
+    }
+      let data;
+      data = await applyForJob(payload);
+      let { body, status }: any = data;
+
+      if (status === 200) {
+        dispatch({ type: SUCCESS_MESSAGE, payload: 'Job Applied Successfully' });
       } else {
         dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
       }
@@ -107,6 +130,7 @@ const Jobs = () => {
                         </p>
                         <p>{e?.jobDescription}</p>
                       </div>
+                    <PrimaryButton text='Apply' method={() => applyForJobHandler(e.humanResourceId ,e.id )}/>
                     </div>
                   </div>
                 );

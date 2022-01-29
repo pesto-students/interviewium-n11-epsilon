@@ -9,11 +9,13 @@ import { save } from './_store/actions/user'
 import Cookies from 'js-cookie'
 import { setPathPage } from './_store/actions/pathPage'
 import { sidebarItemsMap } from './widgets/SideBar/sidebarItems'
-
+import { Snackbar } from '@material-ui/core'
+import { SUCCESS_MESSAGE } from '_store/constants'
+import styles from './App.module.scss'
 const App = () => {
   const location = useLocation()
   const dispatch = useDispatch()
-
+  const [open, setOpen] = useState<boolean>(false)
   const [messageId, setMessageId] = useState<string>('')
   const [user, setUsers] = useState<any>(null)
 
@@ -83,7 +85,15 @@ const App = () => {
 
   return (
     <>
-      {/* <ToastContainer /> */}
+     <Snackbar
+        onClose={() => setOpen(!open!)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        autoHideDuration={4000}
+        open={open}
+        message={message ? message.message : 'message'}
+        key='snackbar'
+        className={`${message.type === SUCCESS_MESSAGE ? styles.snackbar_success : styles.snackbar_error}`}
+      />
       <PageRoutes />
     </>
   )
