@@ -211,7 +211,7 @@ const CustomerHome = () => {
       <div className={styles.container}>
         <div className={styles.subContainer1}>
           <div className={styles.greetings}>
-            <div>Hello, Rushikesh 👋</div>
+            <div>Hello👋</div>
             <div>You have {today} interviews Today</div>
           </div>
           <div className={styles.statsCardHolder}>

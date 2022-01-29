@@ -23,6 +23,7 @@ import {
   TableRow,
 } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 const CustomerHome = () => {
   const dispatch = useDispatch();
@@ -150,25 +151,25 @@ const CustomerHome = () => {
       <div className={styles.container}>
         <div className={styles.subContainer1}>
           <div className={styles.greetings}>
-            <div>Hello, Rushikesh 👋</div>
+            <div>Hello👋</div>
             <div>{onging} Ongoing Interviews</div>
           </div>
           <div className={styles.statsCardHolder}>
-            <div className={styles.statsCard}>
+            <div className={styles.statsCard} style={{color : 'chocolate'}}>
               <JobAppication />
               <div>
                 <div className={styles.statsNumbers}>{job}</div>
                 <div>Job Applications</div>
               </div>
             </div>
-            <div className={styles.statsCard}>
+            <div className={styles.statsCard} style={{color : 'darkgoldenrod'}}>
               <OngoingDash />
               <div>
                 <div className={styles.statsNumbers}>{onging}</div>
                 <div>Ongoing Interviews</div>
               </div>
             </div>
-            <div className={styles.statsCard}>
+            <div className={styles.statsCard} style={{color : 'yellowgreen'}}>
               <HiredDash />
               <div>
                 <div className={styles.statsNumbers}>{hired}</div>
@@ -178,6 +179,7 @@ const CustomerHome = () => {
           </div>
           <div className='d-flex justify-content-center'>
             <div className={styles.onGoingPosition}>
+            <div className={styles.interviewToday}>Recent Job Postings</div>
               <TableContainer>
                 <Table aria-label='simple table'>
                   <TableHead>
@@ -230,6 +232,7 @@ const CustomerHome = () => {
           </div>
           <div className={styles.panel}>
             <div className={styles.onGoingInterviews}>
+            <div className={styles.interviewToday}>Ongoing Interviews</div>
               <TableContainer>
                 <Table aria-label='simple table'>
                   <TableBody>
@@ -245,7 +248,38 @@ const CustomerHome = () => {
                               {row.interviewee?.name}
                             </TableCell>
                             <TableCell align='center'>
-                              {row.interviewerVerdict}
+                          {row.interviewerVerdict == 'PASSED' ? (
+                            <OverlayTrigger
+                              overlay={
+                                <Tooltip id='tooltip-disabled'>
+                                  {row.interviewerVerdict}!
+                                </Tooltip>
+                              }
+                            >
+                              <span className={styles.greenDot}></span>
+                            </OverlayTrigger>
+                          ) : row.interviewerVerdict == 'UNDECIDED' ? (
+                            <OverlayTrigger
+                              overlay={
+                                <Tooltip id='tooltip-disabled'>
+                                  {row.interviewerVerdict}!
+                                </Tooltip>
+                              }
+                            >
+                              <span className={styles.greyDot}></span>
+                            </OverlayTrigger>
+                          ) : (
+                             <OverlayTrigger
+                              overlay={
+                                <Tooltip id='tooltip-disabled'>
+                                  {row.interviewerVerdict}!
+                                </Tooltip>
+                              }
+                            >
+                            <span className={styles.redDot}></span>
+                                                        </OverlayTrigger>
+                          )}
+                              {}
                             </TableCell>
                             <TableCell align='center'>
                               {row.interviewRoundNumber}
@@ -273,11 +307,11 @@ const CustomerHome = () => {
                 </Table>
               </TableContainer>
             </div>
-            <div className={styles.disputes}></div>
           </div>
         </div>
         <div className={styles.subContainer2}>
           <div className={styles.rightBarUp}>
+          <div className={styles.interviewToday}>Candidate Requests</div>
             {ongoingInterview.length > 0
               ? ongoingInterview.map((e: any) => (
                   <div className={styles.SLACard}>

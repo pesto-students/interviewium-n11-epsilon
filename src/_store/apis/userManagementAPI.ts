@@ -520,7 +520,7 @@ export const allJobs = async () => {
 export const postJobForHR = async (payload: any) => {
   try {
     return await api
-      .put(`/api/humanResource/job`, payload)
+      .post(`/api/humanResource/job`, payload)
       .then(response => {
         return { status: response.status, body: response.data };
       })
