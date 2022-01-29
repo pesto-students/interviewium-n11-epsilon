@@ -26,7 +26,7 @@ import { link } from '../../utilities/yupObjects';
 import HotJob from '../../utilities/images/hotJob.jpg';
 import Hiring from '../../utilities/images/hiring.jpg';
 import { Skeleton } from '@material-ui/lab';
-import ImageLinkCreator from 'utilities/util';
+import { dateConverter, ImageLinkCreator } from 'utilities/util';
 
 const CustomerHome = () => {
   const dispatch = useDispatch();
@@ -221,7 +221,7 @@ const CustomerHome = () => {
                               <JobAppication /> {row.job?.title}
                             </TableCell>
                             <TableCell align='center'>
-                              {row.interviewDateTime}
+                              {dateConverter(row.interviewDateTime)}
                             </TableCell>
                             <TableCell align='center'>
                               <ImageLinkCreator link={row.joiningLink} />

@@ -34,7 +34,7 @@ import ModalComponent from 'widgets/Modal';
 import CsvDownload from 'react-json-to-csv';
 import _ from 'lodash';
 import { Skeleton } from '@material-ui/lab';
-import ImageLinkCreator from 'utilities/util';
+import { ImageLinkCreator , dateConverter} from 'utilities/util';
 
 const AllUserManagement = () => {
   const dispatch = useDispatch();
@@ -274,7 +274,7 @@ const AllUserManagement = () => {
                         {/* <TableCell>{sportId}</TableCell> */}
                         <TableCell>{job?.title}</TableCell>
                         <TableCell>{interviewee?.name} </TableCell>
-                        <TableCell>{interviewDateTime}</TableCell>
+                        <TableCell>{dateConverter(interviewDateTime)}</TableCell>
                         <TableCell>{interviewRoundNumber}</TableCell>
                         <TableCell>
                           <ImageLinkCreator link={joiningLink} />

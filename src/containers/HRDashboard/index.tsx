@@ -24,6 +24,7 @@ import {
 } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { dateConverter } from 'utilities/util';
 
 const CustomerHome = () => {
   const dispatch = useDispatch();
@@ -202,7 +203,7 @@ const CustomerHome = () => {
                             >
                               <ResentPosting /> {row.title}
                             </TableCell>
-                            <TableCell align='center'>{row.postedAt}</TableCell>
+                            <TableCell align='center'>{dateConverter(row.postedAt)}</TableCell>
                             <TableCell align='center'>
                               {row.numberOfJobApplicationsReceived}
                             </TableCell>

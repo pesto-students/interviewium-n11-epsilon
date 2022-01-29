@@ -15,7 +15,7 @@ import { ERROR_MESSAGE } from '_store/constants/message';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { interviewersProfile } from '_store/apis/userManagementAPI';
-import ImageLinkCreator from 'utilities/util';
+import { ImageLinkCreator } from 'utilities/util';
 
 const CustomerHome = () => {
   const [data, setData] = useState<any>();
