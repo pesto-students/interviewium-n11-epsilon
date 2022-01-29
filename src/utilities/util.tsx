@@ -59,7 +59,7 @@ export const dateConverter = date => {
     1 + "/" +
     dateConstrain.getFullYear() +
     ' ' +
-    dateConstrain.getHours() + ":" +
-    dateConstrain.getMinutes()
+    ( '0' + dateConstrain.getHours()).slice(-2) + ":" +
+    ( '0' + dateConstrain.getMinutes()).slice(-2)
   );
 };
