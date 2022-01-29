@@ -13,7 +13,7 @@ import { ERROR_MESSAGE } from '_store/constants/index';
 import { useDispatch } from 'react-redux';
 import { getApplicationDashboardData } from '_store/apis/userManagementAPI';
 import { Skeleton } from '@material-ui/lab';
-import ImageLinkCreator from 'utilities/util';
+import { dateConverter, ImageLinkCreator } from 'utilities/util';
 
 const AllUserManagement = () => {
   const dispatch = useDispatch();
@@ -82,8 +82,8 @@ const AllUserManagement = () => {
                         <TableCell>
                           {job?.title} ({job?.company?.companyName})
                         </TableCell>
-                        <TableCell>{shortlistedAt} </TableCell>
-                        <TableCell>{createdAt}</TableCell>
+                        <TableCell>{dateConverter(shortlistedAt)} </TableCell>
+                        <TableCell>{dateConverter(createdAt)}</TableCell>
                         <TableCell>
                           {currentInterviewer?.calendlyLink ? (
                             <ImageLinkCreator

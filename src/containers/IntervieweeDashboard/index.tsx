@@ -26,7 +26,7 @@ import { link } from '../../utilities/yupObjects';
 import HotJob from '../../utilities/images/hotJob.jpg';
 import Hiring from '../../utilities/images/hiring.jpg';
 import { Skeleton } from '@material-ui/lab';
-import ImageLinkCreator from 'utilities/util';
+import { dateConverter, ImageLinkCreator } from 'utilities/util';
 
 const CustomerHome = () => {
   const dispatch = useDispatch();
@@ -169,7 +169,7 @@ const CustomerHome = () => {
       <div className={styles.container}>
         <div className={styles.subContainer1}>
           <div className={styles.greetings}>
-            <div>Hello, Rushikesh 👋</div>
+            <div>Hello👋</div>
             <div>You have {today} interviews Today</div>
           </div>
           <div className={styles.statsCardHolder}>
@@ -197,7 +197,7 @@ const CustomerHome = () => {
           </div>
           <div className='d-flex justify-content-center'>
             <div className={styles.onGoingPosition}>
-              <div className={styles.interviewToday}>3 Interviews Today</div>
+              <div className={styles.interviewToday}>{today}Interviews Today</div>
               <TableContainer>
                 <Table aria-label='simple table'>
                   <TableHead>
@@ -221,7 +221,7 @@ const CustomerHome = () => {
                               <JobAppication /> {row.job?.title}
                             </TableCell>
                             <TableCell align='center'>
-                              {row.interviewDateTime}
+                              {dateConverter(row.interviewDateTime)}
                             </TableCell>
                             <TableCell align='center'>
                               <ImageLinkCreator link={row.joiningLink} />

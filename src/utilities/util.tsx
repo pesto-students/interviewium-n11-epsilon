@@ -1,4 +1,4 @@
-const ImageLinkCreator = (props: any) => {
+export const ImageLinkCreator = (props: any) => {
   const imgProvider: any = (link: any) => {
     if (link && link.includes('zoom')) {
       return (
@@ -48,4 +48,18 @@ const ImageLinkCreator = (props: any) => {
   );
 };
 
-export default ImageLinkCreator;
+export const dateConverter = date => {
+  if (!date) {
+    return 0;
+  }
+  let dateConstrain = new Date(date);
+  return (
+    dateConstrain.getDate() + "/" +
+    dateConstrain.getMonth() +
+    1 + "/" +
+    dateConstrain.getFullYear() +
+    ' ' +
+    ( '0' + dateConstrain.getHours()).slice(-2) + ":" +
+    ( '0' + dateConstrain.getMinutes()).slice(-2)
+  );
+};
