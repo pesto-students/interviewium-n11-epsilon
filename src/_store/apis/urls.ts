@@ -19,6 +19,8 @@ const recentApplication =
 const recentJob = 'api/humanResource/recentJobPostings/cynthia@google.com';
 const waitingForAssignmentEndpoint =
   'api/interviewee/waitingAssignment/cynthia@google.com';
+const getAllInterviewersEndpoint =
+  'api/interviewer/cynthia@google.com';
 const interviewToday = 'api/interviewer/today/sundar@google.com';
 const interviewerProfile = 'api/interviewer/profile/sundar@google.com';
 const interviewsTodayEndpoint = 'api/interviewer/today/sundar@google.com';
@@ -214,5 +216,6 @@ export {
   feedbackEndpoint,
   hotJobEndpoint,
   waitingForAssignmentEndpoint,
-  getIntervieweeProfileEndpoint
+  getIntervieweeProfileEndpoint,
+  getAllInterviewersEndpoint
 };

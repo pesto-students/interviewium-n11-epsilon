@@ -35,6 +35,7 @@ import {
   applicationDashboardEndpoint,
   feedbackEndpoint,
   getIntervieweeProfileEndpoint,
+  getAllInterviewersEndpoint,
 } from './urls';
 import api from './api';
 
@@ -489,6 +490,20 @@ export const waitingForAssignment = async () => {
     return { status: 500, body: 'Failed to connect' };
   }
 };
+export const getAllInterviewersForAssign = async () => {
+  try {
+    return await api
+      .get(`${getAllInterviewersEndpoint}`)
+      .then(response => {
+        return { status: response.status, body: response.data };
+      })
+      .catch(err => {
+        return { status: err.response.status, body: err.response.data };
+      });
+  } catch (err) {
+    return { status: 500, body: 'Failed to connect' };
+  }
+};
 export const getJobApplicants = async () => {
   try {
     return await api
@@ -591,6 +606,20 @@ export const inviteInterviewer = async (payload: any) => {
   try {
     return await api
       .post(`api/humanResource/inviteInterviewer`, payload)
+      .then(response => {
+        return { status: response.status, body: response.data };
+      })
+      .catch(err => {
+        return { status: err.response.status, body: err.response.data };
+      });
+  } catch (err) {
+    return { status: 500, body: 'Failed to connect' };
+  }
+};
+export const assignIntervieweeToInterviewer = async (payload: any) => {
+  try {
+    return await api
+      .post(`api/interviewee/assignInterviewer`, payload)
       .then(response => {
         return { status: response.status, body: response.data };
       })
