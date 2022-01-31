@@ -27,7 +27,7 @@ import { link } from '../../utilities/yupObjects';
 import NormalTextField from 'widgets/NormalTextField';
 import PrimaryButton from 'widgets/PrimaryButton';
 import { Skeleton } from '@material-ui/lab';
-import ImageLinkCreator from 'utilities/util';
+import { ImageLinkCreator, dateConverter } from 'utilities/util';
 
 const CustomerHome = () => {
   const dispatch = useDispatch();
@@ -211,7 +211,7 @@ const CustomerHome = () => {
       <div className={styles.container}>
         <div className={styles.subContainer1}>
           <div className={styles.greetings}>
-            <div>Hello, Rushikesh 👋</div>
+            <div>Hello👋</div>
             <div>You have {today} interviews Today</div>
           </div>
           <div className={styles.statsCardHolder}>
@@ -263,7 +263,7 @@ const CustomerHome = () => {
                               <JobAppication /> {row.job?.title}
                             </TableCell>
                             <TableCell align='center'>
-                              {row.interviewDateTime}
+                              {dateConverter(row.interviewDateTime)}
                             </TableCell>
                             <TableCell align='center'>
                               <ImageLinkCreator link={row.joiningLink} />

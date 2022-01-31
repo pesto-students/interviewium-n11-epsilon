@@ -20,7 +20,7 @@
 
 .subContainer1 {
   display: grid;
-  grid-template-rows: 0.1fr 0.2fr 0.5fr 0.3fr;
+  grid-template-rows: 0.1fr 0.2fr 0.4fr 0.3fr;
   background-color: #f4f4f4;
   .greetings {
     display: flex;
@@ -28,10 +28,11 @@
     align-items: center;
   }
   .onGoingPosition {
-    height: 95%;
+    height: 250px;
     border-radius: 30px;
     background-color: white;
     width: 80%;
+    overflow-x: scroll;
   }
 }
 .subContainer2 {
@@ -54,6 +55,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 10px;
   .statsNumbers {
     font-size: 30px;
     padding: 4px;
@@ -88,10 +90,11 @@
 }
 
 .onGoingInterviews {
-  height: 95%;
+  height: 170px;
   width: 40%;
   border-radius: 20px;
   background-color: white;
+  overflow-x: scroll;
 }
 .disputes {
   height: 95%;

@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import { getFeedbacksData } from '_store/apis/userManagementAPI';
 import { Skeleton } from '@material-ui/lab';
 import { Modal, OverlayTrigger, Table, Tooltip } from 'react-bootstrap';
+import { dateConverter } from 'utilities/util';
 
 const AllUserManagement = () => {
   const dispatch = useDispatch();
@@ -79,7 +80,7 @@ const AllUserManagement = () => {
                       >
                         <TableCell>Google</TableCell>
                         <TableCell>Rushikesh Ladke</TableCell>
-                        <TableCell>{interviewDateTime}</TableCell>
+                        <TableCell>{dateConverter(interviewDateTime)}</TableCell>
                         <TableCell>
                           {interviewerVerdict == 'PASSED' ? (
                             <OverlayTrigger
