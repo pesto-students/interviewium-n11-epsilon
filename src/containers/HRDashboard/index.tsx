@@ -26,9 +26,9 @@ import { Skeleton } from '@material-ui/lab';
 
 const CustomerHome = () => {
   const dispatch = useDispatch();
-  const [job, setJob] = useState<any>(0);
-  const [onging, setOnging] = useState<any>(0);
-  const [hired, setHired] = useState<any>(0);
+  const [job, setJob] = useState<any>('-');
+  const [onging, setOnging] = useState<any>('-');
+  const [hired, setHired] = useState<any>('-');
   const [ongoingInterview, setOngoingInterview] = useState<any>([]);
   const [rows, setRows] = useState<any>([]);
   const [onGoing, setOnGoing] = useState<any>([]);

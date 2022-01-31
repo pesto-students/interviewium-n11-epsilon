@@ -30,9 +30,9 @@ import ImageLinkCreator from 'utilities/util';
 
 const CustomerHome = () => {
   const dispatch = useDispatch();
-  const [today, setToday] = useState<any>(0);
-  const [sheduled, setSheduled] = useState<any>(0);
-  const [reviewAwaiting, setReviewAwaiting] = useState<any>(0);
+  const [today, setToday] = useState<any>('-');
+  const [sheduled, setSheduled] = useState<any>('-');
+  const [reviewAwaiting, setReviewAwaiting] = useState<any>('-');
   const [ongoingInterview, setOngoingInterview] = useState<any>();
   const [rows, setRows] = useState<any>([]);
   const [onGoing, setOnGoing] = useState<any>();
