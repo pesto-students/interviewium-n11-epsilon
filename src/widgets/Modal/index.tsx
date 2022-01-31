@@ -7,6 +7,7 @@ import SuccessComponent from './successComponent';
 import CreateOrEditIDPComponent from './CreateOrEditIDPComponent';
 import LogoutComponent from './LogoutComponent';
 import DeleteComponent from './DeleteComponent';
+import Confirmation from './confirmationModal';
 
 const ModalComponent = props => {
   const successModal = () => {
@@ -60,6 +61,11 @@ const ModalComponent = props => {
             <CreateAccountComponent
               hide={props.onHideModal}
               postVerditHandler={props.modalInfo.apiCall}
+            />
+          ) : props.modalInfo.modalIdentity === 'confirm' ? (
+            <Confirmation
+              hide={props.onHideModal}
+              confirm={props.modalInfo.apiCall}
             />
           ) : null
         }
