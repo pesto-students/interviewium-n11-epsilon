@@ -22,6 +22,7 @@ const App = () => {
   const [message] = useSelector((state: RootState) => {
     if (state.message.id && messageId !== state.message.id) {
       setMessageId(state.message.id);
+      setOpen(!open);
     }
     return [state.message];
   })
