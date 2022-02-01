@@ -14,6 +14,7 @@ import { ERROR_MESSAGE, SUCCESS_MESSAGE } from '_store/constants/message';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import {
+  Paper,
   Table,
   TableBody,
   TableCell,
@@ -237,11 +238,12 @@ const CustomerHome = () => {
               </div>
             </div>
           </div>
-          <div className='d-flex justify-content-center'>
-            <div className={styles.onGoingPosition}>
+          <div className='d-flex justify-content-center align-items-center flex-column'>
               <div className={styles.interviewToday}>3 Interviews Today</div>
-              <TableContainer>
-                <Table aria-label='simple table'>
+            <div className={styles.onGoingPosition}>
+            <Paper style={{maxHeight : 300}}>
+<TableContainer style={{maxHeight: 300}}>
+                <Table aria-label="sticky table" stickyHeader>
                   <TableHead>
                     <TableRow>
                       <TableCell align='center'>Job Title</TableCell>
@@ -290,6 +292,8 @@ const CustomerHome = () => {
                   </TableBody>
                 </Table>
               </TableContainer>
+              </Paper>
+              
             </div>
           </div>
           <div className={styles.panel}>
