@@ -7,41 +7,33 @@ const HRPersona = '/SetHR';
 const HRInterviewer = '/SetInterviewer';
 const HRInterviewee = '/SetInterviewee';
 
-const getAllInterviewers = 'api/humanResource/interviewers/cynthia@google.com';
-const getOngoingInterviews =
-  'api/humanResource/ongoingInterviews/cynthia@google.com';
+const getAllInterviewers = 'api/humanResource/interviewers';
+const getOngoingInterviews = 'api/humanResource/ongoingInterviews';
 const getPreviousInterviews =
-  'api/humanResource/previousInterviews/cynthia@google.com';
-const getDashboardCards =
-  'api/humanResource/dashboardHeader/cynthia@google.com';
-const recentApplication =
-  'api/humanResource/recentJobApplicants/cynthia@google.com';
-const recentJob = 'api/humanResource/recentJobPostings/cynthia@google.com';
-const waitingForAssignmentEndpoint =
-  'api/interviewee/waitingAssignment/cynthia@google.com';
-const getAllInterviewersEndpoint =
-  'api/interviewer/cynthia@google.com';
-const interviewToday = 'api/interviewer/today/sundar@google.com';
-const interviewerProfile = 'api/interviewer/profile/sundar@google.com';
-const interviewsTodayEndpoint = 'api/interviewer/today/sundar@google.com';
-const calendlyLinkEndpoint = 'api/interviewer/calendlyLink/sundar@google.com';
-const statsEndpoint = 'api/humanResource/graph/cynthia@google.com';
-const statsInterviewerEndpoint = 'api/interviewer/graph/sundar@google.com';
-const statsIntervieweeEndpoint = 'api/interviewee/graph/pulkit@gmail.com';
-const jobApplicants = 'api/humanResource/applicants/cynthia@google.com';
-const getIntervieweeProfileEndpoint = 'api/interviewee/profile/user@gmail.com';
+  'api/humanResource/previousInterviews';
+const getDashboardCards = 'api/humanResource/dashboardHeader';
+const recentApplication = 'api/humanResource/recentJobApplicants';
+const recentJob = 'api/humanResource/recentJobPostings';
+const waitingForAssignmentEndpoint = 'api/interviewee/waitingAssignment';
+const getAllInterviewersEndpoint = 'api/interviewer';
+const interviewToday = 'api/interviewer/today';
+const interviewerProfile = 'api/interviewer/profile';
+const interviewsTodayEndpoint = 'api/interviewer/today';
+const calendlyLinkEndpoint = 'api/interviewer/calendlyLink';
+const statsEndpoint = 'api/humanResource/graph';
+const statsInterviewerEndpoint = 'api/interviewer/graph';
+const statsIntervieweeEndpoint = 'api/interviewee/graph';
+const jobApplicants = 'api/humanResource/applicants';
+const getIntervieweeProfileEndpoint = 'api/interviewee/profile';
 const allJobsEndpoint = 'api/job';
-const getInterviewsWithVerditEndpoint =
-  'api/interviewer/interviews/sundar@google.com';
+const getInterviewsWithVerditEndpoint = 'api/interviewer/interviews';
 const applicationDashboardEndpoint =
-  'api/interviewee/jobsApplied/pulkit@gmail.com';
-const feedbackEndpoint = 'api/interviewee/interviews/pulkit@gmail.com';
+  'api/interviewee/jobsApplied';
+const feedbackEndpoint = 'api/interviewee/interviews';
 const hotJobEndpoint = 'api/interviewee/hotJobOfTheDay';
 
-const getDashboardCardsInterviewer =
-  'api/interviewer/dashboardMetrics/sundar@google.com';
-const getDashboardCardsIntervieweeEndpoint =
-  'api/interviewee/dashboardHeader/pulkit@gmail.com';
+const getDashboardCardsInterviewer = 'api/interviewer/dashboardMetrics';
+const getDashboardCardsIntervieweeEndpoint = 'api/interviewee/dashboardHeader';
 
 const authenticate = '/account/adminSignIn';
 const users = '/users';
@@ -217,5 +209,5 @@ export {
   hotJobEndpoint,
   waitingForAssignmentEndpoint,
   getIntervieweeProfileEndpoint,
-  getAllInterviewersEndpoint
+  getAllInterviewersEndpoint,
 };

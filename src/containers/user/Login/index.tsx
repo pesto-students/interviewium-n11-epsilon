@@ -52,6 +52,7 @@ const Login = () => {
           email: data.user.email 
         };
         localStorage.setItem("user", JSON.stringify(userDetails));
+        localStorage.setItem("email", data.user.email);
         dispatch(save(userDetails));
         if(persona.persona === 'HR') {
           history.push(path.HRDashboard);

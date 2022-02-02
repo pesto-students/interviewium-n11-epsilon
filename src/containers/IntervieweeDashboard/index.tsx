@@ -13,6 +13,7 @@ import { ERROR_MESSAGE } from '_store/constants/message';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import {
+  Paper,
   Table,
   TableBody,
   TableCell,
@@ -41,11 +42,9 @@ const CustomerHome = () => {
 
   useEffect(() => {
     getUsers();
-    recentJobHandler();
     hotJobHandler();
-    recentJobPosting();
-    ongoingInterviewHandler();
     statsHandler();
+    recentJobHandler()
   }, []);
 
   const getUsers = async () => {
@@ -68,7 +67,6 @@ const CustomerHome = () => {
       dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
     }
   };
-
   const recentJobHandler = async () => {
     try {
       let data;
@@ -85,6 +83,7 @@ const CustomerHome = () => {
       dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
     }
   };
+
   const hotJobHandler = async () => {
     try {
       let data;
@@ -101,40 +100,7 @@ const CustomerHome = () => {
       dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
     }
   };
-  const recentJobPosting = async () => {
-    try {
-      let data;
-      data = await resentJobPosting();
-      let { body, status }: any = data;
-
-      if (status === 200) {
-        // setOngoingInterview(body);
-      } else {
-        dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
-      }
-    } catch (err) {
-      console.log(err);
-      dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
-    }
-  };
-
-  const ongoingInterviewHandler = async () => {
-    try {
-      let data;
-      data = await getOngoingInterview();
-      let { body, status }: any = data;
-
-      if (status === 200) {
-        setOnGoing(body);
-      } else {
-        dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
-      }
-    } catch (err) {
-      console.log(err);
-      dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
-    }
-  };
-
+ 
   const statsHandler = async () => {
     try {
       let data;
@@ -195,11 +161,12 @@ const CustomerHome = () => {
               </div>
             </div>
           </div>
-          <div className='d-flex justify-content-center'>
+          <div className='d-flex justify-content-center align-items-center flex-column'>
+              <div className={styles.interviewToday}>{today} Interviews Today</div>
             <div className={styles.onGoingPosition}>
-              <div className={styles.interviewToday}>{today}Interviews Today</div>
-              <TableContainer>
-                <Table aria-label='simple table'>
+              <Paper style={{maxHeight : 300}}>
+              <TableContainer style={{maxHeight : 300}}>
+                <Table aria-label='sticky table' stickyHeader>
                   <TableHead>
                     <TableRow>
                       <TableCell align='center'>Job Title</TableCell>
@@ -248,6 +215,7 @@ const CustomerHome = () => {
                   </TableBody>
                 </Table>
               </TableContainer>
+              </Paper>
             </div>
           </div>
           {hotJob && (

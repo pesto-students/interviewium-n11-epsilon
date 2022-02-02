@@ -43,7 +43,7 @@ const Jobs = () => {
   const applyForJobHandler = async (hrId, jobId) => {
     try {
       let payload ={
-        intervieweeEmail: "pulkit@gmail.com",
+        intervieweeEmail:localStorage.getItem('email'),
         humanResourceId: hrId,
         jobId: jobId
     }

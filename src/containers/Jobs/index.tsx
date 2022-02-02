@@ -95,7 +95,7 @@ const Jobs = () => {
         jobDescription: formik.values.jobDescription,
         primarySkills: formik.values.primarySkills,
         secondarySkills: formik.values.secondarySkills,
-        humanResourceEmail: 'cynthia@google.com',
+        humanResourceEmail: localStorage.getItem('email')
       };
       let data;
       data = await postJobForHR(payload);
@@ -130,7 +130,7 @@ const Jobs = () => {
   const inviteIntervieweeHandler = async (email: any) => {
     try {
       let payload = {
-        email: 'cynthia@google.com',
+        email: localStorage.getItem('email'),
         interviewerEmail: email,
       };
       let data;

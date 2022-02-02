@@ -15,6 +15,7 @@ import { ERROR_MESSAGE } from '_store/constants/message';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import {
+  Paper,
   Table,
   TableBody,
   TableCell,
@@ -178,11 +179,12 @@ const CustomerHome = () => {
               </div>
             </div>
           </div>
-          <div className='d-flex justify-content-center'>
-            <div className={styles.onGoingPosition}>
+          <div className='d-flex justify-content-center align-items-center flex-column'>
             <div className={styles.interviewToday}>Recent Job Postings</div>
-              <TableContainer>
-                <Table aria-label='simple table'>
+            <div className={styles.onGoingPosition}>
+            <Paper style={{maxHeight : 250}}>
+              <TableContainer style={{maxHeight : 250}}>
+                <Table aria-label="sticky table" stickyHeader>
                   <TableHead>
                     <TableRow>
                       <TableCell align='center'>Job Title</TableCell>
@@ -229,13 +231,15 @@ const CustomerHome = () => {
                   </TableBody>
                 </Table>
               </TableContainer>
+              </Paper>
             </div>
           </div>
           <div className={styles.panel}>
+            <div className={styles.ongoingInterviews}>Ongoing Interviews</div>
             <div className={styles.onGoingInterviews}>
-            <div className={styles.interviewToday}>Ongoing Interviews</div>
-              <TableContainer>
-                <Table aria-label='simple table'>
+            <Paper style={{maxHeight : 170}}>
+              <TableContainer style={{maxHeight : 170}}>
+                <Table aria-label="sticky table" stickyHeader>
                   <TableBody>
                     {onGoing.length > 0
                       ? onGoing.map(row => (
@@ -307,12 +311,13 @@ const CustomerHome = () => {
                   </TableBody>
                 </Table>
               </TableContainer>
+              </Paper>
             </div>
           </div>
         </div>
         <div className={styles.subContainer2}>
+          <div className={styles.candidateRequests}>Candidate Requests</div>
           <div className={styles.rightBarUp}>
-          <div className={styles.interviewToday}>Candidate Requests</div>
             {ongoingInterview.length > 0
               ? ongoingInterview.map((e: any) => (
                   <div className={styles.SLACard}>

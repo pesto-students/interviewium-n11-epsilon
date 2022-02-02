@@ -46,8 +46,6 @@ const CustomerHome = () => {
     getUsers();
     recentJobHandler();
     calendlyLink();
-    recentJobPosting();
-    ongoingInterviewHandler();
     statsHandler();
   }, []);
 
@@ -105,39 +103,8 @@ const CustomerHome = () => {
       dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
     }
   };
-  const recentJobPosting = async () => {
-    try {
-      let data;
-      data = await resentJobPosting();
-      let { body, status }: any = data;
+ 
 
-      if (status === 200) {
-        // setOngoingInterview(body);
-      } else {
-        dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
-      }
-    } catch (err) {
-      console.log(err);
-      dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
-    }
-  };
-
-  const ongoingInterviewHandler = async () => {
-    try {
-      let data;
-      data = await getOngoingInterview();
-      let { body, status }: any = data;
-
-      if (status === 200) {
-        setOnGoing(body);
-      } else {
-        dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
-      }
-    } catch (err) {
-      console.log(err);
-      dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
-    }
-  };
 
   const statsHandler = async () => {
     try {
@@ -239,7 +206,7 @@ const CustomerHome = () => {
             </div>
           </div>
           <div className='d-flex justify-content-center align-items-center flex-column'>
-              <div className={styles.interviewToday}>3 Interviews Today</div>
+              <div className={styles.interviewToday}>{today} Interviews Today</div>
             <div className={styles.onGoingPosition}>
             <Paper style={{maxHeight : 300}}>
 <TableContainer style={{maxHeight: 300}}>

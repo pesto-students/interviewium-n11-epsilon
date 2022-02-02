@@ -116,7 +116,6 @@ const AllUserManagement = () => {
       let data;
       data = await getInterviewsWithVerditAPI();
       let { body, status }: any = data;
-      status = 200;
       if (status === 200) {
         setSportsData(body);
         // setPaginationData(body)

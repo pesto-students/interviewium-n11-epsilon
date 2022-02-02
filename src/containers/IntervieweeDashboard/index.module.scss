@@ -28,8 +28,6 @@
     align-items: center;
   }
   .onGoingPosition {
-    height: 285px;
-    overflow-y: scroll;
     border-radius: 30px;
     background-color: white;
     width: 80%;
@@ -136,4 +134,5 @@
   border-radius: 30px 30px 0px 0px;
   font-size: larger;
   background-color: rgb(206, 206, 206);
+  width: 80%;
 }

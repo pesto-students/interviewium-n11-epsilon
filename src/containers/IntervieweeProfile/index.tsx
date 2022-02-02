@@ -123,7 +123,7 @@ const Jobs = () => {
   const postJobs = async () => {
     try {
       let payload = {
-        intervieweeEmail: 'user@gmail.com',
+        intervieweeEmail: localStorage.getItem('email'),
         intervieweeName: formik.values.title,
         primarySkills: formik.values.primarySkills,
         secondarySkills: formik.values.secondarySkills,
