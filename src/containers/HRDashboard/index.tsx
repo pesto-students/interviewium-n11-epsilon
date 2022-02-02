@@ -154,7 +154,7 @@ const CustomerHome = () => {
         <div className={styles.subContainer1}>
           <div className={styles.greetings}>
             <div>Hello👋</div>
-            <div>{onging} Ongoing Interviews</div>
+            <div style={{padding : '10px 21px 5px 10px'}}>{onging} Ongoing Interviews</div>
           </div>
           <div className={styles.statsCardHolder}>
             <div className={styles.statsCard} style={{color : 'chocolate'}}>

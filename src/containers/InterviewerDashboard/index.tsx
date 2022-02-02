@@ -265,7 +265,7 @@ const CustomerHome = () => {
           </div>
           <div className={styles.panel}>
             <div
-              className='d-flex align-items-center justify-content-center'
+              className='d-flex align-items-center justify-content-around'
               style={{ width: '100%' }}
             >
               <NormalTextField
