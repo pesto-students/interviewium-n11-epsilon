@@ -55,10 +55,13 @@ const Login = () => {
         localStorage.setItem("email", data.user.email);
         dispatch(save(userDetails));
         if(persona.persona === 'HR') {
+          localStorage.setItem("email", "cynthia@google.com");
           history.push(path.HRDashboard);
         } else if(persona.persona === 'Interviewee') {
+          localStorage.setItem("email", "pulkit@gmail.com");
           history.push(path.IntervieweeDashboard);
         } else {
+          localStorage.setItem("email", "sundar@google.com");
           history.push(path.InterviewerDashboard);
         }
       }  else {
