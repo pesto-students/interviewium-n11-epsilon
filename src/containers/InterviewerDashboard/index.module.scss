@@ -55,10 +55,14 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
+    cursor: pointer;
     .statsNumbers{
       font-size: 30px;
       padding: 4px;
     }
+}
+.noCursor {
+  cursor: default !important;
 }
 
 .rightBarUp {

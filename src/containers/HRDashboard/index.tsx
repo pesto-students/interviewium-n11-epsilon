@@ -26,6 +26,8 @@ import {
 import { Skeleton } from '@material-ui/lab';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { dateConverter } from 'utilities/util';
+import { path } from 'pageRoutes/routers';
+import { useHistory } from 'react-router-dom';
 
 const CustomerHome = () => {
   const dispatch = useDispatch();
@@ -36,7 +38,8 @@ const CustomerHome = () => {
   const [rows, setRows] = useState<any>([]);
   const [onGoing, setOnGoing] = useState<any>([]);
   const [statsData, setStatsData] = useState<any>();
-
+  const history = useHistory();
+  
   useEffect(() => {
     getUsers();
     recentJobHandler();
@@ -157,21 +160,21 @@ const CustomerHome = () => {
             <div style={{padding : '10px 21px 5px 10px'}}>{onging} Ongoing Interviews</div>
           </div>
           <div className={styles.statsCardHolder}>
-            <div className={styles.statsCard} style={{color : 'chocolate'}}>
+            <div className={styles.statsCard} style={{color : 'chocolate'}}  onClick={() => {history.push(path.Jobs)}}>
               <JobAppication />
               <div>
                 <div className={styles.statsNumbers}>{job}</div>
                 <div>Job Applications</div>
               </div>
             </div>
-            <div className={styles.statsCard} style={{color : 'darkgoldenrod'}}>
+            <div className={styles.statsCard} style={{color : 'darkgoldenrod'}} onClick={() => {history.push(path.OngoingInterviews)}}>
               <OngoingDash />
               <div>
                 <div className={styles.statsNumbers}>{onging}</div>
                 <div>Ongoing Interviews</div>
               </div>
             </div>
-            <div className={styles.statsCard} style={{color : 'yellowgreen'}}>
+            <div className={`${styles.statsCard} ${styles.noCursor}`} style={{color : 'yellowgreen'}} >
               <HiredDash />
               <div>
                 <div className={styles.statsNumbers}>{hired}</div>

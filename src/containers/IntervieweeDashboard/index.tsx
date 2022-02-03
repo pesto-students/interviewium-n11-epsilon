@@ -28,6 +28,8 @@ import HotJob from '../../utilities/images/hotJob.jpg';
 import Hiring from '../../utilities/images/hiring.jpg';
 import { Skeleton } from '@material-ui/lab';
 import { dateConverter, ImageLinkCreator } from 'utilities/util';
+import { useHistory } from 'react-router-dom';
+import { path } from 'pageRoutes/routers';
 
 const CustomerHome = () => {
   const dispatch = useDispatch();
@@ -39,6 +41,7 @@ const CustomerHome = () => {
   const [onGoing, setOnGoing] = useState<any>();
   const [hotJob, setHotJob] = useState<any>();
   const [statsData, setStatsData] = useState<any>();
+  const history = useHistory();
 
   useEffect(() => {
     getUsers();
@@ -139,21 +142,21 @@ const CustomerHome = () => {
             <div>You have {today} interviews Today</div>
           </div>
           <div className={styles.statsCardHolder}>
-            <div className={styles.statsCard}>
+            <div className={styles.statsCard} style={{color : 'chocolate'}}  onClick={() => {history.push(path.ApplicationDashboard)}}>
               <JobAppication />
               <div>
                 <div className={styles.statsNumbers}>{today}</div>
                 <div>Jobs Applied</div>
               </div>
             </div>
-            <div className={styles.statsCard}>
+            <div className={styles.statsCard}  style={{color : 'darkgoldenrod'}} onClick={() => {history.push(path.InterviewFeedback)}}>
               <JobAppication />
               <div>
                 <div className={styles.statsNumbers}>{sheduled}</div>
                 <div>Job Shortlists</div>
               </div>
             </div>
-            <div className={styles.statsCard}>
+            <div className={styles.statsCard} style={{color : 'yellowgreen'}}   onClick={() => {history.push(path.ApplicationDashboard)}}>
               <JobAppication />
               <div>
                 <div className={styles.statsNumbers}>{reviewAwaiting}</div>

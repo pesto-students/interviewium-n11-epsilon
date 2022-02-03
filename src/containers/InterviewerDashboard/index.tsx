@@ -29,6 +29,8 @@ import NormalTextField from 'widgets/NormalTextField';
 import PrimaryButton from 'widgets/PrimaryButton';
 import { Skeleton } from '@material-ui/lab';
 import { ImageLinkCreator, dateConverter } from 'utilities/util';
+import { useHistory } from 'react-router-dom';
+import { path } from 'pageRoutes/routers';
 
 const CustomerHome = () => {
   const dispatch = useDispatch();
@@ -41,6 +43,8 @@ const CustomerHome = () => {
   const [calendly, setCalendly] = useState();
   const [statsData, setStatsData] = useState<any>();
   const [editLink, setEditLink] = useState(true);
+    const history = useHistory();
+
 
   useEffect(() => {
     getUsers();
@@ -183,21 +187,21 @@ const CustomerHome = () => {
             <div>You have {today} interviews Today</div>
           </div>
           <div className={styles.statsCardHolder}>
-            <div className={styles.statsCard}>
+            <div className={`${styles.statsCard} ${styles.noCursor}`} style={{color : 'chocolate'}} >
               <JobAppication />
               <div>
                 <div className={styles.statsNumbers}>{today}</div>
                 <div>Interviews For Today</div>
               </div>
             </div>
-            <div className={styles.statsCard}>
+            <div className={styles.statsCard}style={{color : 'darkgoldenrod'}} onClick={() => {history.push(path.ManageInterviews)}}>
               <JobAppication />
               <div>
                 <div className={styles.statsNumbers}>{sheduled}</div>
                 <div>Scheduled Interviews</div>
               </div>
             </div>
-            <div className={styles.statsCard}>
+            <div className={styles.statsCard} style={{color : 'yellowgreen'}} onClick={() => {history.push(path.Verdit)}}>
               <JobAppication />
               <div>
                 <div className={styles.statsNumbers}>{reviewAwaiting}</div>
