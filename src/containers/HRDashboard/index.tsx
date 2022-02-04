@@ -156,7 +156,7 @@ const CustomerHome = () => {
       <div className={styles.container}>
         <div className={styles.subContainer1}>
           <div className={styles.greetings}>
-            <div>Hello👋</div>
+            <div>Hello {localStorage.getItem('email')?.split('@')[0]}👋</div>
             <div style={{padding : '10px 21px 5px 10px'}}>{onging} Ongoing Interviews</div>
           </div>
           <div className={styles.statsCardHolder}>
