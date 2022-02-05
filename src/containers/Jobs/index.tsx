@@ -1,6 +1,7 @@
 import { Tab, Tabs } from 'react-bootstrap';
 import styles from './index.module.scss';
 import CandidateCard from '../../widgets/CandidateCard';
+import AllCandidateCard from '../../widgets/AllCandidateCard';
 import { accountName, decriptionYup } from '../../utilities/yupObjects';
 import { useFormik, FormikProvider } from 'formik';
 import * as Yup from 'yup';
@@ -16,6 +17,7 @@ import { Skeleton } from '@material-ui/lab';
 
 import TextArea from 'widgets/TextArea';
 import {
+  getAllIntervieweesAPI,
   getJobApplicants,
   inviteInterviewee,
   postJobForHR,
@@ -30,10 +32,12 @@ const Jobs = () => {
     apiCall: () => {},
   });
   const [jobApp, setJobApp] = useState<any>([]);
+  const [allInterviewee, setAllInterviewee] = useState<any>([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
     jobApplicationHandler();
+    allIntervieweeHandler()
   }, []);
 
   const hideModal = () => {
@@ -111,6 +115,23 @@ const Jobs = () => {
       dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
     }
   };
+
+  const allIntervieweeHandler = async () => {
+    try {
+      let data;
+      data = await getAllIntervieweesAPI();
+      let { body, status }: any = data;
+      if (status === 200) {
+        setAllInterviewee(body);
+      } else {
+        dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
+      }
+    } catch (err) {
+      console.log(err);
+      dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
+    }
+  };
+
   const jobApplicationHandler = async () => {
     try {
       let data;
@@ -296,10 +317,10 @@ const Jobs = () => {
         <Tab eventKey='profile' title='Search Candidates'>
           <div className={styles.card_parent}>
             <div className={styles.cardParent}>
-              {jobApp.length > 0
-                ? jobApp.map((e: any) => {
+              {allInterviewee && allInterviewee.length > 0
+                ? allInterviewee.map((e: any) => {
                     return (
-                      <CandidateCard
+                      <AllCandidateCard
                         exp
                         search
                         data={e}

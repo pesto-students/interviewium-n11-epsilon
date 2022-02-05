@@ -37,6 +37,7 @@ import {
   getIntervieweeProfileEndpoint,
   getAllInterviewersEndpoint,
   getPreviousInterviews,
+  getAllIntervieweesEndpoint,
 } from './urls';
 import api from './api';
 
@@ -509,6 +510,20 @@ export const getJobApplicants = async () => {
   try {
     return await api
       .get(`${jobApplicants}/${localStorage.getItem('email')}`)
+      .then(response => {
+        return { status: response.status, body: response.data };
+      })
+      .catch(err => {
+        return { status: err.response.status, body: err.response.data };
+      });
+  } catch (err) {
+    return { status: 500, body: 'Failed to connect' };
+  }
+};
+export const getAllIntervieweesAPI = async () => {
+  try {
+    return await api
+      .get(`${getAllIntervieweesEndpoint}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })

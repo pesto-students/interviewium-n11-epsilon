@@ -24,6 +24,7 @@ const statsEndpoint = 'api/humanResource/graph';
 const statsInterviewerEndpoint = 'api/interviewer/graph';
 const statsIntervieweeEndpoint = 'api/interviewee/graph';
 const jobApplicants = 'api/humanResource/applicants';
+const getAllIntervieweesEndpoint = 'api/interviewee';
 const getIntervieweeProfileEndpoint = 'api/interviewee/profile';
 const allJobsEndpoint = 'api/job';
 const getInterviewsWithVerditEndpoint = 'api/interviewer/interviews';
@@ -210,4 +211,5 @@ export {
   waitingForAssignmentEndpoint,
   getIntervieweeProfileEndpoint,
   getAllInterviewersEndpoint,
+  getAllIntervieweesEndpoint
 };
