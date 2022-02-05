@@ -36,6 +36,7 @@ import {
   feedbackEndpoint,
   getIntervieweeProfileEndpoint,
   getAllInterviewersEndpoint,
+  getPreviousInterviews,
 } from './urls';
 import api from './api';
 
@@ -381,7 +382,7 @@ export const interviewersProfile = async () => {
 export const previousInterview = async () => {
   try {
     return await api
-      .get(`${getOngoingInterviews}/${localStorage.getItem('email')}`)
+      .get(`${getPreviousInterviews}/${localStorage.getItem('email')}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })

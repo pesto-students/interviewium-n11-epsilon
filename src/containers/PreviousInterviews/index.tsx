@@ -23,6 +23,7 @@ import {
 } from '_store/apis/userManagementAPI';
 import ModalComponent from 'widgets/Modal';
 import { Skeleton } from '@material-ui/lab';
+import { dateConverter } from 'utilities/util';
 
 const AllUserManagement = () => {
   const dispatch = useDispatch();
@@ -240,8 +241,8 @@ const AllUserManagement = () => {
               {sportsData.length > 0
                 ? sportsData.map(
                     ({
-                      interviewRoundNumber,
-                      interviewerVerdict,
+                      interviewDateTime,
+                      interviewProgressStatus,
                       interviewee,
                       interviewer,
                       id,
@@ -252,23 +253,23 @@ const AllUserManagement = () => {
                       >
                         <TableCell>{interviewee?.name}</TableCell>
                         <TableCell>{interviewer?.name} </TableCell>
-                        <TableCell>{interviewRoundNumber}</TableCell>
+                        <TableCell>{dateConverter(interviewDateTime)}</TableCell>
                         <TableCell>
-                          {interviewerVerdict == 'PASSED' ? (
+                          {interviewProgressStatus == 'PASSED' ? (
                             <OverlayTrigger
                               overlay={
                                 <Tooltip id='tooltip-disabled'>
-                                  {interviewerVerdict}!
+                                  {interviewProgressStatus}!
                                 </Tooltip>
                               }
                             >
                               <span className={styles.greenDot}></span>
                             </OverlayTrigger>
-                          ) : interviewerVerdict == 'UNDECIDED' ? (
+                          ) : interviewProgressStatus == 'UNDECIDED' ? (
                             <OverlayTrigger
                               overlay={
                                 <Tooltip id='tooltip-disabled'>
-                                  {interviewerVerdict}!
+                                  {interviewProgressStatus}!
                                 </Tooltip>
                               }
                             >
@@ -278,7 +279,7 @@ const AllUserManagement = () => {
                              <OverlayTrigger
                               overlay={
                                 <Tooltip id='tooltip-disabled'>
-                                  {interviewerVerdict}!
+                                  {interviewProgressStatus}!
                                 </Tooltip>
                               }
                             >
