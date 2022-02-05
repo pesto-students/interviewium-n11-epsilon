@@ -71,6 +71,8 @@ const SideBar = ({ toggleParentOpen, parentOpen, user }: Props) => {
     }
   };
 
+  const some : any  = localStorage.getItem('user')
+
   return (
     <>
       <div
@@ -188,6 +190,23 @@ const SideBar = ({ toggleParentOpen, parentOpen, user }: Props) => {
               <SideLogout className={styles.sideIcon} />
             </div>
             Logout
+          </Card.Body>
+          <Card.Body
+            className={`${styles.specialNav}`} 
+          >
+            <div className={styles.iconSet}>
+            <img
+                            className={styles.profile_img}
+                                src="https://www.focusedu.org/wp-content/uploads/2018/12/circled-user-male-skin-type-1-2.png"
+                                alt="card"
+                                height={50}
+                            />
+            </div>
+            <div className="d-flex flex-column">
+            <div>{localStorage.getItem('email')?.split('@')[0]}</div>
+            <div style={{color : 'white'}}>{JSON.parse(some).role}</div>
+            </div>
+           
           </Card.Body>
           <ModalComponent
           show={modalShow}

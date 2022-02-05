@@ -35,6 +35,10 @@ import {
   applicationDashboardEndpoint,
   feedbackEndpoint,
   getIntervieweeProfileEndpoint,
+  getAllInterviewersEndpoint,
+  getPreviousInterviews,
+  getAllIntervieweesEndpoint,
+  recentShortlistsEndpoint,
 } from './urls';
 import api from './api';
 
@@ -212,7 +216,7 @@ export const deleteComment = async (payload: any) => {
 export const getAllUsers = async () => {
   try {
     return await api
-      .get(`${getAllInterviewers}`)
+      .get(`${getAllInterviewers}/${localStorage.getItem('email')}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -226,7 +230,7 @@ export const getAllUsers = async () => {
 export const getDashBoardCard = async () => {
   try {
     return await api
-      .get(`${getDashboardCards}`)
+      .get(`${getDashboardCards}/${localStorage.getItem('email')}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -240,7 +244,7 @@ export const getDashBoardCard = async () => {
 export const getDashBoardCardInterviewer = async () => {
   try {
     return await api
-      .get(`${getDashboardCardsInterviewer}`)
+      .get(`${getDashboardCardsInterviewer}/${localStorage.getItem('email')}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -254,7 +258,7 @@ export const getDashBoardCardInterviewer = async () => {
 export const getDashBoardCardInterviewee = async () => {
   try {
     return await api
-      .get(`${getDashboardCardsIntervieweeEndpoint}`)
+      .get(`${getDashboardCardsIntervieweeEndpoint}/${localStorage.getItem('email')}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -268,7 +272,7 @@ export const getDashBoardCardInterviewee = async () => {
 export const getOngoingInterview = async () => {
   try {
     return await api
-      .get(`${getOngoingInterviews}`)
+      .get(`${getOngoingInterviews}/${localStorage.getItem('email')}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -282,7 +286,7 @@ export const getOngoingInterview = async () => {
 export const getInterviewsWithVerditAPI = async () => {
   try {
     return await api
-      .get(`${getInterviewsWithVerditEndpoint}`)
+      .get(`${getInterviewsWithVerditEndpoint}/${localStorage.getItem('email')}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -296,7 +300,7 @@ export const getInterviewsWithVerditAPI = async () => {
 export const getApplicationDashboardData = async () => {
   try {
     return await api
-      .get(`${applicationDashboardEndpoint}`)
+      .get(`${applicationDashboardEndpoint}/${localStorage.getItem('email')}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -310,7 +314,7 @@ export const getApplicationDashboardData = async () => {
 export const getFeedbacksData = async () => {
   try {
     return await api
-      .get(`${feedbackEndpoint}`)
+      .get(`${feedbackEndpoint}/${localStorage.getItem('email')}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -324,7 +328,7 @@ export const getFeedbacksData = async () => {
 export const statsAPI = async () => {
   try {
     return await api
-      .get(`${statsEndpoint}`)
+      .get(`${statsEndpoint}/${localStorage.getItem('email')}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -338,7 +342,7 @@ export const statsAPI = async () => {
 export const statsAPIInterviewer = async () => {
   try {
     return await api
-      .get(`${statsInterviewerEndpoint}`)
+      .get(`${statsInterviewerEndpoint}/${localStorage.getItem('email')}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -352,7 +356,7 @@ export const statsAPIInterviewer = async () => {
 export const statsAPIInterviewee = async () => {
   try {
     return await api
-      .get(`${statsIntervieweeEndpoint}`)
+      .get(`${statsIntervieweeEndpoint}/${localStorage.getItem('email')}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -366,7 +370,7 @@ export const statsAPIInterviewee = async () => {
 export const interviewersProfile = async () => {
   try {
     return await api
-      .get(`${interviewerProfile}`)
+      .get(`${interviewerProfile}/${localStorage.getItem('email')}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -380,7 +384,7 @@ export const interviewersProfile = async () => {
 export const previousInterview = async () => {
   try {
     return await api
-      .get(`${getOngoingInterviews}`)
+      .get(`${getPreviousInterviews}/${localStorage.getItem('email')}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -394,7 +398,7 @@ export const previousInterview = async () => {
 export const interviewsToday = async () => {
   try {
     return await api
-      .get(`${interviewToday}`)
+      .get(`${interviewToday}/${localStorage.getItem('email')}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -408,7 +412,7 @@ export const interviewsToday = async () => {
 export const resentJobApplication = async () => {
   try {
     return await api
-      .get(`${recentApplication}`)
+      .get(`${recentApplication}/${localStorage.getItem('email')}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -422,7 +426,21 @@ export const resentJobApplication = async () => {
 export const interviewsTodayList = async () => {
   try {
     return await api
-      .get(`${interviewsTodayEndpoint}`)
+      .get(`${interviewsTodayEndpoint}/${localStorage.getItem('email')}`)
+      .then(response => {
+        return { status: response.status, body: response.data };
+      })
+      .catch(err => {
+        return { status: err.response.status, body: err.response.data };
+      });
+  } catch (err) {
+    return { status: 500, body: 'Failed to connect' };
+  }
+};
+export const recentShortList = async () => {
+  try {
+    return await api
+      .get(`${recentShortlistsEndpoint}/${localStorage.getItem('email')}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -436,7 +454,7 @@ export const interviewsTodayList = async () => {
 export const calendlyLinkHandler = async () => {
   try {
     return await api
-      .get(`${calendlyLinkEndpoint}`)
+      .get(`${calendlyLinkEndpoint}/${localStorage.getItem('email')}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -464,7 +482,7 @@ export const hotJobAPI = async () => {
 export const resentJobPosting = async () => {
   try {
     return await api
-      .get(`${recentJob}`)
+      .get(`${recentJob}/${localStorage.getItem('email')}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -478,7 +496,21 @@ export const resentJobPosting = async () => {
 export const waitingForAssignment = async () => {
   try {
     return await api
-      .get(`${waitingForAssignmentEndpoint}`)
+      .get(`${waitingForAssignmentEndpoint}/${localStorage.getItem('email')}`)
+      .then(response => {
+        return { status: response.status, body: response.data };
+      })
+      .catch(err => {
+        return { status: err.response.status, body: err.response.data };
+      });
+  } catch (err) {
+    return { status: 500, body: 'Failed to connect' };
+  }
+};
+export const getAllInterviewersForAssign = async () => {
+  try {
+    return await api
+      .get(`${getAllInterviewersEndpoint}/${localStorage.getItem('email')}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -492,7 +524,21 @@ export const waitingForAssignment = async () => {
 export const getJobApplicants = async () => {
   try {
     return await api
-      .get(`${jobApplicants}`)
+      .get(`${jobApplicants}/${localStorage.getItem('email')}`)
+      .then(response => {
+        return { status: response.status, body: response.data };
+      })
+      .catch(err => {
+        return { status: err.response.status, body: err.response.data };
+      });
+  } catch (err) {
+    return { status: 500, body: 'Failed to connect' };
+  }
+};
+export const getAllIntervieweesAPI = async () => {
+  try {
+    return await api
+      .get(`${getAllIntervieweesEndpoint}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -562,7 +608,7 @@ export const applyForJob = async (payload: any) => {
 export const getIntervieweeProfile = async () => {
   try {
     return await api
-      .get(`${getIntervieweeProfileEndpoint}`)
+      .get(`${getIntervieweeProfileEndpoint}/${localStorage.getItem('email')}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -590,7 +636,7 @@ export const postVerdit = async (payload: any) => {
 export const postLink = async (payload: any) => {
   try {
     return await api
-      .put(`api/interviewer/calendlyLink/sundar@google.com`, payload)
+      .put(`api/interviewer/calendlyLink/${localStorage.getItem('email')}`, payload)
       .then(response => {
         return { status: response.status, body: response.data };
       })
@@ -605,6 +651,20 @@ export const inviteInterviewer = async (payload: any) => {
   try {
     return await api
       .post(`api/humanResource/inviteInterviewer`, payload)
+      .then(response => {
+        return { status: response.status, body: response.data };
+      })
+      .catch(err => {
+        return { status: err.response.status, body: err.response.data };
+      });
+  } catch (err) {
+    return { status: 500, body: 'Failed to connect' };
+  }
+};
+export const assignIntervieweeToInterviewer = async (payload: any) => {
+  try {
+    return await api
+      .post(`api/interviewee/assignInterviewer`, payload)
       .then(response => {
         return { status: response.status, body: response.data };
       })

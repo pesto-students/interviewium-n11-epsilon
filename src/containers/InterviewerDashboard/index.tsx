@@ -14,6 +14,7 @@ import { ERROR_MESSAGE, SUCCESS_MESSAGE } from '_store/constants/message';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import {
+  Paper,
   Table,
   TableBody,
   TableCell,
@@ -28,24 +29,27 @@ import NormalTextField from 'widgets/NormalTextField';
 import PrimaryButton from 'widgets/PrimaryButton';
 import { Skeleton } from '@material-ui/lab';
 import { ImageLinkCreator, dateConverter } from 'utilities/util';
+import { useHistory } from 'react-router-dom';
+import { path } from 'pageRoutes/routers';
 
 const CustomerHome = () => {
   const dispatch = useDispatch();
-  const [today, setToday] = useState<any>(0);
-  const [sheduled, setSheduled] = useState<any>(0);
-  const [reviewAwaiting, setReviewAwaiting] = useState<any>(0);
+  const [today, setToday] = useState<any>('-');
+  const [sheduled, setSheduled] = useState<any>('-');
+  const [reviewAwaiting, setReviewAwaiting] = useState<any>('-');
+  const [ongoingInterview, setOngoingInterview] = useState<any>();
   const [rows, setRows] = useState<any>([]);
   const [onGoing, setOnGoing] = useState<any>();
   const [calendly, setCalendly] = useState();
   const [statsData, setStatsData] = useState<any>();
   const [editLink, setEditLink] = useState(true);
+    const history = useHistory();
+
 
   useEffect(() => {
     getUsers();
     recentJobHandler();
     calendlyLink();
-    recentJobPosting();
-    ongoingInterviewHandler();
     statsHandler();
   }, []);
 
@@ -103,39 +107,8 @@ const CustomerHome = () => {
       dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
     }
   };
-  const recentJobPosting = async () => {
-    try {
-      let data;
-      data = await resentJobPosting();
-      let { body, status }: any = data;
+ 
 
-      if (status === 200) {
-        // setOngoingInterview(body);
-      } else {
-        dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
-      }
-    } catch (err) {
-      console.log(err);
-      dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
-    }
-  };
-
-  const ongoingInterviewHandler = async () => {
-    try {
-      let data;
-      data = await getOngoingInterview();
-      let { body, status }: any = data;
-
-      if (status === 200) {
-        setOnGoing(body);
-      } else {
-        dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
-      }
-    } catch (err) {
-      console.log(err);
-      dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
-    }
-  };
 
   const statsHandler = async () => {
     try {
@@ -210,25 +183,25 @@ const CustomerHome = () => {
       <div className={styles.container}>
         <div className={styles.subContainer1}>
           <div className={styles.greetings}>
-            <div>Hello👋</div>
+            <div>Hello {localStorage.getItem('email')?.split('@')[0]}👋</div>
             <div>You have {today} interviews Today</div>
           </div>
           <div className={styles.statsCardHolder}>
-            <div className={styles.statsCard}>
+            <div className={`${styles.statsCard} ${styles.noCursor}`} style={{color : 'chocolate'}} >
               <JobAppication />
               <div>
                 <div className={styles.statsNumbers}>{today}</div>
                 <div>Interviews For Today</div>
               </div>
             </div>
-            <div className={styles.statsCard}>
+            <div className={styles.statsCard}style={{color : 'darkgoldenrod'}} onClick={() => {history.push(path.ManageInterviews)}}>
               <JobAppication />
               <div>
                 <div className={styles.statsNumbers}>{sheduled}</div>
                 <div>Scheduled Interviews</div>
               </div>
             </div>
-            <div className={styles.statsCard}>
+            <div className={styles.statsCard} style={{color : 'yellowgreen'}} onClick={() => {history.push(path.Verdit)}}>
               <JobAppication />
               <div>
                 <div className={styles.statsNumbers}>{reviewAwaiting}</div>
@@ -236,11 +209,12 @@ const CustomerHome = () => {
               </div>
             </div>
           </div>
-          <div className='d-flex justify-content-center'>
+          <div className='d-flex justify-content-center align-items-center flex-column'>
+              <div className={styles.interviewToday}>{today} Interviews Today</div>
             <div className={styles.onGoingPosition}>
-              <div className={styles.interviewToday}>3 Interviews Today</div>
-              <TableContainer>
-                <Table aria-label='simple table'>
+            <Paper style={{maxHeight : 300}}>
+<TableContainer style={{maxHeight: 300}}>
+                <Table aria-label="sticky table" stickyHeader>
                   <TableHead>
                     <TableRow>
                       <TableCell align='center'>Job Title</TableCell>
@@ -289,11 +263,13 @@ const CustomerHome = () => {
                   </TableBody>
                 </Table>
               </TableContainer>
+              </Paper>
+              
             </div>
           </div>
           <div className={styles.panel}>
             <div
-              className='d-flex align-items-center justify-content-center'
+              className='d-flex align-items-center justify-content-around'
               style={{ width: '100%' }}
             >
               <NormalTextField

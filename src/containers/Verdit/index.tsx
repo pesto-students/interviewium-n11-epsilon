@@ -116,7 +116,6 @@ const AllUserManagement = () => {
       let data;
       data = await getInterviewsWithVerditAPI();
       let { body, status }: any = data;
-      status = 200;
       if (status === 200) {
         setSportsData(body);
         // setPaginationData(body)
@@ -141,6 +140,7 @@ const AllUserManagement = () => {
       let data = await postVerdit(payload);
       let { body, status }: any = data;
       if (status === 200) {
+        getUsers();
         dispatch({ type: SUCCESS_MESSAGE, payload: 'Verdict Posted' });
       } else {
         dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
@@ -331,34 +331,46 @@ const AllUserManagement = () => {
                         </TableCell>
                         <TableCell className={styles.lastColumn}>
                           <div className='d-flex'>
-                                <div
-                                  className={`${styles.trash_icon_logo} ${styles.deletetip}`}
-                                >
-                                  <AssistantPhotoIcon
-                                    className={`${styles.trash_icon} `}
-                                    onClick={() =>
+                            <OverlayTrigger
+                              overlay={
+                                <Tooltip id='tooltip-disabled'>
+                                  {interviewerVerdict === 'UNDECIDED'
+                                    ? 'Note Review'
+                                    : 'Review already Noted'}
+                                </Tooltip>
+                              }
+                            >
+                              <div
+                                className={`${styles.trash_icon_logo} ${
+                                  interviewerVerdict === 'UNDECIDED'
+                                    ? styles.deletetip
+                                    : null
+                                }`}
+                              >
+                                <AssistantPhotoIcon
+                                  className={`${styles.trash_icon} `}
+                                  onClick={() => {
+                                    interviewerVerdict === 'UNDECIDED' &&
                                       addInterviewer(
                                         interviewee?.id,
                                         job?.id,
                                         interviewRoundNumber
-                                      )
+                                      );
+                                  }}
+                                />
+                                {
+                                  <span
+                                    className={
+                                      styles.tooltiptext +
+                                      ' ' +
+                                      styles.tooltiptop
                                     }
-                                  />
-                                  {
-                                    <span
-                                      className={
-                                        styles.tooltiptext +
-                                        ' ' +
-                                        styles.tooltiptop
-                                      }
-                                    >
-                                      view
-                                    </span>
-                                  }
-                                </div>
-                                <div
-                                  className={`${styles.trash_icon_logo} ${styles.deletetip}`}
-                                ></div>
+                                  >
+                                    view
+                                  </span>
+                                }
+                              </div>
+                            </OverlayTrigger>
                           </div>
                         </TableCell>
                       </TableRow>

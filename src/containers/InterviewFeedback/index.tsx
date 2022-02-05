@@ -36,7 +36,7 @@ const AllUserManagement = () => {
       let data;
       data = await getFeedbacksData();
       let { body, status }: any = data;
-      status = 200;
+      ;
       if (status === 200) {
         setSportsData(body);
       } else {

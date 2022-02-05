@@ -5,6 +5,40 @@
   transition: all 0.3s;
 }
 
+.specialNav{
+  margin-top: 40%;
+  display: flex;
+  align-items: center;
+  color: $sso-common-white;
+  padding: 15px 5px 15px 20px;
+  font-size: 14px;
+  color: black;
+  background: #ff6767;
+  border-radius: 20px;
+  text-transform: capitalize;
+  :global(.MuiListItemIcon-root) {
+    min-width: 43px;
+  }
+  .iconSet {
+    display: inline-flex;
+    min-width: 40px;
+    flex-shrink: 0;
+    .sideIcon {
+      fill: $sso-common-white;
+      width: 18px;
+      height: 18px;
+      // &:hover {
+      //     fill: $sfn-button;
+      // }
+    }
+  }
+  .accordianIcon {
+    width: 12px;
+    height: 12px;
+    fill: $sfn-link-color;
+  }
+}
+
 .closeSidebar {
   width: 60px;
   transition: all 0.3s;

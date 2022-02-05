@@ -24,6 +24,8 @@
   .interviewer {
     display: flex;
     flex-grow: 3;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
   }
 }
 

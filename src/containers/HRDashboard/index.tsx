@@ -15,6 +15,7 @@ import { ERROR_MESSAGE } from '_store/constants/message';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import {
+  Paper,
   Table,
   TableBody,
   TableCell,
@@ -25,17 +26,20 @@ import {
 import { Skeleton } from '@material-ui/lab';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { dateConverter } from 'utilities/util';
+import { path } from 'pageRoutes/routers';
+import { useHistory } from 'react-router-dom';
 
 const CustomerHome = () => {
   const dispatch = useDispatch();
-  const [job, setJob] = useState<any>(0);
-  const [onging, setOnging] = useState<any>(0);
-  const [hired, setHired] = useState<any>(0);
+  const [job, setJob] = useState<any>('-');
+  const [onging, setOnging] = useState<any>('-');
+  const [hired, setHired] = useState<any>('-');
   const [ongoingInterview, setOngoingInterview] = useState<any>([]);
   const [rows, setRows] = useState<any>([]);
   const [onGoing, setOnGoing] = useState<any>([]);
   const [statsData, setStatsData] = useState<any>();
-
+  const history = useHistory();
+  
   useEffect(() => {
     getUsers();
     recentJobHandler();
@@ -152,25 +156,25 @@ const CustomerHome = () => {
       <div className={styles.container}>
         <div className={styles.subContainer1}>
           <div className={styles.greetings}>
-            <div>Hello👋</div>
-            <div>{onging} Ongoing Interviews</div>
+            <div>Hello {localStorage.getItem('email')?.split('@')[0]}👋</div>
+            <div style={{padding : '10px 21px 5px 10px'}}>{onging} Ongoing Interviews</div>
           </div>
           <div className={styles.statsCardHolder}>
-            <div className={styles.statsCard} style={{color : 'chocolate'}}>
+            <div className={styles.statsCard} style={{color : 'chocolate'}}  onClick={() => {history.push(path.Jobs)}}>
               <JobAppication />
               <div>
                 <div className={styles.statsNumbers}>{job}</div>
                 <div>Job Applications</div>
               </div>
             </div>
-            <div className={styles.statsCard} style={{color : 'darkgoldenrod'}}>
+            <div className={styles.statsCard} style={{color : 'darkgoldenrod'}} onClick={() => {history.push(path.OngoingInterviews)}}>
               <OngoingDash />
               <div>
                 <div className={styles.statsNumbers}>{onging}</div>
                 <div>Ongoing Interviews</div>
               </div>
             </div>
-            <div className={styles.statsCard} style={{color : 'yellowgreen'}}>
+            <div className={`${styles.statsCard} ${styles.noCursor}`} style={{color : 'yellowgreen'}} >
               <HiredDash />
               <div>
                 <div className={styles.statsNumbers}>{hired}</div>
@@ -178,11 +182,12 @@ const CustomerHome = () => {
               </div>
             </div>
           </div>
-          <div className='d-flex justify-content-center'>
-            <div className={styles.onGoingPosition}>
+          <div className='d-flex justify-content-center align-items-center flex-column'>
             <div className={styles.interviewToday}>Recent Job Postings</div>
-              <TableContainer>
-                <Table aria-label='simple table'>
+            <div className={styles.onGoingPosition}>
+            <Paper style={{maxHeight : 250}}>
+              <TableContainer style={{maxHeight : 250}}>
+                <Table aria-label="sticky table" stickyHeader>
                   <TableHead>
                     <TableRow>
                       <TableCell align='center'>Job Title</TableCell>
@@ -229,13 +234,15 @@ const CustomerHome = () => {
                   </TableBody>
                 </Table>
               </TableContainer>
+              </Paper>
             </div>
           </div>
           <div className={styles.panel}>
+            <div className={styles.ongoingInterviews}>Ongoing Interviews</div>
             <div className={styles.onGoingInterviews}>
-            <div className={styles.interviewToday}>Ongoing Interviews</div>
-              <TableContainer>
-                <Table aria-label='simple table'>
+            <Paper style={{maxHeight : 170}}>
+              <TableContainer style={{maxHeight : 170}}>
+                <Table aria-label="sticky table" stickyHeader>
                   <TableBody>
                     {onGoing.length > 0
                       ? onGoing.map(row => (
@@ -307,12 +314,13 @@ const CustomerHome = () => {
                   </TableBody>
                 </Table>
               </TableContainer>
+              </Paper>
             </div>
           </div>
         </div>
         <div className={styles.subContainer2}>
+          <div className={styles.candidateRequests}>Candidate Requests</div>
           <div className={styles.rightBarUp}>
-          <div className={styles.interviewToday}>Candidate Requests</div>
             {ongoingInterview.length > 0
               ? ongoingInterview.map((e: any) => (
                   <div className={styles.SLACard}>

@@ -1,3 +1,5 @@
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+
 export const ImageLinkCreator = (props: any) => {
   const imgProvider: any = (link: any) => {
     if (link && link.includes('zoom')) {
@@ -41,9 +43,17 @@ export const ImageLinkCreator = (props: any) => {
 
   return (
     <div>
+        <OverlayTrigger
+                              overlay={
+                                <Tooltip id='tooltip-disabled'>
+                                  {props.link}
+                                </Tooltip>
+                              }
+                            >
       <a href={props.link} target='_black'>
         {props.link && imgProvider(props.link)}
       </a>
+       </OverlayTrigger>
     </div>
   );
 };

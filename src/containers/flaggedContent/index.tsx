@@ -65,7 +65,7 @@ const userReports = () => {
         data = await getSearchReports(params);
       }
       let { body ,status }: any = data;
-      status = 200
+      
       if (status === 200) {
         let payload = body.items.filter(data => data.reportType !== "Author")
         setReportsData(payload)
