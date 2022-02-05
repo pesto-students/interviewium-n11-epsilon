@@ -38,6 +38,7 @@ import {
   getAllInterviewersEndpoint,
   getPreviousInterviews,
   getAllIntervieweesEndpoint,
+  recentShortlistsEndpoint,
 } from './urls';
 import api from './api';
 
@@ -426,6 +427,20 @@ export const interviewsTodayList = async () => {
   try {
     return await api
       .get(`${interviewsTodayEndpoint}/${localStorage.getItem('email')}`)
+      .then(response => {
+        return { status: response.status, body: response.data };
+      })
+      .catch(err => {
+        return { status: err.response.status, body: err.response.data };
+      });
+  } catch (err) {
+    return { status: 500, body: 'Failed to connect' };
+  }
+};
+export const recentShortList = async () => {
+  try {
+    return await api
+      .get(`${recentShortlistsEndpoint}/${localStorage.getItem('email')}`)
       .then(response => {
         return { status: response.status, body: response.data };
       })

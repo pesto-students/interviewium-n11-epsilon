@@ -102,15 +102,14 @@ const Jobs = () => {
         formik.values.title = body.name ? body.name : ''
         formik.values.company = body.currentCompanyName ? body.currentCompanyName : ''
         let skills = body.primaryAndSecondarySkills.split('#')
-        if(skills) {
-          let p : any = []
-          skills[0].split[','].map((e : any) => p.push(e))
-          setSelectedP(p)
-          let s : any = []
-          skills[0].split[','].map((e : any) => s.push(e))
-          setSelectedS(s)
-        }
-        console.log(body)
+        // if(skills) {
+        //   let p : any = []
+        //   skills[0].split[','].map((e : any) => p.push(e))
+        //   setSelectedP(p)
+        //   let s : any = []
+        //   skills[0].split[','].map((e : any) => s.push(e))
+        //   setSelectedS(s)
+        // }
       } else {
         dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
       }

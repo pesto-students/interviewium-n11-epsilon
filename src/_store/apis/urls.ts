@@ -19,6 +19,7 @@ const getAllInterviewersEndpoint = 'api/interviewer';
 const interviewToday = 'api/interviewer/today';
 const interviewerProfile = 'api/interviewer/profile';
 const interviewsTodayEndpoint = 'api/interviewer/today';
+const recentShortlistsEndpoint = 'api/interviewee/recentShortlists';
 const calendlyLinkEndpoint = 'api/interviewer/calendlyLink';
 const statsEndpoint = 'api/humanResource/graph';
 const statsInterviewerEndpoint = 'api/interviewer/graph';
@@ -211,5 +212,6 @@ export {
   waitingForAssignmentEndpoint,
   getIntervieweeProfileEndpoint,
   getAllInterviewersEndpoint,
-  getAllIntervieweesEndpoint
+  getAllIntervieweesEndpoint,
+  recentShortlistsEndpoint
 };
