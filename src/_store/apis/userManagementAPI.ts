@@ -535,10 +535,10 @@ export const getJobApplicants = async () => {
     return { status: 500, body: 'Failed to connect' };
   }
 };
-export const getAllIntervieweesAPI = async () => {
+export const getAllIntervieweesAPI = async (payload) => {
   try {
     return await api
-      .get(`${getAllIntervieweesEndpoint}`)
+      .get(`${getAllIntervieweesEndpoint}`+ '?' +payload)
       .then(response => {
         return { status: response.status, body: response.data };
       })

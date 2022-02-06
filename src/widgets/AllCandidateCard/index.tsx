@@ -74,7 +74,7 @@ function CandidateCard(props) {
               <PrimaryButton
                 text={props.search ? 'Invite' : 'Accept'}
                 method={() => {
-                  props.inviteIntervieweeHandler('rsladke@gmail.com');
+                  props.inviteIntervieweeHandler(props?.data?.email);
                 }}
               />
               {props.search ? null : (

@@ -1,4 +1,3 @@
-import { Tab, Tabs } from 'react-bootstrap';
 import styles from './index.module.scss';
 import CandidateCard from '../../widgets/CandidateCard';
 import AllCandidateCard from '../../widgets/AllCandidateCard';
@@ -24,6 +23,106 @@ import {
 } from '_store/apis/userManagementAPI';
 import { useDispatch } from 'react-redux';
 import { ERROR_MESSAGE, SUCCESS_MESSAGE } from '_store/constants';
+import PropTypes from 'prop-types';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import PersonPinIcon from '@material-ui/icons/PersonPin';
+import HelpIcon from '@material-ui/icons/Help';
+import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import { InputBase } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`scrollable-force-tabpanel-${index}`}
+      aria-labelledby={`scrollable-force-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `scrollable-force-tab-${index}`,
+    'aria-controls': `scrollable-force-tabpanel-${index}`,
+  };
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    width: '100%',
+    backgroundColor: theme.palette.background.paper,
+  },
+}));
+
+const BootstrapInput = withStyles((theme) => ({
+  root: {
+    'label + &': {
+      marginTop: theme.spacing(3),
+    },
+  },
+  input: {
+    borderRadius: 4,
+    position: 'relative',
+    backgroundColor: theme.palette.background.paper,
+    border: '1px solid #ced4da',
+    fontSize: 16,
+    padding: '10px 26px 10px 12px',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:focus': {
+      borderRadius: 4,
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
+  },
+}))(InputBase);
+
+let obj = {
+  p: '',
+  s: '',
+  emp: 'FULL_TIME',
+  exp: '1'
+}
 
 const Jobs = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -35,9 +134,20 @@ const Jobs = () => {
   const [allInterviewee, setAllInterviewee] = useState<any>([]);
   const dispatch = useDispatch();
 
+  const classes = useStyles();
+  const [value, setValue] = React.useState(1);
+  const [pSkill, setPSkill] = useState('');
+  const [sSkill, setSSkill] = useState('');
+  const [empType, setEmpType] = useState('');
+  const [exp, setexp] = useState('');  
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+    console.log(event)
+  };
   useEffect(() => {
     jobApplicationHandler();
-    allIntervieweeHandler()
+    allIntervieweeHandler(``)
   }, []);
 
   const hideModal = () => {
@@ -115,11 +225,36 @@ const Jobs = () => {
       dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
     }
   };
-
-  const allIntervieweeHandler = async () => {
+ 
+  const allIntervieweeHandler = async (value : any) => {
     try {
+
+      obj.p = value.var === 'p' ? value.value : obj.p
+      obj.s = value.var === 's' ? value.value :  obj.s
+
+      let payload = `humanResourceEmail=${localStorage.getItem('email')}` + `&primarySkills=${obj.p}`  +   `&secondarySkills=${obj['s']}`
       let data;
-      data = await getAllIntervieweesAPI();
+      data = await getAllIntervieweesAPI(``);
+      let { body, status }: any = data;
+      if (status === 200) {
+        setAllInterviewee(body);
+      } else {
+        dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
+      }
+    } catch (err) {
+      console.log(err);
+      dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
+    }
+  };
+  const allIntervieweeHandler1 = async (value : any) => {
+    try {
+
+      obj.p = value.var === 'p' ? value.value : obj.p
+      obj.s = value.var === 's' ? value.value :  obj.s
+
+      let payload = `humanResourceEmail=${localStorage.getItem('email')}` + `&primarySkills=${obj.p}`  +   `&secondarySkills=${obj['s']}`
+      let data;
+      data = await getAllIntervieweesAPI(payload);
       let { body, status }: any = data;
       if (status === 200) {
         setAllInterviewee(body);
@@ -167,6 +302,7 @@ const Jobs = () => {
       dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
     }
   };
+
   return (
     <>
       <ModalComponent
@@ -176,13 +312,24 @@ const Jobs = () => {
         modalInfo={modalInfo}
         data={'data'}
       />
-      <Tabs
-        defaultActiveKey='profile'
-        id='uncontrolled-tab-example'
-        className={styles.header}
-      >
-        <Tab eventKey='home' title='Post Jobs'>
-          <div className={styles.card_parent}>
+     <div className={classes.root}>
+      <AppBar position="sticky" color="default">
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          variant="scrollable"
+          scrollButtons="on"
+          indicatorColor="primary"
+          textColor="primary"
+          aria-label="scrollable force tabs example"
+        >
+          <Tab label="Post Job" icon={<ShoppingBasket />} {...a11yProps(0)} />
+          <Tab label="Search Candidates" icon={<PersonPinIcon />} {...a11yProps(1)} />
+          <Tab label="Short List" icon={<HelpIcon />} {...a11yProps(2)} />
+        </Tabs>
+      </AppBar>
+      <TabPanel value={value} index={0}>
+      <div className={styles.card_parent}>
             <div className={styles.cardParent1}>
               <FormikProvider value={formik}>
                 <form
@@ -313,9 +460,65 @@ const Jobs = () => {
               </FormikProvider>
             </div>
           </div>
-        </Tab>
-        <Tab eventKey='profile' title='Search Candidates'>
-          <div className={styles.card_parent}>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+      <div className={styles.card_parent}>
+        <div className={styles.filters}>
+        <FormControl >
+        <InputLabel htmlFor="demo-customized-select-native">Primary Skills</InputLabel>
+        <NativeSelect
+          id="demo-customized-select-native"
+          onChange={(e) => {allIntervieweeHandler1({var : 'p' , value : e.target.value})}}
+          input={<BootstrapInput />}
+        >
+          <option aria-label="Primary Skills" value="Primary Skills" />
+          <option value={'React'}>React</option>
+          <option value={'JavaScript'}>JavaScript</option>
+          <option value={'TypeScript'}>TypeScript</option>
+          <option value={'ruby'}>Ruby</option>
+          <option value={'mysql'}>Mysql</option>
+          <option value={'java'}>Java</option>
+        </NativeSelect>
+      </FormControl>
+      <FormControl >
+        <InputLabel htmlFor="demo-customized-select-native">Sec Skills</InputLabel>
+        <NativeSelect
+          id="demo-customized-select-native"
+          onChange={(e) => {allIntervieweeHandler1({var : 's' , value : e.target.value})}}
+          input={<BootstrapInput />}
+        >
+          <option aria-label="None" value="Sec Skills" />
+          <option value={'React'}>React</option>
+          <option value={'JavaScript'}>JavaScript</option>
+          <option value={'TypeScript'}>TypeScript</option>
+        </NativeSelect>
+      </FormControl>
+      <FormControl >
+        <InputLabel htmlFor="demo-customized-select-native">Emp Type</InputLabel>
+        <NativeSelect
+          id="demo-customized-select-native"
+          onChange={(e) => {allIntervieweeHandler1({var : 'emp' , value : e.target.value})}}
+          input={<BootstrapInput />}
+        >
+          <option aria-label="None" value="Emp Type" />
+          <option value={'FULL_TIME'}>FULL_TIME</option>
+          <option value={'PART_TIME'}>PART_TIME</option>
+        </NativeSelect>
+      </FormControl>
+      <FormControl >
+        <InputLabel htmlFor="demo-customized-select-native">Exp</InputLabel>
+        <NativeSelect
+          id="demo-customized-select-native"
+          onChange={(e) => {allIntervieweeHandler1({var : 'exp' , value : e.target.value})}}
+          input={<BootstrapInput />}
+        >
+          <option aria-label="None" value="Exp" />
+          <option value={'1'}>1</option>
+          <option value={'2'}>2</option>
+          <option value={'3'}>3</option>
+        </NativeSelect>
+      </FormControl>
+        </div>
             <div className={styles.cardParent}>
               {allInterviewee && allInterviewee.length > 0
                 ? allInterviewee.map((e: any) => {
@@ -337,10 +540,10 @@ const Jobs = () => {
                   ))}
             </div>
           </div>
-        </Tab>
-        <Tab eventKey='contact' title='Short-list'>
-          <div className={styles.card_parent}>
-            <div className={styles.cardParent}>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+      <div className={styles.card_parent}>
+            <div className={styles.cardParent} style={{margin : 0}}>
               {jobApp.length > 0
                 ? jobApp.map((e: any) => {
                     return (
@@ -360,8 +563,8 @@ const Jobs = () => {
                   ))}
             </div>
           </div>
-        </Tab>
-      </Tabs>
+      </TabPanel>
+    </div>
     </>
   );
 };

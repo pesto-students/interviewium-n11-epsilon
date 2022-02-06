@@ -34,9 +34,17 @@
   list-style: none;
   flex: 0 0 33.333333%;
 }
+.filters{
+  background-color: ghostwhite;
+    width: 38%;
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 
 .cardParent {
-  margin-top: 4%;
+  margin-top: 5%;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
