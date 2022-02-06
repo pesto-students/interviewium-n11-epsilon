@@ -65,7 +65,7 @@ with
 
 **✒ Figma Link : [Interviewium](https://www.figma.com/file/kwksgGU97Ac6FBwY8o4DNe/Interviewium?node-id=0%3A1)**
 
-🎨 **Functionality & Features**
+🎨  **Functionality & Features**
 
 📌 V1 - MVP
 

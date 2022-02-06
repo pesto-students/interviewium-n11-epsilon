@@ -299,6 +299,31 @@ const Jobs = () => {
       let { body, status }: any = data;
       if (status === 200) {
         dispatch({ type: SUCCESS_MESSAGE, payload: 'Invited Successfully' });
+        let somename = allInterviewee.filter(e => (
+          e.id !== id
+          ))
+        console.log(somename)
+        setAllInterviewee(somename)
+      } else {
+        dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
+      }
+    } catch (err) {
+      console.log(err);
+      dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
+    }
+  };
+  const inviteIntervieweeHandler1 = async ( id : any) => {
+    try {
+      let payload = {
+        email: localStorage.getItem('email'),
+        intervieweeId: id,
+        "jobId": "ckyjabnx00640ioi58jq37nom"
+      };
+      let data;
+      data = await inviteInterviewee(payload);
+      let { body, status }: any = data;
+      if (status === 200) {
+        dispatch({ type: SUCCESS_MESSAGE, payload: 'Invited Successfully' });
       } else {
         dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
       }
@@ -556,7 +581,7 @@ const Jobs = () => {
                       <CandidateCard
                         exp
                         data={e}
-                        inviteIntervieweeHandler={inviteIntervieweeHandler}
+                        inviteIntervieweeHandler={inviteIntervieweeHandler1}
                       />
                     );
                   })
