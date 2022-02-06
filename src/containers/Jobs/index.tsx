@@ -283,11 +283,12 @@ const Jobs = () => {
     }
   };
 
-  const inviteIntervieweeHandler = async (email: any) => {
+  const inviteIntervieweeHandler = async ( id : any) => {
     try {
       let payload = {
         email: localStorage.getItem('email'),
-        interviewerEmail: email,
+        intervieweeId: id,
+        "jobId": "ckyjabnx00640ioi58jq37nom"
       };
       let data;
       data = await inviteInterviewee(payload);

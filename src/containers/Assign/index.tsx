@@ -12,6 +12,7 @@ import IntervieweeCard from './intervieweeCard';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import InterviewerCard from './interviewerCard';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const CustomerHome = () => {
   const dispatch = useDispatch();
@@ -105,9 +106,12 @@ const CustomerHome = () => {
               <InterviewerCard id={a} dragAndDrop={getAllInassignterviewers}/>
             ))
           ) : (
-            <div className='align-items-center justify-content-center'>
-              All Interviewees Assigned
-            </div>
+            [1, 3, 4].map(() => (
+              <React.Fragment>
+                <Skeleton variant='circle' width={40} height={70} />
+                <Skeleton variant='rect' width={300} height={150} />
+              </React.Fragment>
+            ))
           )}
         </div>
       </div>

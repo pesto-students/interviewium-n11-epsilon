@@ -30,7 +30,7 @@ const IntervieweeCard = (props) =>  {
     </div>
     <div className={styles.cardName}>
       <p className={styles.cardPName}>Rushikesh Ladke</p>
-      <p className={styles.cardPYear}>6 Years</p>
+      <p className={styles.cardPYear}>3 Years</p>
     </div>
   </div>
   <div className={styles.Tech}>
@@ -41,7 +41,8 @@ const IntervieweeCard = (props) =>  {
   </div>
   <div className={styles.details}>
     <p className={styles.pNoMargin}>
-      <strong>Exp:</strong> 0-2 years
+      <strong>Exp:</strong> 0-2 years   { "    "}    
+      <strong>Round:</strong> {props.id?.currentInterviewRound}
     </p>
   </div>
 </div>;
