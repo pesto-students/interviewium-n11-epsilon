@@ -110,6 +110,7 @@ const Jobs = () => {
         //   skills[0].split[','].map((e : any) => s.push(e))
         //   setSelectedS(s)
         // }
+        dispatch({ type: SUCCESS_MESSAGE, payload: 'Profile Details Fetched' });
       } else {
         dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
       }
@@ -153,7 +154,7 @@ const Jobs = () => {
       <div className={styles.container}>
         <div className={styles.component}>
           <img src='https://i.ibb.co/yNGW4gg/avatar.png' alt='user' />
-          <div className={styles.userName}>NAME</div>
+          <div className={styles.userName}>{formik.values.title}</div>
         </div>
         <div className={styles.component1}>
           <div style={{ padding: 25 }}>
