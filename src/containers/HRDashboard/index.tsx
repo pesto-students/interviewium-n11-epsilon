@@ -270,7 +270,7 @@ const CustomerHome = () => {
                             <OverlayTrigger
                               overlay={
                                 <Tooltip id='tooltip-disabled'>
-                                  {row.interviewerVerdict}!
+                                  PENDING!
                                 </Tooltip>
                               }
                             >

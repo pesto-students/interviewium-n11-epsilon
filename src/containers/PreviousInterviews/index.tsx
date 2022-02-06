@@ -269,7 +269,7 @@ const AllUserManagement = () => {
                             <OverlayTrigger
                               overlay={
                                 <Tooltip id='tooltip-disabled'>
-                                  {interviewProgressStatus}!
+                                  PENDING!
                                 </Tooltip>
                               }
                             >
