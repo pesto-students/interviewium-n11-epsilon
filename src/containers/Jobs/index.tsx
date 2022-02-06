@@ -132,6 +132,7 @@ const Jobs = () => {
   });
   const [jobApp, setJobApp] = useState<any>([]);
   const [allInterviewee, setAllInterviewee] = useState<any>([]);
+  const [allInterviewee1, setAllInterviewee1] = useState<any>([1,2,3,4,5]);
   const dispatch = useDispatch();
 
   const classes = useStyles();
@@ -242,6 +243,7 @@ const Jobs = () => {
       let { body, status }: any = data;
       if (status === 200) {
         setAllInterviewee(body);
+        setAllInterviewee1([])
       } else {
         dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
       }
@@ -501,7 +503,7 @@ const Jobs = () => {
           onChange={(e) => {allIntervieweeHandler1({var : 'p' , value : e.target.value})}}
           input={<BootstrapInput />}
         >
-          <option aria-label="Primary Skills" value="Primary Skills" />
+          <option aria-label="Primary Skills" value="" />
           <option value={'React'}>React</option>
           <option value={'JavaScript'}>JavaScript</option>
           <option value={'TypeScript'}>TypeScript</option>
@@ -562,13 +564,17 @@ const Jobs = () => {
                       />
                     );
                   })
-                : [1, 3, 4, 5, 6, 7].map(() => (
+                : allInterviewee1.length > 0 ? allInterviewee1.map(() => (
                     <div className='d-flex flex-column'>
                       <Skeleton variant='text' />
                       <Skeleton variant='circle' width={70} height={70} />
                       <Skeleton variant='rect' width={300} height={250} />
                     </div>
-                  ))}
+                  )) :
+                <div style={{height : 200, marginTop: '7%'}} className='d-flex flex-column justify-content-center align-content-center'>
+                  <img src='https://mrtruant.com/website/images/no-data-found.png' alt="no data" height={400} />
+                  </div>
+                }
             </div>
           </div>
       </TabPanel>
