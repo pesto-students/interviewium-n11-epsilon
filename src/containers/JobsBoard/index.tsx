@@ -6,6 +6,55 @@ import { useDispatch } from 'react-redux';
 import { ERROR_MESSAGE, SUCCESS_MESSAGE } from '_store/constants';
 import { Skeleton } from '@material-ui/lab';
 import PrimaryButton from 'widgets/PrimaryButton';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import NativeSelect from '@material-ui/core/NativeSelect';
+import { InputBase } from '@material-ui/core';
+
+
+const BootstrapInput = withStyles((theme) => ({
+  root: {
+    'label + &': {
+      marginTop: theme.spacing(3),
+    },
+  },
+  input: {
+    borderRadius: 4,
+    position: 'relative',
+    backgroundColor: theme.palette.background.paper,
+    border: '1px solid #ced4da',
+    fontSize: 16,
+    padding: '10px 26px 10px 12px',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:focus': {
+      borderRadius: 4,
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
+  },
+}))(InputBase);
+
+
+let obj = {
+  p: '',
+  s: '',
+  emp: 'FULL_TIME',
+  exp: '1'
+}
 
 const Jobs = () => {
   const [modalShow, setModalShow] = useState(false);
@@ -27,7 +76,27 @@ const Jobs = () => {
   const jobApplicationHandler = async () => {
     try {
       let data;
-      data = await allJobs();
+      data = await allJobs(``);
+      let { body, status }: any = data;
+      if (status === 200) {
+        setJobApp(body);
+      } else {
+        dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
+      }
+    } catch (err) {
+      console.log(err);
+      dispatch({ type: ERROR_MESSAGE, payload: 'Failed to connect' });
+    }
+  };
+  const jobApplicationHandler1 = async (value : any) => {
+    try {
+      obj.p = value.var === 'p' ? value.value : obj.p
+      obj.s = value.var === 's' ? value.value :  obj.s
+
+      let payload = `intervieweeEmail=${localStorage.getItem('email')}` + `&primarySkills=${obj.p}`  +   `&secondarySkills=${obj['s']}`
+      // let payload = `experience=2&employmentType=INTERNSHIP&primarySkills=react,node&secondarySkills=ruby&intervieweeEmail=pulkit@gmail.com`
+      let data;
+      data = await allJobs(payload);
       let { body, status }: any = data;
       if (status === 200) {
         setJobApp(body);
@@ -85,7 +154,64 @@ const Jobs = () => {
         data={'data'}
       />
       <div className={styles.card_parent}>
+      <div className={styles.filters}>
+        <FormControl >
+        <InputLabel htmlFor="demo-customized-select-native">Primary Skills</InputLabel>
+        <NativeSelect
+          id="demo-customized-select-native"
+          onChange={(e) => {jobApplicationHandler1({var : 'p' , value : e.target.value})}}
+          input={<BootstrapInput />}
+        >
+          <option aria-label="Primary Skills" value="Primary Skills" />
+          <option value={'React'}>React</option>
+          <option value={'JavaScript'}>JavaScript</option>
+          <option value={'TypeScript'}>TypeScript</option>
+          <option value={'ruby'}>Ruby</option>
+          <option value={'mysql'}>Mysql</option>
+          <option value={'java'}>Java</option>
+        </NativeSelect>
+      </FormControl>
+      <FormControl >
+        <InputLabel htmlFor="demo-customized-select-native">Sec Skills</InputLabel>
+        <NativeSelect
+          id="demo-customized-select-native"
+          onChange={(e) => {jobApplicationHandler1({var : 's' , value : e.target.value})}}
+          input={<BootstrapInput />}
+        >
+          <option aria-label="None" value="Sec Skills" />
+          <option value={'React'}>React</option>
+          <option value={'JavaScript'}>JavaScript</option>
+          <option value={'TypeScript'}>TypeScript</option>
+        </NativeSelect>
+      </FormControl>
+      <FormControl >
+        <InputLabel htmlFor="demo-customized-select-native">Emp Type</InputLabel>
+        <NativeSelect
+          id="demo-customized-select-native"
+          onChange={(e) => {jobApplicationHandler1({var : 'emp' , value : e.target.value})}}
+          input={<BootstrapInput />}
+        >
+          <option aria-label="None" value="Emp Type" />
+          <option value={'FULL_TIME'}>FULL_TIME</option>
+          <option value={'PART_TIME'}>PART_TIME</option>
+        </NativeSelect>
+      </FormControl>
+      <FormControl >
+        <InputLabel htmlFor="demo-customized-select-native">Exp</InputLabel>
+        <NativeSelect
+          id="demo-customized-select-native"
+          onChange={(e) => {jobApplicationHandler1({var : 'exp' , value : e.target.value})}}
+          input={<BootstrapInput />}
+        >
+          <option aria-label="None" value="Exp" />
+          <option value={'1'}>1</option>
+          <option value={'2'}>2</option>
+          <option value={'3'}>3</option>
+        </NativeSelect>
+      </FormControl>
+        </div>
         <div className={styles.cardParent}>
+       
           {jobApp.length > 0
             ? jobApp.map((e: any) => {
                 return (

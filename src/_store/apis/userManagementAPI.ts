@@ -549,10 +549,10 @@ export const getAllIntervieweesAPI = async (payload) => {
     return { status: 500, body: 'Failed to connect' };
   }
 };
-export const allJobs = async () => {
+export const allJobs = async (payload) => {
   try {
     return await api
-      .get(`${allJobsEndpoint}`)
+      .get(`${allJobsEndpoint}`+ '?' +payload)
       .then(response => {
         return { status: response.status, body: response.data };
       })
