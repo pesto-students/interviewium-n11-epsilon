@@ -16,13 +16,18 @@ const InterviewerCard = (props) => {
     }));
     const isActive = canDrop && isOver;
     let backgroundColor = 'darkkhaki';
+    let border = ' '
+    let transition = ' '
     if (isActive) {
         backgroundColor = 'darkgreen';
+         border = '2px solid aqua'
+         transition = 'border-width 0.1s linear'
+
     }
     else if (canDrop) {
         backgroundColor = '#FF3F3F';
     }
-  return <div className={styles.cardInterviewer} style={{backgroundColor}} ref={drop}>
+  return <div className={styles.cardInterviewer} style={{backgroundColor , border , transition}} ref={drop}>
   <div className={styles.cardUP}>
     <div>
       <img
