@@ -194,6 +194,7 @@ const Jobs = () => {
           <option aria-label="None" value="Emp Type" />
           <option value={'FULL_TIME'}>FULL_TIME</option>
           <option value={'PART_TIME'}>PART_TIME</option>
+          <option value={'INTERNSHIP'}>INTERNSHIP</option>
         </NativeSelect>
       </FormControl>
       <FormControl >

@@ -146,9 +146,11 @@ const AllUserManagement = () => {
       const data = await inviteInterviewer(payload);
       const { body }: any = data;
       if (body.statusCode === 200) {
-        dispatch({ type: ERROR_MESSAGE, payload: 'Interviewer Added' });
+        getUsers('');
+        dispatch({ type: SUCCESS_MESSAGE, payload: 'Interviewer Added' });
+        setModalShow(false)
       } else {
-        dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
+        dispatch({ type: SUCCESS_MESSAGE, payload: 'Interviewer Added' });
       }
     } catch (err) {
       console.log(err);

@@ -30,6 +30,16 @@ export const ImageLinkCreator = (props: any) => {
           style={{ margin: '0px 10px' }}
         />
       );
+    } else if (link && link.includes('s3')) {
+      return (
+        <img
+          src='https://thumbs.dreamstime.com/b/cv-job-resume-line-illustration-icon-white-background-element-education-icons-signs-symbols-can-be-used-web-logo-mobile-173420484.jpg'
+          alt={link}
+          height={35}
+          width={35}
+          style={{ margin: '0px 10px' }}
+        />
+      );
     } else {
       return (
         <img
