@@ -89,6 +89,7 @@ export interface FieldProps {
     disabled?:boolean
     endAdor?: any
     startAdor?: any
+    autoFocus?: any
 }
 export interface FeedbackProps {
     IconData: ReactFragment

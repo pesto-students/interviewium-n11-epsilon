@@ -5,7 +5,7 @@ import { TextField,
 import styles from './index.module.scss'
 import { FieldProps } from '../../types/index'
 
-const NormalTextField = ({ disabled=false, name, label_text, placeholder, error, touched, value, handleChange, handleBlur, type, endAdor=false , startAdor=false}: FieldProps) => {
+const NormalTextField = ({ disabled=false, name, label_text, placeholder, error, touched, value, handleChange, handleBlur, type, endAdor=false , startAdor=false, autoFocus}: FieldProps) => {
   let [focused, setFocused]=useState<boolean>(false)
  
  return (<div className={styles.commonInputfields}><div className={`${(focused) ? styles.touched_label_text:(error && touched)?styles.error_label_text:styles.label_text}`}>{label_text}</div>
@@ -29,6 +29,7 @@ const NormalTextField = ({ disabled=false, name, label_text, placeholder, error,
         endAdornment: endAdor,
         startAdornment: startAdor
       }}
+      inputRef={autoFocus}
     />
     {touched && error && !focused ? (
       <div className={styles.helperText}>

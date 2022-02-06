@@ -160,6 +160,7 @@ const CustomerHome = () => {
       let data = await postLink(payload);
       let { status }: any = data;
       if (status === 200) {
+        setEditLink(!editLink)
         dispatch({ type: SUCCESS_MESSAGE, payload: 'Link Updated' });
       } else {
         dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
@@ -282,6 +283,7 @@ const CustomerHome = () => {
                 handleBlur={formik.handleBlur}
                 value={formik.values.name}
                 disabled={editLink}
+                autoFocus={input => editLink ? input : input && input.focus()}
               />
               <PrimaryButton
                 text={editLink ? 'Edit' : 'Update'}
