@@ -36,6 +36,13 @@ import _ from 'lodash';
 import { Skeleton } from '@material-ui/lab';
 import { ImageLinkCreator , dateConverter} from 'utilities/util';
 
+const some = {
+  1 : 'https://interviewium.s3.amazonaws.com/Akash%20Kavlu%20Bhoyar%20.pdf',
+  2 : 'https://interviewium.s3.amazonaws.com/Mukhtadir%20Shaikh.pdf',
+  3 : 'https://interviewium.s3.amazonaws.com/DARA%20HARISH.pdf',
+  4: 'https://interviewium.s3.amazonaws.com/AnshuliSunilChitade_2343186_-Fresher-_1.pdf'
+}
+
 const AllUserManagement = () => {
   const dispatch = useDispatch();
   const tableBodyRef = createRef<any>();
@@ -52,6 +59,7 @@ const AllUserManagement = () => {
     'Date and Time',
     'Round',
     'Joining Link',
+    'Resume'
   ]);
   let [rowsPerPage, setRowsPerPage] = useState(10);
   let [totalCount, setTotalCount] = useState(0);
@@ -278,11 +286,17 @@ const AllUserManagement = () => {
                         <TableCell>
                           <ImageLinkCreator link={joiningLink} />
                         </TableCell>
+                        <TableCell>
+                          <ImageLinkCreator link={some[Math.floor(Math.random() * (4) + 1)]} />
+                        </TableCell>
                       </TableRow>
                     )
                   )
                 : [1, 2, 3, 4].map(() => (
                     <TableRow className={`${styles.users_table_row}`}>
+                      <TableCell>
+                        <Skeleton variant='text' />
+                      </TableCell>
                       <TableCell>
                         <Skeleton variant='text' />
                       </TableCell>
