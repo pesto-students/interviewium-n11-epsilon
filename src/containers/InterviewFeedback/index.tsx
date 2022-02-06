@@ -96,7 +96,7 @@ const AllUserManagement = () => {
                             <OverlayTrigger
                               overlay={
                                 <Tooltip id='tooltip-disabled'>
-                                  {interviewerVerdict}!
+                                    PENDING!
                                 </Tooltip>
                               }
                             >

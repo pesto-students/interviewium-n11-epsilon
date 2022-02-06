@@ -144,6 +144,9 @@ const Jobs = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
     console.log(event)
+    if(newValue === 1) {
+      allIntervieweeHandler(``)
+    }
   };
   useEffect(() => {
     jobApplicationHandler();
@@ -216,6 +219,7 @@ const Jobs = () => {
       let { body, status }: any = data;
 
       if (status === 200) {
+        formik.resetForm()
         dispatch({ type: SUCCESS_MESSAGE, payload: 'Job Posted Successfully' });
       } else {
         dispatch({ type: ERROR_MESSAGE, payload: 'Something went wrong' });
@@ -283,11 +287,12 @@ const Jobs = () => {
     }
   };
 
-  const inviteIntervieweeHandler = async (email: any) => {
+  const inviteIntervieweeHandler = async ( id : any) => {
     try {
       let payload = {
         email: localStorage.getItem('email'),
-        interviewerEmail: email,
+        intervieweeId: id,
+        "jobId": "ckyjabnx00640ioi58jq37nom"
       };
       let data;
       data = await inviteInterviewee(payload);

@@ -16,13 +16,18 @@ const InterviewerCard = (props) => {
     }));
     const isActive = canDrop && isOver;
     let backgroundColor = 'darkkhaki';
+    let border = ' '
+    let transition = ' '
     if (isActive) {
         backgroundColor = 'darkgreen';
+         border = '2px solid aqua'
+         transition = 'border-width 0.1s linear'
+
     }
     else if (canDrop) {
         backgroundColor = '#FF3F3F';
     }
-  return <div className={styles.cardInterviewer} style={{backgroundColor}} ref={drop}>
+  return <div className={styles.cardInterviewer} style={{backgroundColor , border , transition}} ref={drop}>
   <div className={styles.cardUP}>
     <div>
       <img
@@ -32,14 +37,14 @@ const InterviewerCard = (props) => {
       />
     </div>
     <div className={styles.cardName}>
-      <p className={styles.cardPName}>Rushikesh Ladke</p>
+      <p className={styles.cardPName}>{props.id?.interviewer?.name}</p>
     </div>
   </div>
   <div className={styles.Tech}>
     <p className={styles.cardPYear}>
-      P : React, React Native, JavaScript
+      Pending Reviews : {props.id?.interviewer?.numberOfInterviewReviewsPending}
     </p>
-    <p className={styles.cardPYear}>S : Node.</p>
+    <p className={styles.cardPYear}>Onboarded : {props.id?.interviewer?.onboarded ? `No` : `Yes`}</p>
   </div>
 </div>;
 }

@@ -263,7 +263,7 @@ const AllUserManagement = () => {
                       <TableCell>{data.interviewer?.name}</TableCell>
                       <TableCell>{data.interviewer?.email} </TableCell>
                       <TableCell >{data.interviewer?.active ? <span className={styles.greenDot}></span> : <span className={styles.redDot}></span>}</TableCell>
-                      <TableCell >{data.interviewer?.onboarded ? <span className={styles.greenDot}></span> : <span className={styles.redDot}></span>}</TableCell>
+                      <TableCell >{!data.interviewer?.onboarded ? <span className={styles.greenDot}></span> : <span className={styles.redDot}></span>}</TableCell>
                       <TableCell>
                         {data.interviewer?.numberOfInterviewReviewsPending}
                       </TableCell>
