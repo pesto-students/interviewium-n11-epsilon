@@ -1,0 +1,47 @@
+@import "../../../../../utilities/variables.scss";
+@import "../../../../../utilities/classes.scss";
+.customUsertble {
+    .search_text_field_box {
+        width: 220px;
+    }
+    .header_select_field {
+        width: 120px;
+        .header_select_field_global {
+             :global(.MuiInputBase-root) {
+                color: $sfn-anyprofile-shade3;
+                background-color: $sfn-common-white;
+                padding: 0 10px;
+                border: 2px solid $sfn-table-filter-head;
+                margin: 0;
+                height: 45px;
+            }
+        }
+    }
+    .primary_button {
+        .header_add_button {
+             :global(.MuiButtonBase-root) {
+                padding: 0 27px;
+                font-size: 14px;
+                height: 45px;
+            }
+        }
+    }
+    .terinary_button {
+        .header_button {
+             :global(.MuiButtonBase-root) {
+                padding: 0 15px;
+                background-color: $sfn-common-white;
+                color: $sfn-btn-orange;
+                border: 2px solid $sfn-btn-orange;
+                border-radius: 0;
+                box-shadow: none;
+                height: 45px;
+            }
+        }
+    }
+    .users_selected_count   {
+        color: $sfn-btn-orange;
+        font-weight: 400;
+        font-size: 15px;
+    }
+}

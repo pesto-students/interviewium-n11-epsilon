@@ -1,0 +1,44 @@
+@import "../../utilities/variables.scss";
+@import "../../utilities/classes.scss";
+
+.title{
+    color:white;
+}
+
+[data-theme="light"] {
+  .title{
+    color: $sso-common-dark;
+  }
+
+}
+
+.container{
+  display: flex;
+  .component {
+    width: 100%;
+    height: 100vh;
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    img{
+      height: 200px;
+      border-radius: 30px;
+      background: wheat;
+    }
+    .userName{
+      font-size: larger;
+      font-weight: 400;
+    }
+  }
+  .component1 {
+      width: 100%;
+      height: 100%;
+  }
+}
+
+.MuiAvatar-colorDefault {
+  color: #fafafa;
+  background-color: $sso-interviewium-base
+}

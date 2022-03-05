@@ -1,0 +1,20 @@
+@import "../../utilities/variables.scss";
+@import "../../utilities/classes.scss";
+
+    .teritiary_btn {
+        :global(.MuiButton-root)    {
+            background: transparent;
+            color: $sfn-download-btn;
+            font-weight: 600;
+            border: none;
+            padding: 8px 34px;
+            border: 2px solid $sfn-download-btn;
+            border-radius: 0;
+            box-shadow: unset;
+            &:hover {
+                background-color: $sfn-common-white;
+                // color: $sfn-common-white;
+                box-shadow: unset;
+            }
+        }
+    }

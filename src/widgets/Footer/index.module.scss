@@ -1,0 +1,16 @@
+@import '../../utilities/variables.scss';
+@import '../../utilities/classes.scss';
+.footerBackground {
+    background-color: $sfn-footer-background;
+    color: $sfn-common-black;
+    display: flex;
+    justify-content: space-between;
+    padding: 17px 30px;
+    .footerLinks {
+        margin-left: 29px;
+        color: #000;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}

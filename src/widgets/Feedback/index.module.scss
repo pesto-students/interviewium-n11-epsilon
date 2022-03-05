@@ -1,0 +1,27 @@
+@import "../../utilities/variables.scss";
+@import "../../utilities/classes.scss";
+.customloginMain {
+    max-width: 380px;
+    padding: 30px 20px 20px;
+    .commonTitle {
+        margin-bottom: 25px;
+        margin-top: 20px;
+    }
+    .content {
+        color: $sfn-common-shade1;
+        font-size: 14px;
+    }
+    .icon {
+        margin: 0 auto;
+        fill: $sfn-btn-orange;
+        width: 67px;
+    }
+    .primary_button {
+        margin: 30px 0 10px 0;
+        .resetfeedbackBtn {
+             :global(.MuiButtonBase-root) {
+                padding: 8px 45px;
+            }
+        }
+    }
+}

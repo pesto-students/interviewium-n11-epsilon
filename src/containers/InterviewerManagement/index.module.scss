@@ -1,0 +1,13 @@
+@import "../../utilities/variables.scss";
+@import "../../utilities/classes.scss";
+.title{
+    color:white;
+}
+
+[data-theme="light"] {
+  .title{
+    color: $sso-common-dark;
+  }
+
+}
+

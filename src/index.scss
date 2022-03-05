@@ -1,0 +1,88 @@
+@import "./utilities/variables.scss";
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap");
+* {
+  font-family: "IBM Plex Sans", sans-serif !important;
+}
+
+html {
+  body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+}
+
+/*---------Custom scrollbar starts----------*/
+
+/* width */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+  background: #dee2e6;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+  background: #979292bf;
+  border-radius: 16px;
+  box-shadow: inset 2px 2px 2px hsla(0, 0%, 100%, 0.25),
+    inset -2px -2px 2px rgba(0, 0, 0, 0);
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+  background: #979292;
+}
+
+/*---------Custom scrollbar Ends----------*/
+
+/*---------Progress Bar custom starts----------*/
+
+.MuiLinearProgress-barColorPrimary {
+  background-color: #ca5a2a !important;
+  border-radius: 10px;
+}
+
+.MuiBox-root-12 {
+  .MuiTypography-body2 {
+    font-weight: 600 !important;
+    color: #ca5a2a !important;
+    margin-left: 3px;
+  }
+}
+
+.MuiCheckbox-colorPrimary.Mui-checked {
+  color: $sfn-btn-orange !important;
+}
+
+.MuiStepper-horizontal {
+  justify-content: space-between !important;
+  .MuiStep-alternativeLabel {
+    flex: unset !important;
+    margin-right: 49px;
+    padding: 0 !important;
+  }
+  .MuiStepLabel-iconContainer {
+    display: none !important;
+  }
+  .MuiStepConnector-line {
+    display: none !important;
+  }
+}
+
+/*---------Progress Bar custom Ends----------*/
+
+.was-validated .form-check-input:invalid ~ .form-check-label,
+.form-check-input.is-invalid ~ .form-check-label {
+  color: $sfn-error-color !important;
+}

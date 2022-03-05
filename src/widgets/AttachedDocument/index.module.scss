@@ -1,0 +1,22 @@
+@import '../../utilities/variables.scss';
+@import '../../utilities/classes.scss';
+
+.attached_document_background   {    
+    fill: $sfn-link-color;
+    .right_icons    {
+        width: 15px;
+        height: 15px;
+    }
+    .left_icon  {
+        width: 20px;
+        height: 20px;
+    }
+    .title  {
+        font-size: 15px;
+        font-weight: 600;
+    }
+    .dateTime   {
+        color: $sfn-link-color;
+        font-size: 12px;
+    }
+}

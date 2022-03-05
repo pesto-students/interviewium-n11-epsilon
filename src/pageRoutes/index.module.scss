@@ -1,0 +1,222 @@
+@import "../utilities/variables.scss";
+@import "../utilities/classes.scss";
+
+.appBar {
+  padding: 6px 16px;
+  color: $sfn-common-white;
+  font-size: 20px;
+  height: 60px;
+  font-weight: 500;
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+  justify-content: start;
+  flex-wrap: nowrap;
+  transition: all 0.2s linear;
+  .sfnlogo {
+    margin: 0;
+    padding: 0;
+    :global(.navbar-brand) {
+      margin-right: 60px;
+      padding: 0;
+      .logoIcon {
+        width: 40px;
+        padding: 7px;
+        background-color: $sso-button;
+        border-radius: 2px;
+        margin-right: 19px;
+        font-weight: 500;
+        font-size: 18px;
+        letter-spacing: 1px;
+        color: $sso-common-white;
+      }
+      .nameLight {
+        font-weight: 400;
+      }
+    }
+  }
+  .navbarToggler {
+    display: flex;
+    :global(.navbar-toggler) {
+      border: none;
+      padding: 0;
+      margin-right: 6px;
+      margin-left: -10px;
+      padding: 12px;
+      transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      border-radius: 50%;
+      overflow: visible;
+      flex: 0 0 auto;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.08);
+      }
+    }
+    :global(.MuiSvgIcon-root) {
+      fill: $sfn-common-white;
+    }
+  }
+  .headIcons {
+    display: flex;
+    width: calc(100% - 172px);
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+      margin-left: 30px;
+      cursor: pointer;
+      .daylightSwitch {
+        display: flex;
+        align-items: center;
+        border: 1px solid $sso-button;
+        border-radius: 5px;
+        button {
+          background-color: transparent;
+          fill: $sso-button;
+          box-shadow: none;
+          border: none;
+          padding: 0 7px 3px;
+          .darklight {
+            width: 18px;
+            height: 18px;
+          }
+          &.activeday {
+            background-color: $sso-button !important;
+            fill: $sso-common-white !important;
+            border-radius: 0 4px 4px 0;
+            margin: -1px;
+            transition: all 0.3s;
+          }
+          &.activenight {
+            background-color: $sso-button !important;
+            fill: $sso-common-white !important;
+            border-radius: 4px 0 0 4px;
+            margin: -1px;
+            transition: all 0.3s;
+          }
+        }
+      }
+      .link {
+        text-decoration: none;
+      }
+    }
+    .bellDot {
+      position: relative;
+      .bellno {
+        width: 10px;
+        height: 10px;
+        text-align: center;
+        border: 2px solid $sso-common-dark;
+        background-color: $sso-bell-notify;
+        font-size: 8px;
+        border-radius: 50%;
+        position: absolute;
+        left: 10px;
+        top: 4px;
+        padding: 1px;
+      }
+    }
+    .settingHead {
+      width: 18px;
+      height: 18px;
+      fill: $sso-header-icons;
+    }
+    .profileSec {
+      width: 32px;
+      padding: 10px 12px;
+      font-size: 18px;
+      background-color: $sso-header-profile;
+      border-radius: 5px;
+      color: $sso-common-white;
+    }
+  }
+}
+.notify_field {
+  border: 2px solid $sso-header-border;
+  border-radius: 5px;
+  width: 30%;
+  background: $sso-table-head;
+  height: auto;
+  top: 60px;
+  right: 90px;
+  position: absolute;
+  .notify_head {
+    border-bottom: 2px solid $sso-header-border;
+    width: 100%;
+    margin-top: 5px;
+    height: 40px;
+    span {
+      margin: 10px;
+    }
+  }
+  .notify_body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: auto;
+    position: relative;
+    .notify_label {
+      cursor: pointer;
+      font-size: 0.9rem;
+      max-height: 45px;
+      border-radius: 3px;
+      color: $sso-header-icons;
+      padding-top: 10px;
+      border-bottom: 1px gray solid;
+      padding-bottom: 15px;
+      padding-left: 15px;
+    }
+    .notify_label:hover {
+      background: $sso-profile-background;
+      color: white;
+    }
+  }
+}
+.sfnPageRoutes {
+  transition: all 0.2s linear;
+  background-color: $sso-common-dark;
+  //Tocheck
+  color: $sso-common-dark;
+  .sfnMain {
+    flex-grow: 1;
+  }
+  .sfnLoggedInMain {
+    background-color: #F4F4F4;
+    padding: 20px;
+  }
+  .sfnLoggedOutMain {
+    background-color: #fff;
+    .layouPadd {
+      padding: 0;
+      background-color: #0000001f
+    }
+  }
+}
+
+/*=========>Below are light-theme css<===========*/
+[data-theme="light"] {
+  .appBar {
+    .sfnlogo {
+      :global(.navbar-brand) {
+        color: $sso-common-dark;
+      }
+    }
+    .navbarToggler {
+      :global(.navbar-toggler) {
+        &:hover {
+          background-color: #0000001f;
+        }
+      }
+      :global(.MuiSvgIcon-root) {
+        fill: $sso-common-dark;
+      }
+    }
+  }
+  .sfnPageRoutes {
+    @include lightcolors;
+  }
+  .notify_field{
+    @include lightcolors;
+    border-color: $sso-header-lightborder;
+  }
+}

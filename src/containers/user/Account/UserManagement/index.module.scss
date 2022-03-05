@@ -1,0 +1,23 @@
+@import "../../../../utilities/variables.scss";
+@import "../../../../utilities/classes.scss";
+.background {
+    height: 100%;  
+    overflow-x: hidden;
+     :global(.MuiPaper-elevation1) {
+        box-shadow: none;
+        border-radius: 0;
+        border: 1px solid $sfn-customCardmain-shade7;
+    }
+    .hideTable  {
+        display: none;
+    }
+  
+}
+.deleteUserModalTitle    {
+    margin: 30px 0 25px 0;
+}
+.deleteUserModalDescription    {
+    font-weight: 500;
+    margin-bottom: 50px;
+    color: $sfn-border-color;
+}

@@ -1,0 +1,12 @@
+@import "../../../../../utilities/variables.scss";
+@import "../../../../../utilities/classes.scss";
+.filter_background {
+    .primary_button {
+        margin: 15px 0;
+    }
+    .header_add_button {
+         :global(.MuiButton-root) {
+            padding: 8px 25px;
+        }
+    }
+}

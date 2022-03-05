@@ -1,0 +1,53 @@
+@import '../../../utilities/variables.scss';
+@import '../../../utilities/classes.scss';
+
+.container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1.3fr 1fr;
+  grid-gap: 0.2rem;
+  font-weight: 800;
+  font-size: 12px;
+  color: #004d40;
+  text-align: center;
+}
+
+.container1 {
+  background-color: $sso-interviewium-base;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+.container2 {
+  background-color: #bbb;
+}
+
+#google_login {
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+.google_login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#google_login img {
+  width: 30px;
+  height: 30px;
+  margin: 0px 20px;
+}
+
+.noBorder {
+  margin: 0;
+}
+
+.redColor {
+  background-color: red;
+}
+
+.demo {
+  justify-content: center;
+  display: flex;
+  font-size: 1rem;
+}

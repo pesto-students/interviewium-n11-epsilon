@@ -1,0 +1,30 @@
+@import './utilities/variables';
+// snackbar's class
+
+.snackbar   {
+    :global(.MuiSnackbar-anchorOriginBottomCenter) {
+        transform: translate(-40%, 0) !important;
+        z-index: 2147483647 !important;
+    }
+    :global(.MuiSnackbar-root) {
+        z-index: 2147483647 !important;
+    }
+    :global(.MuiSnackbarContent-root) {
+        color: #fff !important;
+        font-weight: 700 !important;
+        justify-content: center !important;
+        z-index: 2147483647 !important;
+    }
+}
+.snackbar_success   {
+    :global(.MuiSnackbarContent-root) {
+        background-color: $sfn-snackbar-success !important;
+        justify-content: space-around;
+    }
+}
+.snackbar_error   {
+    :global(.MuiSnackbarContent-root) {
+        background-color: $sfn-snackbar-error !important;
+        justify-content: space-around;
+    }
+}

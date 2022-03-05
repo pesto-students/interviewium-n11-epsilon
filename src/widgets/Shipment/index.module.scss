@@ -1,0 +1,64 @@
+@import "../../utilities/variables.scss";
+@import "../../utilities/classes.scss";
+.containtMainbody {
+    .commeditTitle {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+    .addPhotomain {
+        display: flex;
+        align-items: center;
+        margin-bottom: 35px;
+        .profilePhotomain {
+            height: 102px;
+            width: 102px;
+            margin-right: 40px;
+            border: 1px solid #d7d7d7;
+            border-radius: 50%;
+            .anyProfile {
+                border-radius: 50%;
+                height: 100px;
+                width: 100px;
+                padding: 3px;
+            }
+        }
+         :global(.MuiAvatar-circle) {
+            width: 100px;
+            height: 100px;
+            background-color: $sfn-anyprofile-shade4;
+            cursor: pointer;
+             :global(.MuiAvatar-img) {
+                padding: 25px;
+                fill: $sfn-anyprofile-shade3;
+            }
+        }
+        .updateProfilePhoto {
+             :global(.MuiButton-root) {
+                padding: 8px 15px;
+                border-radius: 3px;
+            }
+        }
+    }
+    .modal_left_back_btn {
+        margin-top: 100px;
+        .commonBackbtn {
+             :global(.MuiButton-root) {
+                font-size: 16px;
+                font-weight: 600;
+                margin-right: 10px;
+                border: none;
+                &:hover {
+                    background-color: unset !important;
+                }
+            }
+        }
+    }
+    .status {
+        margin-top: 35px;
+         :global(.MuiSwitch-root) {
+            margin-left: -10px;
+            margin-right: 18px;
+        }
+    }
+}

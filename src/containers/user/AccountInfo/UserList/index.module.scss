@@ -1,0 +1,202 @@
+@import "../../../../utilities/variables.scss";
+@import "../../../../utilities/classes.scss";
+.norecordMain {
+  position: relative;
+  height: calc(100vh - 250px);
+  .noRecordsFound {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: $sso-common-white;
+  }
+}
+
+.accountSearch {
+  width: 400px;
+  margin-right: 20px;
+}
+.title {
+  font-size: 20px;
+  color: $sso-common-white;
+  .acc_link {
+    color: $sso-account-link;
+  }
+}
+
+.createAccbtn {
+  :global(.MuiButtonBase-root) {
+    padding: 6px 30px;
+  }
+}
+.users_table_background {
+  background-color: $sso-common-dark;
+  transition: all 0.2s linear;
+  .users_table_container {
+    height: calc(100vh - 214px);
+    .users_table {
+      .users_table_head {
+        transition: all 0.2s linear;
+        :global(.MuiTableSortLabel-root) {
+          color: $sso-common-white;
+          &:hover {
+            color: $sso-common-white;
+          }
+        }
+      }
+      .users_table_row {
+        transition: all 0.2s linear;
+        &:nth-child(odd) {
+          background-color: $sso-table-even;
+          transition: all 0.2s linear;
+        }
+        &:nth-child(even) {
+          background-color: $sso-table-head;
+          transition: all 0.2s linear;
+        }
+
+        :global(.MuiTableCell-root) {
+          color: $sso-header-icons;
+          transition: all 0.2s linear;
+          vertical-align: middle;
+          font-weight: 500;
+        }
+        .trash_icon_logo {
+          margin-right: 30px;
+          position: relative;
+          &:last-child {
+            margin: 0;
+          }
+          .trash_icon {
+            width: 40px;
+            height: 40px;
+            border: 2px solid $sso-account-border-color;
+            border-radius: 2px;
+            padding: 9px;
+            cursor: pointer;
+            fill: $sso-header-icons;
+          }
+          .tooltiptext {
+            visibility: hidden;
+            position: absolute;
+            width: 65px;
+            font-size: 12px;
+            font-weight: 600;
+            background-color: $sso-table-even;
+            color: $sso-account-table-color;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 3px;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.6s;
+            border: 1px solid$sso-account-table-color;
+            &.tooltiptop {
+              top: -35px;
+              left: 50%;
+              margin-left: -32px;
+              &:after {
+                content: "";
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                margin-left: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: $sso-account-table-color transparent transparent
+                  transparent;
+              }
+            }
+          }
+          &:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+          }
+        }
+
+        .deletetip {
+          //tooltip 1
+          .trash_icon:hover {
+            border-color: $sso-account-table-color;
+            fill: $sso-account-table-color !important;
+          }
+        }
+      }
+      .userNameCircle {
+        display: flex;
+        align-items: center;
+        .user_name_logo {
+          width: 45px;
+          height: 45px;
+          border-radius: 2px;
+          padding: 12px;
+          color: $sso-common-white;
+          background-color: $sso-account-table-color;
+          text-align: center;
+        }
+        .user_name {
+          margin-left: 16px;
+        }
+      }
+
+      .user_avatar {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+      }
+
+      .firstHead {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+  }
+}
+
+/*=========>Below are light-theme css<===========*/
+[data-theme="light"] {
+  .title {
+    color: $sso-common-dark;
+  }
+  .noRecordsFound {
+    color: $sso-common-dark;
+  }
+  .users_table_background {
+    background-color: $sso-common-white;
+    .users_table_container {
+      .users_table {
+        .users_table_head {
+          background-color: $sso-tablelight-background;
+          :global(.MuiTableSortLabel-root) {
+            color: $sso-common-dark;
+            &:hover {
+              color: $sso-common-dark;
+            }
+          }
+        }
+        .users_table_row {
+          border-color: $sso-common-white;
+          &:nth-child(odd) {
+            background-color: #d7d6d60d;
+          }
+          &:nth-child(even) {
+            background-color: $sso-tablelight-background;
+          }
+
+          :global(.MuiTableCell-root) {
+            color: $sso-account-border-color;
+          }
+          .tooltiptext {
+            background-color: $sso-common-white;
+          }
+          .trash_icon_logo {
+            .trash_icon {
+              fill: $sso-account-border-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}

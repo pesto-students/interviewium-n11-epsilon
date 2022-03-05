@@ -1,0 +1,102 @@
+    @import "../../../utilities/variables.scss";
+    @import "../../../utilities/classes.scss";
+    .customUsertble {
+        .innerBodytitle {
+            margin-bottom: 33px;
+        }
+        .commonSmallCard {
+            box-shadow: 0px 1px 3px #00000029;
+            .commonSmallCardHeader {
+                padding: 14px 20px;
+                background-color: $sfn-customTablehead-shade8;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .a1_link {
+                    cursor: pointer;
+                    color: $sfn-userProfile-shade10;
+                    text-decoration: unset;
+                    font-size: 16px;
+                    &.passTitle {
+                        margin-right: 20px;
+                    }
+                    &:hover {
+                        color: $sfn-btn-orange;
+                        text-decoration: underline;
+                    }
+                }
+            }
+            .commonSmallCardBody {
+                padding: 20px;
+                background-color: $sfn-common-white;
+                border: 1px solid $sfn-customCardmain-shade7;
+                p {
+                    margin: 0;
+                }
+                .list_item_heading {
+                    margin-bottom: 5px;
+                    b {
+                        font-weight: 600;
+                    }
+                }
+                .list_item_text {
+                    margin-bottom: 25px;
+                }
+                .profileUploadbtn {
+                    .upldBtn {
+                        text-align: unset;
+                        margin-bottom: 8px;
+                         :global(.MuiButtonBase-root) {
+                            background-color: $sfn-button;
+                            color: $sfn-common-white;
+                            font-weight: 600;
+                            font-size: 16px;
+                            border: none;
+                            padding: 8px 34px;
+                            border-radius: 0;
+                            box-shadow: unset;
+                            margin-top: 26px;
+                            &:hover {
+                                background-color: $sfn-button;
+                                color: $sfn-common-white;
+                                box-shadow: unset;
+                            }
+                        }
+                    }
+                }
+                .userphotoSelect {
+                    background-color: #f4f7fb;
+                    padding: 20px;
+                    border-radius: 50%;
+                    width: 142px;
+                    margin: 0 auto;
+                    .profilePhotomain {
+                        cursor: pointer;
+                        width: 102px;
+                        height: 102px;
+                        border: 1px solid #588ae9;
+                        border-radius: 50%;
+                        background-color: $sfn-common-white;
+                         :global(.MuiAvatar-circle) {
+                            width: 100px;
+                            height: 100px;
+                             :global(.MuiAvatar-img) {
+                                width: 60px;
+                                height: 60px;
+                                margin-left: -4px;
+                            }
+                        }
+                        .anyProfile {
+                            height: 100px;
+                            width: 100px;
+                            border-radius: 50%;
+                            padding: 3px;
+                        }
+                    }
+                }
+            }
+        }
+        .cardHt {
+            margin-top: 30px;
+        }
+    }
