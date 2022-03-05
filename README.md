@@ -3,9 +3,9 @@
 <p align="center">
     <img src="https://interviewium.s3-ap-south-1.amazonaws.com/f3fe3c94-eea0-42ed-80b1-c2079e39bce2.png" alt="Logo" width="350" height="200" >
 </p>
-Interviews! Around 150 million people go though interview process in a year, every 1 min 3 people are hired though LinkedIn. So, managing interview process in something what we do at Interviewium. Interviewium should be used by companies to manage their Interview process and Interviewee should get a good experience. All the Personas evolved should seamless experience. Our goal is to create a platform where HR, Interviewer, Interviewee can follow a process driven approach of hiring rather than HR driven. We want to remove the hurdle of managing all interviewee through excel, going back and forth for deciding timings.
-
-Welcome! we hope you enjoy the site as much as we enjoyed making it.
+Interviews! Around 150 million people go though interview process in a year. Every 1 min 3 people are hired though LinkedIn. Well, managing those interview processes is something what we do at Interviewium :) Interviewium is intended to be used by companies to manage their end-to-end Interview processes and to provide the (often nervous) interviewees a fantastic experience. We have strived to provide all the Personas at Interviewium a seamless experience. Our goal is to create a platform where HR, Interviewer, Interviewee can follow a process driven approach of hiring rather than HR driven. We want to remove the HR hurdles of often managing all interviewee through Excel & the constant going back and forth for deciding timings.
+<br/><br/>
+Welcome! We hope you enjoy our application as much as we enjoyed making it.
    
 <!-- TABLE OF CONTENTS -->
 <br/>
@@ -61,8 +61,8 @@ Credentials: One Click demo login is implemented.
 
 # Authors
 
-- [Pulkit Gupta](https://github.com/pulkitguptajmi)
 - [Rushikesh Ladke](https://github.com/rushikesh-ladke)
+- [Pulkit Gupta](https://github.com/pulkitguptajmi)
 
 <br/>
 
